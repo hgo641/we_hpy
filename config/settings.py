@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'users',
     'studyrooms',
     'invitations',
-    'messages',
+    'messages2',
+    # 'foo',
+    # 'foo.apps.FooConfig',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +119,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL='users.User'
+AUTH_USER_MODEL = 'users.User'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
