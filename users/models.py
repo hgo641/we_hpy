@@ -16,8 +16,9 @@ class User(AbstractUser):
 
 
 class My_page(models.Model):
-    #nickname profile_picture make_study my_calender study_room
-    userId = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    #nickname  my_calender 
+    userId = models.ForeignKey("User", on_delete=models.CASCADE, null=False, blank=False)
     profile_picture = models.ImageField(blank = True, upload_to="user/image/%Y/%m/%d", height_field=None, width_field=None, max_length=None)
-    #make_study = models.ManyToManyField(Studyroom) 
-    #study_room = models.ManyToManyField(Studyroom)
+    make_study = models.ManyToManyField("studyrooms.Studyroom", related_name = "make_study") 
+    study_room = models.ManyToManyField("studyrooms.Studyroom", related_name = "study_room")
+
