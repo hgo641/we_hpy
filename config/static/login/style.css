@@ -1,0 +1,7 @@
+.nav__element{
+    display: flex;
+}
+
+.nav__right__element{
+    color: green;
+}
