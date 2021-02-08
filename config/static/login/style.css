@@ -1,7 +1,20 @@
+.nav{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
 .nav__element{
     display: flex;
 }
 
+#nav__left{
+    flex: 1 1 0
+}
+#nav__right{
+    flex: 1 1 0;
+    justify-content: flex-end;
+}
+
 .nav__right__element{
-    color: green;
+    margin-right: 1rem;
 }
