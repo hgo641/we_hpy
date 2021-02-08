@@ -1,20 +1,39 @@
+body{
+    font-family: 'Apple SD Gothic Neo',arial,sans-serif;
+}
+a {
+    /* 링크 밑줄 제거 */
+    color: black;
+    text-decoration:none;
+}
+
 .nav{
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid black;
 }
 .nav__element{
     display: flex;
 }
 
 #nav__left{
-    flex: 1 1 0
+    margin-left: 1rem;
 }
 #nav__right{
-    flex: 1 1 0;
     justify-content: flex-end;
+    margin-left: auto;
 }
 
 .nav__right__element{
     margin-right: 1rem;
+}
+
+.main{
+    text-align: center;
 }
