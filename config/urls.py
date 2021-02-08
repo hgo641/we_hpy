@@ -24,4 +24,9 @@ urlpatterns = [
     # path('register/', views.login, name='register'),
     # path('idfound/', views.login, name='idfound'),
     # path('passwordfound/', views.login, name='passwordfound'),
+    # path('/', views.login, name='main'),
+
+    # path('/mypage', views.login, name='mypage'),
+
+    # path('/studyroom', views.login, name='studyroom'),
 ]
