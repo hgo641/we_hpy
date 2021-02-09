@@ -31,14 +31,13 @@
                 </div>
                 <div class="login__element" id="login-button">
                     <label for=""></label>
-                    <button id="login-button__button">로그인</button>
+                    <button class="login-button__button">로그인</button>
                 </div>
             </form>
+            <a id="login-forget" href="{% url 'login' %}">계정을 잊으셨나요?</a>
         </div>
-        <div class="main__buttons">
-            <span class="main__buttons__element"><a href="">ID 찾기</a></span>
-            <span class="main__buttons__element"><a href="">PW 찾기</a></span>
-            <span class="main__buttons__element"><a href="{% url 'register' %}">회원가입</a></span>
+        <div id="main__buttons">
+            <a class="main__buttons__element" href="{% url 'register' %}">회원가입</a>
         </div>
     </div>
     <div class="footer"></div>
