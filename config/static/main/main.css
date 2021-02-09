@@ -1,5 +1,5 @@
 body{
-    font-family: 'Apple SD Gothic Neo',arial,sans-serif;
+    font-family: "Noto Sans KR", sans-serif, 나눔고딕, 돋움, Dotum, 굴림, Gulim, "Apple SD Gothic Neo" !important;
 }
 a {
     /* 링크 밑줄 제거 */
