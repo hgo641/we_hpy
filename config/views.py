@@ -34,3 +34,10 @@ def register(request):
         'testData' : "testData is testData"
     }
     return HttpResponse(template.render(context, request))
+
+def mypage(request):
+    template = loader.get_template('mypage/mypage.html')
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))

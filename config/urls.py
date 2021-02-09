@@ -30,7 +30,7 @@ urlpatterns = [
     # path('idfound/', views.login, name='idfound'),
     # path('passwordfound/', views.login, name='passwordfound'),
 
-    # path('/mypage', views.login, name='mypage'),
+    path('/mypage', views.mypage, name='mypage'),
 
     # path('/studyroom', views.login, name='studyroom'),
 ]
