@@ -20,11 +20,15 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', views.main, name='main'),
+
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
+    
+
     # path('idfound/', views.login, name='idfound'),
     # path('passwordfound/', views.login, name='passwordfound'),
-    # path('/', views.login, name='main'),
 
     # path('/mypage', views.login, name='mypage'),
 

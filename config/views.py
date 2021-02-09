@@ -13,6 +13,15 @@ from django.template import loader
 # context 사전형 객체를 세전째 선택적(optional) 인수로 받습니다. 
 # 인수로 지정된 context로 표현된 템플릿의 HttpResponse 객체가 반환됩니다.
 
+def main(request):
+    template = loader.get_template('main/main.html')
+    # return HttpResponse("Test Login")
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def login(request):
     template = loader.get_template('login/login.html')
     # return HttpResponse("Test Login")
