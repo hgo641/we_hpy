@@ -1,12 +1,46 @@
-<!-- <!DOCTYPE html>
+{% load static %}
+
+<!-- <span>{{ testData }}</span> -->
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'login/register.css' %}">
+    <!-- <title>Document</title> -->
 </head>
 <body>
-    
+    <div class="main">
+        <div class="main__login">
+            <span id="main__login__subject">로그인</span>
+            <form action="" method="POST">
+                <div>
+                    <label for=""></label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for=""></label>
+                    <input type="password">
+                </div>
+                <div>
+                    <label for=""></label>
+                    <input type="button">
+                </div>
+                <div>
+                    <label for=""></label>
+                    <input type="checkbox">
+                </div>
+            </form>
+        </div>
+        <div class="main__buttons">
+            <span class="main__buttons__element"><a href="">ID 찾기</a></span>
+            <span class="main__buttons__element"><a href="">PW 찾기</a></span>
+            <span class="main__buttons__element"><a href="">회원가입</a></span>
+        </div>
+    </div>
+    <div class="footer"></div>
 </body>
-</html> -->
+</html>

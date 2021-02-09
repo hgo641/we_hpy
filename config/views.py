@@ -20,3 +20,11 @@ def login(request):
         'testData' : "testData is testData"
     }
     return HttpResponse(template.render(context, request))
+
+def register(request):
+    template = loader.get_template('login/register.html')
+    # return HttpResponse("Test Login")
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))
