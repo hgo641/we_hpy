@@ -15,23 +15,23 @@
 <body>
     <div class="main">
         <div class="main__login">
-            <span id="main__login__subject">로그인</span>
+            <div id="main__login__subject">로그인</div>
             <form action="" method="POST">
-                <div>
-                    <label for=""></label>
-                    <input type="text">
+                <div class="main__login__form__element" id="main__login__form__id">
+                    <label for="">아이디</label>
+                    <input id="main__login__form__id__input" class="main__login__form__input" type="text" placeholder="example@example.com">
                 </div>
-                <div>
-                    <label for=""></label>
-                    <input type="password">
+                <div class="main__login__form__element" id="main__login__form__password">
+                    <label for="">패스워드</label>
+                    <input id="main__login__form__password__input" class="main__login__form__input" type="password">
                 </div>
-                <div>
-                    <label for=""></label>
-                    <input type="button">
+                <div class="main__login__form__element" id="main__login__form__checkbox">
+                    <input type="checkbox" id="main__login__form__checkbox__input">
+                    <label for="main__login__form__checkbox__input">로그인 상태 유지</label>
                 </div>
-                <div>
+                <div class="main__login__form__element" id="main__login__form__button">
                     <label for=""></label>
-                    <input type="checkbox">
+                    <button id="main__login__form__button__button">로그인</button>
                 </div>
             </form>
         </div>
