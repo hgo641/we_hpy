@@ -15,7 +15,6 @@ from django.template import loader
 
 def main(request):
     template = loader.get_template('main/main.html')
-    # return HttpResponse("Test Login")
     context = {
         'testData' : "testData is testData"
     }
@@ -24,7 +23,6 @@ def main(request):
 
 def login(request):
     template = loader.get_template('login/login.html')
-    # return HttpResponse("Test Login")
     context = {
         'testData' : "testData is testData"
     }
@@ -32,7 +30,6 @@ def login(request):
 
 def register(request):
     template = loader.get_template('login/register.html')
-    # return HttpResponse("Test Login")
     context = {
         'testData' : "testData is testData"
     }
