@@ -1,28 +1,7 @@
+{% extends 'base/navbar.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
-    <!-- <title>Document</title> -->
-</head>
-<body>
-    <nav id="nav">
-        <div class="nav__element" id="nav__left">
-            <span class="nav__left__element">Logo</span>
-        </div>
-        <div class="nav__element" id="nav__right">
-            <span class="nav__right__element"><a href="">스터디룸 참여</a></span>
-            <span class="nav__right__element"><a href="">스터디룸 등록</a></span>
-            <span class="nav__right__element"><a href="">나의 스터디룸</a></span>
-            <span class="nav__right__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
-            <span class="nav__right__element"><a href="{% url 'login' %}">로그인</a></span>
-        </div>
-    </nav>
+{% block content %}
     <div class="main">
         <div class="main__element">스터디룸 참여</div>
         <div class="main__element">스터디룸 등록</div>
@@ -30,6 +9,4 @@
         <div class="main__element">마이페이지</div>
 
     </div>
-    <div class="footer"></div>
-</body>
-</html>
+{% endblock %}
