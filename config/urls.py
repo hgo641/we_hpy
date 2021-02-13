@@ -19,6 +19,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # path('test/', include('test.urls')),
+    # 다음과 같이 정의하면 장고는 test/ 로 들어오는 모든 요청을 test.urls로 전송하여 탐색한다.
+    # urls파일을 분리할때 사용할 수 있는 기능이다.
+    
     path('admin/', admin.site.urls),
 
     path('', views.main, name='main'),
