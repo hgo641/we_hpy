@@ -1,0 +1,31 @@
+{% load static %}
+
+<!-- <span>{{ testData }}</span> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'login/found.css' %}">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    <div class="main">
+        <div id="main__box">
+            <div id="main__box__subject">아이디/비밀번호 찾기</div>
+            <div id="main__box__elements">
+                <div class="box__button"><a href="">아이디 찾기</a></div>
+                <div class="box__button"><a href="">비밀번호 찾기</a></div>
+            </div>
+        </div>
+        
+        <!-- <div id="main__buttons">
+            <a class="main__buttons__element" href="{% url 'login' %}">계정이 기억 나셨나요?</a>
+        </div> -->
+    </div>
+    <div class="footer"></div>
+</body>
+</html>

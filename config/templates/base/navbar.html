@@ -12,15 +12,15 @@
 </head>
 <body>
     <nav id="nav">
-        <div class="nav__element" id="nav__left">
-            <span class="nav__left__element">Logo</span>
+        <div class="nav__element" id="nav__logo">
+            <span class="nav__logo__element"><a href="{% url 'main' %}">Logo</a></span>
         </div>
-        <div class="nav__element" id="nav__right">
-            <span class="nav__right__element"><a href="">스터디룸 참여</a></span>
-            <span class="nav__right__element"><a href="">스터디룸 등록</a></span>
-            <span class="nav__right__element"><a href="">나의 스터디룸</a></span>
-            <span class="nav__right__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
-            <span class="nav__right__element"><a href="{% url 'login' %}">로그인</a></span>
+        <div class="nav__element" id="nav__menu">
+            <span class="nav__menu__element"><a href="">스터디룸 참여</a></span>
+            <span class="nav__menu__element"><a href="">스터디룸 등록</a></span>
+            <span class="nav__menu__element"><a href="">나의 스터디룸</a></span>
+            <span class="nav__menu__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
+            <span class="nav__menu__element"><a href="{% url 'login' %}">로그인</a></span>
         </div>
     </nav>
     {% block content %}

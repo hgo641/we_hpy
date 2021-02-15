@@ -22,16 +22,16 @@ a {
     display: flex;
 }
 
-#nav__left{
+#nav__logo{
     margin-left: 2rem;
 }
-#nav__right{
+#nav__menu{
     justify-content: flex-end;
     margin-left: auto;
     margin-right: 1rem;
 }
 
-.nav__right__element{
+.nav__menu__element{
     margin-right: 1rem;
 }
 

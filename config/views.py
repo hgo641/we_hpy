@@ -35,6 +35,13 @@ def register(request):
     }
     return HttpResponse(template.render(context, request))
 
+def found(request):
+    template = loader.get_template('login/found.html')
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))
+
 def mypage(request):
     template = loader.get_template('mypage/mypage.html')
     context = {
