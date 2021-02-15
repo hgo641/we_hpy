@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from django.template import loader
+
+# from .forms import NameForm # 폼 테스트
 # render와 HttpResponse의 차이?
 
 # def login(request):
