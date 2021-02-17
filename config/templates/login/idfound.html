@@ -1,0 +1,41 @@
+{% load static %}
+
+<!-- <span>{{ testData }}</span> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'login/idfound.css' %}">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    <div class="main">
+        <div id="main__idfound">
+            <div id="main__idfound__subject">아이디 찾기</div>
+            <form id="main__idfound__form" action="" method="POST">
+                <div id="idfound-name" class="idfound__element">
+                    <label for="">이름</label>
+                    <input class="main__idfound__form__input" type="text" placeholder="example@example.com">
+                </div>
+                <div id="idfound-email" class="idfound__element">
+                    <label for="">이메일</label>
+                    <input class="main__idfound__form__input" type="text">
+                </div>
+                <div id="idfound-check" class="idfound__element">
+                    <label for="">인증번호</label>
+                    <input class="main__idfound__form__input" type="text" placeholder="인증번호 입력">
+                </div>
+                <div class="idfound__element" id="idfound-button">
+                    <label for=""></label>
+                    <button>다음</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>
