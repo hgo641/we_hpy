@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 from django.template import loader
 
+from .forms import LoginForm
+
 # from .forms import NameForm # 폼 테스트
 # render와 HttpResponse의 차이?
 
@@ -31,7 +33,9 @@ def login(request):
     context = {
         'testData' : "testData is testData"
     }
-    return HttpResponse(template.render(context, request))
+    # return HttpResponse(template.render(context, request))
+    form = LoginForm()
+    return render(request, 'login/login.html', {'form': form})
 
 def register(request):
     template = loader.get_template('login/register.html')
@@ -67,3 +71,15 @@ def mypage(request):
         'testData' : "testData is testData"
     }
     return HttpResponse(template.render(context, request))
+
+def formtest2(request):
+    # if request.method == 'POST':
+    #     print("request:", request.POST)
+    #     return redirect('main')
+    # template = loader.get_template('login/login.html')
+    # context = {
+    #     'testData' : "testData is testData"
+    # }
+    # return HttpResponse(template.render(context, request))
+    form = LoginForm()
+    return render(request, 'test/formtest2.html', {'form': form})

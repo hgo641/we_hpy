@@ -18,6 +18,7 @@
             <div id="main__login__subject">로그인</div>
             <form id="main__login__form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
+            <!-- {{ form.as_p }} -->
                 <div class="login__element" id="login-id">
                     <label for="">아이디</label>
                     <input name="id" id="main__login__form__id__input" class="main__login__form__input" type="text" placeholder="example@example.com">

@@ -46,5 +46,5 @@ urlpatterns = [
     # path('/studyroom/room/<roomNum>/private, views.login, name='studyroom'),
     # path('/studyroom/room/<roomNum>/public', views.login, name='studyroom'),
 
-
+    path('test/', views.formtest2, name='formtest2'),
 ]
