@@ -28,7 +28,7 @@ class User(AbstractUser):
         OTHER = ("o", "Other")
     email = models.EmailField(max_length=254)
     gender = models.CharField(
-        max_length=1, choices=GenderChoices.choices, unique=True)
+        max_length=1, choices=GenderChoices.choices)  # unique 없앰
     birth_date = models.DateField()
     objects = UserManager()
 
