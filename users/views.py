@@ -1,23 +1,44 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-
+#from django.contrib.auth.models import User
+from django.contrib import auth
+from .forms import *
 
 def sign_up(request):
     if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(**form.cleaned_data)
+            auth.login(request, user)
+            return render(request, "login.html")
+    else:
+        form = UserForm()
+        return render(request, "sign_up.html")    
+    #     if request.POST['password'] == request.POST['confirm']:
+    #         username = request.POST["username"]
+    #         email = request.POST["email"]
+    #         password = request.POST["password"]
+    #         gender = request.POST["gender"]
+    #         birth_date = request.POST["birth_date"]
+
+    #         user = User.objects.create_user(username, email, gender, birth_date, password)
+ 
+    #         user.save()
+    #         auth.login(request,user)
+
+    #     return render(request, "login.html")
+    # return render(request, "sign_up.html")
+
+def login(request):
+    if request.method == 'POST':
         username = request.POST["username"]
-        email = request.POST["email"]
         password = request.POST["password"]
-        gender = request.POST["gender"]
-        birth_date = request.POST["birth_date"]
-
-        user = User.objects.create_user(
-            username, email, gender, birth_date, password)
-        #user.username = username
-        #user.password = password
-        # user.gender = gender
-        # user.birth_date = birth_date
-        user.save()
-
-        return render(request, "login_test.html")
-    return render(request, "sign_up.html")
-# Create your views here.
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            print('loginsuccess')
+            return redirect('/')
+        else:
+            return render(request, 'login.html',{'error':'username or password is incorrect'})
+    else:
+        return render(request, 'login.html')

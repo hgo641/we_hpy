@@ -27,6 +27,7 @@ urlpatterns = [
 
     path('', views.main, name='main'),
     # users? 혹은 다른곳으로 이동
+    path('users/',include("users.urls")),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
     path('found/', views.found, name='found'),
