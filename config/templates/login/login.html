@@ -16,14 +16,29 @@
     <div class="main">
         <div id="main__login">
             <div id="main__login__subject">로그인</div>
-            <form id="main__login__form" action="" method="POST">
+            <form id="main__login__form" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <!-- 오류 -->
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {% if field.errors %}
+                    <strong>{{ field.label }}</strong>
+                    {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <!-- 오류 끝 -->
+            
                 <div class="login__element" id="login-id">
                     <label for="">아이디</label>
-                    <input id="main__login__form__id__input" class="main__login__form__input" type="text" placeholder="example@example.com">
+                    <input name="id" id="main__login__form__id__input" class="main__login__form__input" type="text" placeholder="example@example.com" value="{{ form.email.value|default_if_none:'' }}">
                 </div>
                 <div class="login__element" id="login-password">
                     <label for="">패스워드</label>
-                    <input id="main__login__form__password__input" class="main__login__form__input" type="password">
+                    <input name="password" id="main__login__form__password__input" class="main__login__form__input" type="password" value="{{ form.password.value|default_if_none:'' }}">
                 </div>
                 <div class="login__element" id="login-checkbox">
                     <input type="checkbox" id="login-checkbox__input">
@@ -31,7 +46,7 @@
                 </div>
                 <div class="login__element" id="login-button">
                     <label for=""></label>
-                    <button id="login-button__button">로그인</button>
+                    <input type="submit" id="login-button__button" value="로그인">
                 </div>
             </form>
             <a id="login-forget" href="{% url 'found' %}">계정을 잊으셨나요?</a>

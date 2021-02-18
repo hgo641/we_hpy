@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.template import loader
+
+from .forms import LoginForm
+
+# from .forms import NameForm # 폼 테스트
 # render와 HttpResponse의 차이?
 
 # def login(request):
@@ -22,11 +26,21 @@ def main(request):
 
 
 def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            print("test")
+        print("request:", form)
+        return redirect('main')
     template = loader.get_template('login/login.html')
     context = {
         'testData' : "testData is testData"
     }
-    return HttpResponse(template.render(context, request))
+    form = LoginForm()
+    return render(request, 'login/login.html', {'form': form})
+    # return HttpResponse(template.render(context, request))
+    
+
 
 def register(request):
     template = loader.get_template('login/register.html')
@@ -42,9 +56,35 @@ def found(request):
     }
     return HttpResponse(template.render(context, request))
 
+def idfound(request):
+    template = loader.get_template('login/idfound.html')
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))
+
+def pwfound(request):
+    template = loader.get_template('login/pwfound.html')
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))
+
 def mypage(request):
     template = loader.get_template('mypage/mypage.html')
     context = {
         'testData' : "testData is testData"
     }
     return HttpResponse(template.render(context, request))
+
+def formtest2(request):
+    # if request.method == 'POST':
+    #     print("request:", request.POST)
+    #     return redirect('main')
+    # template = loader.get_template('login/login.html')
+    # context = {
+    #     'testData' : "testData is testData"
+    # }
+    # return HttpResponse(template.render(context, request))
+    form = LoginForm()
+    return render(request, 'test/formtest2.html', {'form': form})

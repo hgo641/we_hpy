@@ -1,8 +1,16 @@
-{% extends 'base/navbar.html' %}
-{% load static %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <!-- <title>Document</title> -->
     <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    
     <div id="main">
         <div class="main__element">스터디룸 참여</div>
         <div class="main__element">스터디룸 등록</div>
@@ -10,4 +18,6 @@
         <div class="main__element">마이페이지</div>
 
     </div>
-{% endblock %}
+
+</body>
+</html>

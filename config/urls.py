@@ -26,16 +26,34 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.main, name='main'),
+<<<<<<< HEAD
 
     path("users/", include('users.urls')),
+=======
+    # users? 혹은 다른곳으로 이동
+>>>>>>> 8a65fcc251c4e5f422b449e75c35130ef07ee32b
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
     path('found/', views.found, name='found'),
 
-    # path('idfound/', views.login, name='idfound'),
-    # path('passwordfound/', views.login, name='passwordfound'),
+    path('idfound/', views.idfound, name='idfound'),
+    path('pwfound/', views.pwfound, name='pwfound'),
 
     path('mypage/', views.mypage, name='mypage'),
 
+
+    # studyroom url 로 전달
+    # path('/studyroom', include('studyrooms.url')),
+
     # path('/studyroom', views.login, name='studyroom'),
+    # path('/studyroom/found', views.login, name='studyroom'),
+    # path('/studyroom/make', views.login, name='studyroom'),
+
+    # path('/studyroom/my', views.login, name='studyroom'),
+
+    # path('/studyroom/room/<roomNum>', views.login, name='studyroom'),
+    # path('/studyroom/room/<roomNum>/private, views.login, name='studyroom'),
+    # path('/studyroom/room/<roomNum>/public', views.login, name='studyroom'),
+
+    path('test/', views.formtest2, name='formtest2'),
 ]
