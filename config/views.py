@@ -27,7 +27,10 @@ def main(request):
 
 def login(request):
     if request.method == 'POST':
-        print("request:", request.POST)
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            print("test")
+        print("request:", form)
         return redirect('main')
     template = loader.get_template('login/login.html')
     context = {
