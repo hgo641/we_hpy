@@ -26,12 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.main, name='main'),
-<<<<<<< HEAD
-
-    path("users/", include('users.urls')),
-=======
     # users? 혹은 다른곳으로 이동
->>>>>>> 8a65fcc251c4e5f422b449e75c35130ef07ee32b
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
     path('found/', views.found, name='found'),

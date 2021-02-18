@@ -14,7 +14,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=254)
     gender = models.CharField(
         max_length=1, choices=GenderChoices.choices)
-    birth_date = models.DateField(blank=True, null=True)
+    birth_date = models.DateField(verbose_name=('birth_date'),null = True)
 
 
 class MyPage(models.Model):
@@ -23,6 +23,6 @@ class MyPage(models.Model):
     profile_picture = models.ImageField(
         blank=True, upload_to="user/image/%Y/%m/%d", height_field=None, width_field=None, max_length=None)
     make_study = models.ManyToManyField(
-        "studyrooms.Studyroom", related_name="mypages")
+        "studyrooms.Studyroom", related_name="leaderpages")
     study_room = models.ManyToManyField(
         "studyrooms.Studyroom", related_name="mypages")
