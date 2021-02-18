@@ -18,8 +18,8 @@
             <div id="main__login__subject">로그인</div>
             <form id="main__login__form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
-            <!-- {{ form.as_p }} -->
-                <div class="login__element" id="login-id">
+            {{ form.as_p }}
+                <!-- <div class="login__element" id="login-id">
                     <label for="">아이디</label>
                     <input name="id" id="main__login__form__id__input" class="main__login__form__input" type="text" placeholder="example@example.com">
                 </div>
@@ -32,10 +32,10 @@
                     <label for="main__login__form__checkbox__input">로그인 상태 유지</label>
                 </div>
                 <div class="login__element" id="login-button">
-                    <!-- <label for=""></label> -->
+                    <label for=""></label>
                     <input type="submit" id="login-button__button" value="로그인">
-                    <!-- <button type="submit" id="login-button__button">로그인</button> -->
-                </div>
+                    <button type="submit" id="login-button__button">로그인</button>
+                </div> -->
             </form>
             <a id="login-forget" href="{% url 'found' %}">계정을 잊으셨나요?</a>
         </div>

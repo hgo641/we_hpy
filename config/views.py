@@ -33,9 +33,11 @@ def login(request):
     context = {
         'testData' : "testData is testData"
     }
-    # return HttpResponse(template.render(context, request))
     form = LoginForm()
     return render(request, 'login/login.html', {'form': form})
+    # return HttpResponse(template.render(context, request))
+    
+
 
 def register(request):
     template = loader.get_template('login/register.html')
