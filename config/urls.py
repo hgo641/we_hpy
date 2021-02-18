@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.main, name='main'),
-
+    # users? 혹은 다른곳으로 이동
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
     path('found/', views.found, name='found'),
@@ -35,6 +35,10 @@ urlpatterns = [
     path('pwfound/', views.pwfound, name='pwfound'),
 
     path('mypage/', views.mypage, name='mypage'),
+
+
+    # studyroom url 로 전달
+    # path('/studyroom', include('studyrooms.url')),
 
     # path('/studyroom', views.login, name='studyroom'),
     # path('/studyroom/found', views.login, name='studyroom'),
