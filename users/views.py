@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
 
@@ -31,14 +31,20 @@ def sign_up(request):
 
 def login(request):
     if request.method == 'POST':
+        #form = LoginForm(request.POST)
+        #email = request.POST["email"]
         username = request.POST["username"]
         password = request.POST["password"]
-        user = auth.authenticate(request, username=username, password=password)
+        user = auth.authenticate(username=username, password=password)#이메일 왜 안되지 ? 왜 안되지? 왜안되지 ??? 일단 유저네임으로
         if user is not None:
             auth.login(request, user)
+            #print(email)
             print('loginsuccess')
             return redirect('/')
         else:
+            #print(email)
+            print(password)
+            print('nooooo')
             return render(request, 'login.html',{'error':'username or password is incorrect'})
     else:
         return render(request, 'login.html')
