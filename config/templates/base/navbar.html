@@ -1,3 +1,4 @@
+{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'base/navbar.css' %}">
 
 <nav id="nav">
@@ -9,6 +10,11 @@
         <span class="nav__menu__element"><a href="">스터디룸 등록</a></span>
         <span class="nav__menu__element"><a href="">나의 스터디룸</a></span>
         <span class="nav__menu__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
+        {% if user.is_authenticated %}
+        <span class="nav__menu__element"><a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a></span>
+        
+        {% else %}
         <span class="nav__menu__element"><a href="{% url 'login' %}">로그인</a></span>
+        {% endif %}
     </div>
 </nav>

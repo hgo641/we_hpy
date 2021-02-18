@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.contrib.auth import views as auth_views
+
 from . import views
 
 urlpatterns = [
@@ -27,7 +29,9 @@ urlpatterns = [
 
     path('', views.main, name='main'),
     # users? 혹은 다른곳으로 이동
-    path('login/', views.login, name='login'),
+    # path('login/', views.login, name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='login/login.html'), name='login'),
+
     path('register/', views.register, name='register'),
     path('found/', views.found, name='found'),
 
@@ -50,5 +54,5 @@ urlpatterns = [
     # path('/studyroom/room/<roomNum>/private, views.login, name='studyroom'),
     # path('/studyroom/room/<roomNum>/public', views.login, name='studyroom'),
 
-    path('test/', views.formtest2, name='formtest2'),
+    path('test/', views.bstest, name='bstest'),
 ]
