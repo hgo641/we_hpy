@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action ="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <input type = "text" name ="username" value ="username">
+        <input type = "email" name ="email" value ="email">
+        <input type = "date" name ="birth_date" value ="birth_date">
+        <input type = "text" name ="gender" value ="gender">
+        <input type = "password" name ="password" value ="password">
+        <input type ="submit">
+    </form>
+</body>
+</html>
