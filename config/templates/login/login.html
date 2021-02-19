@@ -1,14 +1,11 @@
+<!-- users app으로 이동했습니다 -->
 {% load static %}
-
-<!-- <span>{{ testData }}</span> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'login/login.css' %}">
     <!-- <title>Document</title> -->
 </head>
@@ -18,7 +15,6 @@
             <div id="main__login__subject">로그인</div>
             <form id="main__login__form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
-            <!-- {{ form.as_p }} -->
             <!-- 오류 -->
             {% if form.errors %}
                 <div class="alert alert-danger" role="alert">

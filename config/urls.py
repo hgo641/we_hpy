@@ -28,14 +28,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.main, name='main'),
-    # users? 혹은 다른곳으로 이동
-    # path('login/', views.login, name='login'),
-    # path('login/', auth_views.LoginView.as_view(template_name='login/login.html'), name='login'),
-
+    # users 이하 login, signup, id/password found
     path('users/',include("users.urls")),
-    path('login/', views.login, name='login'),
 
-    path('register/', views.register, name='register'),
+    # path('login/', views.login, name='login'),
+    # path('register/', views.register, name='register'),
     path('found/', views.found, name='found'),
 
     path('idfound/', views.idfound, name='idfound'),

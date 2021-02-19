@@ -77,18 +77,6 @@ def mypage(request):
     }
     return HttpResponse(template.render(context, request))
 
-def formtest2(request):
-    # if request.method == 'POST':
-    #     print("request:", request.POST)
-    #     return redirect('main')
-    # template = loader.get_template('login/login.html')
-    # context = {
-    #     'testData' : "testData is testData"
-    # }
-    # return HttpResponse(template.render(context, request))
-    form = LoginForm()
-    return render(request, 'test/formtest2.html', {'form': form})
-
 def bstest(request):
     template = loader.get_template('main/main_bstest.html')
     context = {
