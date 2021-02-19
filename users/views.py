@@ -48,3 +48,5 @@ def login(request):
             return render(request, 'login.html',{'error':'username or password is incorrect'})
     else:
         return render(request, 'login.html')
+
+# 로그아웃 뷰

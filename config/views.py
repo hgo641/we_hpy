@@ -3,10 +3,7 @@ from django.http import HttpResponse
 
 from django.template import loader
 
-from .forms import LoginForm
-
-# from .forms import NameForm # 폼 테스트
-# render와 HttpResponse의 차이?
+# from .forms import LoginForm
 
 # def login(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -25,29 +22,28 @@ def main(request):
     return HttpResponse(template.render(context, request))
 
 
-def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            print("test")
-        print("request:", form)
-        return redirect('main')
-    template = loader.get_template('login/login.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    form = LoginForm()
-    return render(request, 'login/login.html', {'form': form})
+# def login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             print("test")
+#         print("request:", form)
+#         return redirect('main')
+#     template = loader.get_template('login/login.html')
+#     context = {
+#         'testData' : "testData is testData"
+#     }
+#     form = LoginForm()
+#     return render(request, 'login/login.html', {'form': form})
     # return HttpResponse(template.render(context, request))
     
 
-
-def register(request):
-    template = loader.get_template('login/register.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
+# def register(request):
+#     template = loader.get_template('login/register.html')
+#     context = {
+#         'testData' : "testData is testData"
+#     }
+#     return HttpResponse(template.render(context, request))
 
 def found(request):
     template = loader.get_template('login/found.html')
