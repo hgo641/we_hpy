@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'studyrooms',
     'invitations',
     'messages2',
-    'config' # Django는 INSTALLED_APPS에 있는 앱에서 temlplates을 자동으로 검색합니다. 템플릿을 위해 config를 INSTALLED_APPS 에추가함. 문제가 있으면 알려주세요.
+    # Django는 INSTALLED_APPS에 있는 앱에서 temlplates을 자동으로 검색합니다. 템플릿을 위해 config를 INSTALLED_APPS 에추가함. 문제가 있으면 알려주세요.
+    'config'
     # 'foo',
     # 'foo.apps.FooConfig',
 ]
@@ -112,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC' # Asia/Seoul
+TIME_ZONE = 'UTC'  # Asia/Seoul
 
 USE_I18N = True
 
@@ -128,5 +129,6 @@ AUTH_USER_MODEL = 'users.User'
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
+STATICFILES_DIR = [STATIC_DIR, ]

@@ -17,6 +17,7 @@
         <div id="main__register">
             <div id="main__register__subject">회원가입</div>
             <form id="main__register__form" action="" method="POST">
+                {% csrf_token %}
                 <div id="register-id" class="register__element">
                     <label for="">이메일</label>
                     <input class="main__register__form__input" type="text" placeholder="example@example.com">
