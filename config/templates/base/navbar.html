@@ -11,7 +11,7 @@
         <span class="nav__menu__element"><a href="">나의 스터디룸</a></span>
         <span class="nav__menu__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
         {% if user.is_authenticated %}
-        <span class="nav__menu__element"><a class="nav-link" href="{% url 'login' %}">{{ user.username }} (로그아웃)</a></span>
+        <span class="nav__menu__element"><a class="nav-link" href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a></span>
         {% else %}
         <span class="nav__menu__element"><a href="{% url 'login' %}">로그인</a></span>
         {% endif %}
