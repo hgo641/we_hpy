@@ -1,53 +1,39 @@
-body{
-    font-family: "Noto Sans KR", sans-serif, 나눔고딕, 돋움, Dotum, 굴림, Gulim, "Apple SD Gothic Neo" !important;
-}
-a {
-    /* 링크 밑줄 제거 */
-    color: black;
-    text-decoration:none;
-}
+@media (min-width: 768px) {
+    body{
+        font-family: "Noto Sans KR", sans-serif, 나눔고딕, 돋움, Dotum, 굴림, Gulim, "Apple SD Gothic Neo" !important;
+    }
+    a {
+        /* 링크 밑줄 제거 */
+        color: black;
+        text-decoration:none;
+    }
 
-#nav{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
+    #nav{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
 
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+        padding-bottom: 1rem;
 
-    border-bottom: 1px solid rgb(238, 238, 238);
-}
-.nav__element{
-    display: flex;
-}
+        border-bottom: 1px solid rgb(238, 238, 238);
+    }
+    .nav__element{
+        display: flex;
+    }
 
-#nav__logo{
-    margin-left: 2rem;
-}
-#nav__menu{
-    justify-content: flex-end;
-    margin-left: auto;
-    margin-right: 1rem;
-}
+    #nav__logo{
+        margin-left: 2rem;
+    }
+    #nav__menu{
+        justify-content: flex-end;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
 
-.nav__menu__element{
-    margin-right: 1rem;
-}
-
-.main{
-    display: flex;
-    /* text-align: center; */
-    align-items: center;
-    flex-direction: column;
-}
-
-.main__login{
-    padding: 2rem;
-    border: 1px solid rgb(224, 224, 224);
-    width: 376px;
-}
-
-#main__login__subject{
-    font-size: 2rem;
+    .nav__menu__element{
+        margin-right: 1rem;
+        white-space:nowrap;
+    }
 }
