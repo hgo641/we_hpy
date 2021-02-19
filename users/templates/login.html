@@ -1,20 +1,3 @@
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-    test
-    <br>
-    <form action="" method = "POST">
-        {% csrf_token %}
-        <input type="username" name = "username">
-        <input type="password" name = "password">
-        <input type="submit">
-    </form>
-</body>
-</html> -->
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +10,9 @@
 </head>
 <body>
     <div class="main">
-        <div id="main__login">
-            <div id="main__login__subject">로그인</div>
-            <form id="main__login__form" action="{% url 'login' %}" method="POST">
+        <div class="box">
+            <div class="subject">로그인</div>
+            <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <!-- 오류 -->
             <!-- {% if form.errors %}
@@ -44,24 +27,24 @@
             {% endif %} -->
             <!-- 오류 끝 -->
             
-                <div class="login__element" id="login-id">
+                <div class="form__element">
                     <label for="">아이디</label>
-                    <input name="username" id="main__login__form__id__input" class="main__login__form__input" type="username">
+                    <input name="username" class="form__input" type="username">
                 </div>
-                <div class="login__element" id="login-password">
+                <div class="form__element">
                     <label for="">패스워드</label>
-                    <input name="password" id="main__login__form__password__input" class="main__login__form__input" type="password">
+                    <input name="password" class="form__input" type="password">
                 </div>
-                <div class="login__element" id="login-checkbox">
-                    <input type="checkbox" id="login-checkbox__input">
-                    <label for="main__login__form__checkbox__input">로그인 상태 유지</label>
+                <div class="form__element">
+                    <input type="checkbox">
+                    <label for="">로그인 상태 유지</label>
                 </div>
-                <div class="login__element" id="login-button">
+                <div class="form__element form__button">
                     <label for=""></label>
-                    <input type="submit" id="login-button__button" value="로그인">
+                    <input type="submit" class="form__button__button" value="로그인">
                 </div>
             </form>
-            <a id="login-forget" href="{% url 'found' %}">계정을 잊으셨나요?</a>
+            <a id="form-forget" href="{% url 'found' %}">계정을 잊으셨나요?</a>
         </div>
         <div id="main__buttons">
             <a class="main__buttons__element" href="{% url 'sign_up' %}">회원가입</a>
