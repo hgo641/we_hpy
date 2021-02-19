@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
 
-def sign_up(request):
+def signUp(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
@@ -13,7 +13,7 @@ def sign_up(request):
             return render(request, "login.html")
     else:
         form = UserForm()
-        return render(request, "sign_up.html")    
+        return render(request, "signUp.html")    
     #     if request.POST['password'] == request.POST['confirm']:
     #         username = request.POST["username"]
     #         email = request.POST["email"]
@@ -50,3 +50,9 @@ def login(request):
         return render(request, 'login.html')
 
 # 로그아웃 뷰
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+        
+    
