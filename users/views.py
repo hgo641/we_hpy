@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
 
+# return redirect('~~', ~~) 로 리다이렉트 해주는것과 직접 render을 리턴해주는것의
+# 차이를 알아봐야할 것 같습니다.
+
 def signUp(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -11,9 +14,11 @@ def signUp(request):
             user = User.objects.create_user(**form.cleaned_data)
             auth.login(request, user)
             return render(request, "login.html")
+        else:
+            return render(request, "signUp.html")
     else:
         form = UserForm()
-        return render(request, "signUp.html")    
+        return render(request, "signUp.html")
     #     if request.POST['password'] == request.POST['confirm']:
     #         username = request.POST["username"]
     #         email = request.POST["email"]
