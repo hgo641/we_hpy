@@ -2,18 +2,18 @@
 <link rel="stylesheet" type="text/css" href="{% static 'base/navbar.css' %}">
 
 <nav id="nav">
-    <div class="nav__element" id="nav__logo">
+    <div class="nav__logo">
         <span class="nav__logo__element"><a href="{% url 'main' %}">Logo</a></span>
     </div>
-    <div class="nav__element" id="nav__menu">
-        <span class="nav__menu__element"><a href="">스터디룸 참여</a></span>
-        <span class="nav__menu__element"><a href="">스터디룸 등록</a></span>
-        <span class="nav__menu__element"><a href="">나의 스터디룸</a></span>
-        <span class="nav__menu__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
-        {% if user.is_authenticated %}
-        <span class="nav__menu__element"><a class="nav-link" href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a></span>
+    <div class="nav__element nav__menu">
+        <span class="nav__link"><a href="">스터디룸 참여</a></span>
+        <span class="nav__link"><a href="">스터디룸 등록</a></span>
+        <span class="nav__link"><a href="">나의 스터디룸</a></span>
+        <span class="nav__link"><a href="{% url 'mypage' %}">마이페이지</a></span>
+        {% if user.is_authenticated != True %}
+        <span class="nav__link"><a href="{% url 'login' %}">로그인</a></span>
         {% else %}
-        <span class="nav__menu__element"><a href="{% url 'login' %}">로그인</a></span>
+        <span class="nav__link"><a class="nav-link" href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a></span>
         {% endif %}
     </div>
 </nav>

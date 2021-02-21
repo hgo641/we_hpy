@@ -23,16 +23,16 @@
         display: flex;
     }
 
-    #nav__logo{
+    .nav__logo{
         margin-left: 2rem;
     }
-    #nav__menu{
+    .nav__menu{
         justify-content: flex-end;
         margin-left: auto;
         margin-right: 1rem;
     }
 
-    .nav__menu__element{
+    .nav__link{
         margin-right: 1rem;
         white-space:nowrap;
     }

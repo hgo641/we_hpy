@@ -17,8 +17,12 @@ def signUp(request):
         else:
             return render(request, "signUp.html")
     else:
-        form = UserForm()
-        return render(request, "signUp.html")
+        # 로그인 상태면 main으로 리다이렉트 합니다
+        if request.user.is_authenticated:
+            return redirect('main')
+        else:
+            form = UserForm()
+            return render(request, "signUp.html")
     #     if request.POST['password'] == request.POST['confirm']:
     #         username = request.POST["username"]
     #         email = request.POST["email"]
@@ -52,7 +56,11 @@ def login(request):
             print('nooooo')
             return render(request, 'login.html',{'error':'username or password is incorrect'})
     else:
-        return render(request, 'login.html')
+        # 로그인 상태면 main으로 리다이렉트 합니다
+        if request.user.is_authenticated:
+            return redirect('main')
+        else:
+            return render(request, 'login.html')
 
 # 로그아웃 뷰
 
