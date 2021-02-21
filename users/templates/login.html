@@ -11,21 +11,9 @@
 <body>
     <div class="main">
         <div class="box box-column">
-            <div class="subject">로그인</div>
-            <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            <!-- 오류 -->
-            {% if form.errors %}
-                <div class="alert alert-danger" role="alert">
-                {% for field in form %}
-                    {% if field.errors %}
-                    <strong>{{ field.label }}</strong>
-                    {{ field.errors }}
-                    {% endif %}
-                {% endfor %}
-            </div>
-            {% endif %}
-            <!-- 오류 끝 -->
+            <div class="box__subject">로그인</div>
+            <form clas="form" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
                 <div class="form__element">
                     <label for="">아이디</label>
                     <input name="username" class="form__input" type="username">
@@ -40,13 +28,18 @@
                 </div>
                 <div class="form__element form__button">
                     <label for=""></label>
-                    <input type="submit" class="form__button__button" value="로그인">
+                    <input type="submit" class="form__input--button" value="로그인">
                 </div>
+                <div class="form__text">
+                    <a class="" href="{% url 'found' %}">계정을 잊으셨나요?</a>
+                    <a href="{% url 'signUp' %}">회원가입</a>
+                </div>
+                
             </form>
-            <a id="form-forget" href="{% url 'found' %}">계정을 잊으셨나요?</a>
+            
         </div>
-        <div id="main__buttons">
-            <a class="main__buttons__element" href="{% url 'signUp' %}">회원가입</a>
+        <div>
+            
         </div>
     </div>
     <div class="footer"></div>

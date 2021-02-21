@@ -15,13 +15,11 @@
 <body>
     <div class="main">
         <div class="box">
-            <div class="subject">아이디/비밀번호 찾기</div>
+            <div class="box__subject">아이디/비밀번호 찾기</div>
             <div class="content">
-                <div class="content__button"><a class="" href="{% url 'idfound' %}">아이디 찾기</a></div>
-                <div class="content__button"><a class="" href="{% url 'pwfound' %}">비밀번호 찾기</a></div>
+                <a class="content__button" href="{% url 'idfound' %}">아이디 찾기</a>
+                <a class="content__button" href="{% url 'pwfound' %}">비밀번호 찾기</a>
                 
-                <!-- <a href="{% url 'pwfound' %}"><div class="box__button">비밀번호 찾기</div></a> -->
-                <!-- <div class="box__button"><a href="{% url 'pwfound' %}">비밀번호 찾기</a></div> -->
             </div>
         </div>
         
