@@ -4,9 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
 
-# return redirect('~~', ~~) 로 리다이렉트 해주는것과 직접 render을 리턴해주는것의
-# 차이를 알아봐야할 것 같습니다.
-
 def signUp(request):
     if request.method == "POST":
         form = UserForm(request.POST)
