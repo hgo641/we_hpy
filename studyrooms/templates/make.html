@@ -5,15 +5,53 @@
     <meta charset="UTF-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
     <!-- <title>Document</title> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 <body>
     {% include "base/navbar.html" %}
-    
+    <div class="main">
+        <div class="container">
+            <!-- 스터디 이름 input
+            공개 범위 - 스터디의 속성들을 선택할 수 있게
+            분야 - 여러 분야중 하나 선택? or 직접 적는걸로
+            스터디 소개 - textarea -->
+            <form class="form" action="{% url 'studyroomMake' %}" method="POST">
+                <div class="form__element">
+                    <label for="">스터디 이름</label>
+                    <input name="몬가몬가잇슴.." class="form__input--inline" type="text">
+                </div>
+                <div class="form__element">
+                    <label for="">공개범위</label>
+                    <span>
+                        <input type="checkbox">
+                        <label for="">A</label>
+                    </span>
+                    <span>
+                        <input type="checkbox">
+                        <label for="">B</label>
+                    </span>
+                    <span>
+                        <input type="checkbox">
+                        <label for="">C</label>
+                    </span>
 
+                </div>
+                <div class="form__element">
+                    <label for="">분야</label>
+                    <input name="몬가몬가잇슴.." class="form__input--inline" type="text">
+                </div>
+                <div class="form__element">
+                    <label for="">스터디 소개</label>
+                    <textarea class="form__textarea" name="" id="" cols="10" rows="5"></textarea>
+                </div>
+                <div class="form__element form__element--zero form__flex">
+                    <label for=""></label>
+                    <input type="submit" class="form__button--right" value="등록">
+                </div>
+            </form>
+        </div>
     </div>
-
 </body>
 </html>

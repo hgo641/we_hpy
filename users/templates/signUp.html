@@ -16,11 +16,11 @@
                 {% csrf_token %}
                 <div class="form__element">
                     <label for="">아이디</label>
-                    <input class="form__input" type="text" name="username" >
+                    <input class="form__input" type="text" name="username">
                 </div>
                 <div class="form__element">
                     <label for="">이메일</label>
-                    <input class="form__input" type="text" name="email" placeholder="example@example.com">
+                    <input class="form__input" type="email" name="email" placeholder="example@example.com">
                 </div>
                 <div class="form__element">
                     <label for="">비밀번호</label>
@@ -47,9 +47,9 @@
                     </select>
                     
                 </div>
-                <div class="form__element form__button">
+                <div class="form__element form__element--zero">
                     <label for=""></label>
-                    <input type="submit" class="form__input--button" value="회원가입">
+                    <input type="submit" class="form__button" value="회원가입">
                 </div>
             </form>
         </div>

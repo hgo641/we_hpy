@@ -47,11 +47,11 @@ a {
     outline: currentcolor none medium;
 }
 
-.form__button{
+.form__element--zero{
     margin-bottom: 0;
 }
 
-.form__input--button{
+.form__button{
     background-color: rgb(225, 225, 225);
     width: 100%;
     height: 2.5rem;
