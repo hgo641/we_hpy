@@ -15,35 +15,7 @@ from django.template import loader
 # 인수로 지정된 context로 표현된 템플릿의 HttpResponse 객체가 반환됩니다.
 
 def main(request):
-    template = loader.get_template('main/main.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
-
-
-# def login(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             print("test")
-#         print("request:", form)
-#         return redirect('main')
-#     template = loader.get_template('login/login.html')
-#     context = {
-#         'testData' : "testData is testData"
-#     }
-#     form = LoginForm()
-#     return render(request, 'login/login.html', {'form': form})
-    # return HttpResponse(template.render(context, request))
-    
-
-# def register(request):
-#     template = loader.get_template('login/register.html')
-#     context = {
-#         'testData' : "testData is testData"
-#     }
-#     return HttpResponse(template.render(context, request))
+    return render(request, 'main/main.html')
 
 def found(request):
     template = loader.get_template('login/found.html')
@@ -68,13 +40,6 @@ def pwfound(request):
 
 def mypage(request):
     template = loader.get_template('mypage/mypage.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
-
-def bstest(request):
-    template = loader.get_template('main/main_bstest.html')
     context = {
         'testData' : "testData is testData"
     }

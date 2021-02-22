@@ -13,7 +13,7 @@
         flex-wrap: nowrap;
         flex-direction: row;
 
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         margin-top: 1rem;
         padding-bottom: 1rem;
 
@@ -35,5 +35,6 @@
     .nav__link{
         margin-right: 1rem;
         white-space:nowrap;
+        font-weight: 600;
     }
 }

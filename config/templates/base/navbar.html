@@ -7,13 +7,14 @@
     </div>
     <div class="nav__element nav__menu">
         <span class="nav__link"><a href="">스터디룸 참여</a></span>
-        <span class="nav__link"><a href="">스터디룸 등록</a></span>
+        <span class="nav__link"><a href="{% url 'studyroomMake' %}">스터디룸 등록</a></span>
         <span class="nav__link"><a href="">나의 스터디룸</a></span>
         <span class="nav__link"><a href="{% url 'mypage' %}">마이페이지</a></span>
         {% if user.is_authenticated != True %}
         <span class="nav__link"><a href="{% url 'login' %}">로그인</a></span>
         {% else %}
         <span class="nav__link"><a class="nav-link" href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a></span>
+        
         {% endif %}
     </div>
 </nav>

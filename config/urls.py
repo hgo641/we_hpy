@@ -42,17 +42,15 @@ urlpatterns = [
 
 
     # studyroom url 로 전달
-    # path('/studyroom', include('studyrooms.url')),
+    path('studyrooms/', include('studyrooms.urls')),
 
     # path('/studyroom', views.login, name='studyroom'),
     # path('/studyroom/found', views.login, name='studyroom'),
-    # path('/studyroom/make', views.login, name='studyroom'),
+    # path('/studyroom/make', views.studyroom, name='studyroom'),
 
     # path('/studyroom/my', views.login, name='studyroom'),
 
     # path('/studyroom/room/<roomNum>', views.login, name='studyroom'),
     # path('/studyroom/room/<roomNum>/private, views.login, name='studyroom'),
     # path('/studyroom/room/<roomNum>/public', views.login, name='studyroom'),
-
-    path('test/', views.bstest, name='bstest'),
 ]
