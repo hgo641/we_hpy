@@ -4,4 +4,7 @@ from django.contrib import auth
 
         
 def studyroomMake(request):
-    return render(request, 'make.html')
+    if request.user.is_authenticated:
+        return render(request, 'make.html')
+    else:
+        return redirect('/')
