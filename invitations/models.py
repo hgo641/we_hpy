@@ -4,7 +4,7 @@ from django.db import models
 class Conversation(models.Model):
 
     ''' 단톡방 '''
-    members = models.ManyToManyField("users.User", on_delete=models.CASCADE)
+    members = models.ManyToManyField("users.User")
     studyroom = models.OneToOneField("studyrooms.Studyroom", on_delete=models.CASCADE)
     # studyroom.leader
     title = models.CharField(max_length= 50)
