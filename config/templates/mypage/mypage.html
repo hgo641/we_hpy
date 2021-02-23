@@ -11,22 +11,8 @@
     <!-- <title>Document</title> -->
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav__element" id="nav__left">
-            <span class="nav__left__element">Logo</span>
-        </div>
-        <div class="nav__element" id="nav__right">
-            <span class="nav__right__element"><a href="">스터디룸 참여</a></span>
-            <span class="nav__right__element"><a href="">스터디룸 등록</a></span>
-            <span class="nav__right__element"><a href="">나의 스터디룸</a></span>
-            <span class="nav__right__element"><a href="{% url 'mypage' %}">마이페이지</a></span>
-            <span class="nav__right__element"><a href="{% url 'login' %}">로그인</a></span>
-        </div>
-    </nav>
+    {% include "base/navbar.html" %}
     <div class="main">
-        
-
     </div>
-    <div class="footer"></div>
 </body>
 </html>

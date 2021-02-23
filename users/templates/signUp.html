@@ -15,37 +15,36 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="form__element">
-                    <label for="">아이디</label>
-                    <input class="form__input" type="text" name="username">
+                    <label for="l-id">아이디</label>
+                    <input class="form__input" id="l-id" type="text" name="username" autocomplete="off">
                 </div>
                 <div class="form__element">
-                    <label for="">이메일</label>
-                    <input class="form__input" type="email" name="email" placeholder="example@example.com">
+                    <label for="l-email">이메일</label>
+                    <input class="form__input" id="l-email" type="email" name="email" placeholder="example@example.com">
                 </div>
                 <div class="form__element">
-                    <label for="">비밀번호</label>
-                    <input class="form__input" type="password" name="password">
+                    <label for="l-password">비밀번호</label>
+                    <input class="form__input" id="l-password" type="password" name="password">
                 </div>
                 <div class="form__element">
-                    <label for="">비밀번호 확인</label>
-                    <input class="form__input" type="password" name="confirm">
+                    <label for="l-password-confirm">비밀번호 확인</label>
+                    <input class="form__input" id="l-password-confirm" type="password" name="confirm">
                 </div>
                 <!-- <div id="register-name" class="register__element">
                     <label for="">이름</label>
                     <input class="main__register__form__input" type="text">
                 </div> -->
                 <div class="form__element">
-                    <label for="">생년월일</label>
-                    <input class="form__input" type="date" name="birth_date">
+                    <label for="l-birth">생년월일</label>
+                    <input class="form__input" id="l-birth" type="date" name="birth_date">
                 </div>
                 <div class="form__element">
-                    <label for="">성별</label>
-                    <select name="gender">
-                        <option class="form__input" value = "m">male</option>
-                        <option class="form__input" value = "f">female</option>
-                        <option class="form__input" value = "o">other</option>
+                    <label for="l-sex">성별</label>
+                    <select class="form__input" id="l-sex" name="gender">
+                        <option value = "m">male</option>
+                        <option value = "f">female</option>
+                        <option value = "o">other</option>
                     </select>
-                    
                 </div>
                 <div class="form__element form__element--zero">
                     <label for=""></label>

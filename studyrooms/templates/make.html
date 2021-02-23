@@ -18,6 +18,7 @@
             분야 - 여러 분야중 하나 선택? or 직접 적는걸로
             스터디 소개 - textarea -->
             <form class="form" action="{% url 'studyroomMake' %}" method="POST">
+                {% csrf_token %}
                 <div class="form__element">
                     <label for="">스터디 이름</label>
                     <input name="몬가몬가잇슴.." class="form__input--inline" type="text">
