@@ -10,7 +10,7 @@ def signUp(request):
         if form.is_valid():
             user = User.objects.create_user(**form.cleaned_data)
             auth.login(request, user)
-            return render(request, "login.html")
+            return redirect('/')
         else:
             return render(request, "signUp.html")
     else:
