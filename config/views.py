@@ -17,26 +17,6 @@ from django.template import loader
 def main(request):
     return render(request, 'main/main.html')
 
-def found(request):
-    template = loader.get_template('login/found.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
-
-def idfound(request):
-    template = loader.get_template('login/idfound.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
-
-def pwfound(request):
-    template = loader.get_template('login/pwfound.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
 
 def mypage(request):
     template = loader.get_template('mypage/mypage.html')

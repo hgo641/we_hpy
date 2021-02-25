@@ -64,5 +64,12 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
-        
-    
+
+def found(request):
+    return render(request, "found.html")
+
+def idfound(request):
+    return render(request, "idFound.html")
+
+def pwfound(request):
+    return render(request, "pwFound.html")
