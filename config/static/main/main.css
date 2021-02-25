@@ -13,9 +13,9 @@ body{
 
 .main__menu__box{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
-    display: block;
+    align-items: center;
     width: 200px;
     height: 550px;
     margin: 0 2rem;
@@ -31,7 +31,6 @@ body{
 }
 .main__menu__image{
     
-    border: 2px solid red;
 }
 .main__menu__name{
     display: flex;
@@ -39,5 +38,5 @@ body{
     justify-content: center;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-top:430px;
+    margin-top:300px;
 }
