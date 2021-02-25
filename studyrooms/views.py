@@ -7,4 +7,4 @@ def studyroomMake(request):
     if request.user.is_authenticated:
         return render(request, 'make.html')
     else:
-        return redirect('/')
+        return redirect('login')
