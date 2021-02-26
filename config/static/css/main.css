@@ -10,10 +10,7 @@ body{
     /* flex-direction: column; */
     margin-top: 3rem;
 }
-.main__menu__link{
-    border: 1px solid black;
-    
-}
+
 
 .main__menu__box{
     display: flex;
