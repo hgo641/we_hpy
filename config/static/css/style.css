@@ -35,6 +35,9 @@ a {
 .form__element{
     margin-bottom: 1rem;
 }
+.form__element--zero{
+    margin-bottom: 0;
+}
 
 .form__input{
     width: 100%;
@@ -47,8 +50,16 @@ a {
     outline: currentcolor none medium;
 }
 
-.form__element--zero{
-    margin-bottom: 0;
+.form__input--inline{
+    width: 10rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    line-height: 1.5;
+    border-style: none none solid none;
+    border-color: currentcolor currentcolor rgb(238, 238, 238);
+    font-size: 1rem;
+    outline: currentcolor none medium;
+    margin-left: 0.5rem;
 }
 
 .form__button{
@@ -60,6 +71,16 @@ a {
     /* font-weight: 500; */
     font-size: 1rem;
 }
+.form__button--right{
+    background-color: rgb(225, 225, 225);
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    border: none;
+    /* font-weight: 500; */
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
 
 .form__text{
     display: flex;
@@ -67,6 +88,23 @@ a {
     font-size: 0.9rem;
 }
 
+.form__right{
+    display: flex;
+    justify-content: right;
+}
+
+.form__textarea{
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    line-height: 1.5;
+    border-style: solid;
+    border-color: rgb(228, 228, 228);
+    font-size: 1rem;
+    outline: currentcolor none medium;
+    resize: none;
+}
+/* found page에서 사용. 추후 이름 변경 content */
 .content{
     display: flex;
     flex-direction: row;
@@ -102,12 +140,33 @@ a {
     border-color: rgb(224, 224, 224);
 }
 
-.form__flex{
+.container--studyroomlist{
+    width: 1000px;
+    margin: 2rem auto 0 auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 1px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(224, 224, 224);
+    min-height: 10rem;
+}
+
+.container__subject{
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.container__content{
+}
+
+.container__footer{
     display: flex;
     justify-content: right;
 }
 
-.form__button--right{
+.container__button{
     background-color: rgb(225, 225, 225);
     width: 6rem;
     height: 2.5rem;
@@ -116,28 +175,4 @@ a {
     /* font-weight: 500; */
     font-size: 1rem;
     margin-right: 0.5rem;
-}
-
-.form__input--inline{
-    width: 10rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    line-height: 1.5;
-    border-style: none none solid none;
-    border-color: currentcolor currentcolor rgb(238, 238, 238);
-    font-size: 1rem;
-    outline: currentcolor none medium;
-    margin-left: 0.5rem;
-}
-
-.form__textarea{
-    width: 100%;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    line-height: 1.5;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    font-size: 1rem;
-    outline: currentcolor none medium;
-    resize: none;
 }

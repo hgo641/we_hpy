@@ -11,7 +11,16 @@
 <body>
     {% include "base/navbar.html" %}
     <div class="main">
-        
+        {% for studyroom in studyrooms %}
+            <div class="container--studyroomlist">
+                <div class="container__subject">{{ studyroom.subject }}</div>
+                <div class="container__content">{{ studyroom.content }}</div>
+                <div class="container__footer">
+                    <label for=""></label>
+                    <input type="submit" class="container__button" value="공부하기">
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </body>
 </html>
