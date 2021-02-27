@@ -12,7 +12,7 @@ urlpatterns = [
     # path('/studyroom/found', views.login, name='studyroom'),
     path('make/', views.studyroomMake, name='studyroomMake'),
 
-    # path('/studyroom/my', views.login, name='studyroom'),
+    path('my/', views.studyroomMy, name='studyroomMy'),
 
     # path('/studyroom/room/<roomNum>', views.login, name='studyroom'),
     # path('/studyroom/room/<roomNum>/private', views.login, name= 'studyroom'),

@@ -8,3 +8,9 @@ def studyroomMake(request):
         return render(request, 'make.html')
     else:
         return redirect('login')
+
+def studyroomMy(request):
+    if request.user.is_authenticated:
+        return render(request, 'my.html')
+    else:
+        return redirect('login')
