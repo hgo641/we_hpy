@@ -149,7 +149,7 @@ a {
     border-style: solid;
     border-width: 1px;
     border-color: rgb(224, 224, 224);
-    min-height: 10rem;
+    height: 10rem;
 }
 
 .container__subject{
@@ -159,6 +159,7 @@ a {
 }
 
 .container__content{
+    height: 5rem;
 }
 
 .container__footer{

@@ -21,7 +21,7 @@ def studyroomMy(request):
         context = {
             'studyrooms' : [
                 {'subject': 'subjectTest', 'content' : 'contentText'},
-                {'subject': '제목 테스트2', 'content' : '내용 테스트2'},
+                {'subject': '제목 테스트2', 'content' : '내용 테스트2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet odio cumque consequatur enim, doloribus natus voluptatum assumenda quos veniam, alias sapiente molestiae animi consectetur minus rerum quibusdam adipisci esse numquam!Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet odio cumque consequatur enim, doloribus natus voluptatum assumenda quos veniam, alias sapiente molestiae animi consectetur minus rerum quibusdam adipisci esse numquam!Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet odio cumque consequatur enim, doloribus natus voluptatum assumenda quos veniam, alias sapie - 일정초과할시 view에서 끊기..?'},
             ]
         }
         return render(request, 'my.html', context)
