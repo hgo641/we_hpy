@@ -1,19 +1,20 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'base/navbar.css' %}">
 
-<nav id="nav">
+<nav class="nav">
     <div class="nav__logo">
-        <span class="nav__logo__element"><a href="{% url 'main' %}">Logo</a></span>
+        <span><a href="{% url 'main' %}">Logo</a></span>
     </div>
-    <div class="nav__element nav__menu">
-        <span class="nav__link"><a href="{% url 'join' %}">스터디룸 참여</a></span>
+    <div class="nav__menu">
+        <span class="nav__link"><a href="">스터디룸 참여</a></span>
         <span class="nav__link"><a href="{% url 'studyroomMake' %}">스터디룸 등록</a></span>
-        <span class="nav__link"><a href="{% url 'myRoom' %}">나의 스터디룸</a></span>
+        <span class="nav__link"><a href="{% url 'studyroomMy' %}">나의 스터디룸</a></span>
         <span class="nav__link"><a href="{% url 'mypage' %}">마이페이지</a></span>
         {% if user.is_authenticated != True %}
         <span class="nav__link"><a href="{% url 'login' %}">로그인</a></span>
         {% else %}
         <span class="nav__link"><a class="nav-link" href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a></span>
+        <!-- <details class="nav__link"><a class="nav-link" onclick="">{{ user.username }} (로그아웃)</a></span> -->
         
         {% endif %}
     </div>

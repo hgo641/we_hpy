@@ -15,8 +15,9 @@ class Conversation(models.Model):
 
 class Message(models.Model):
     conversation = models.ForeignKey(
-        "Conversation", related_name="messages", on_delete=models.CASCADE)
-    author = models.ManyToManyField("users.User", related_name="messages")
+        "Conversation", on_delete=models.CASCADE, related_name="messages")
+    author = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="messages")
     # 유효성 검사 : members 안에 속해있어야 한다.
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

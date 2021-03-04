@@ -7,17 +7,27 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <title>Document</title> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
     {% include "base/navbar.html" %}
-    
     <div class="main">
-        <div class="main__element"><a href = "{% url 'join' %}">스터디룸 참여</a></div>
-        <div class="main__element">스터디룸 등록</div>
-        <div class="main__element">나의 스터디룸</div>
-        <div class="main__element">마이페이지</div>
-
+        <a href="#" class="main__menu__box">
+            <img src="{% static 'main_menu_join.png' %}" class="main__menu__image">
+            <div class="main__menu__name">스터디룸 참여</div>
+        </a>
+        <a href="{% url 'studyroomMake' %}" class="main__menu__box">
+            <img src="{% static 'main_menu_register.png' %}" class="main__menu__image">
+            <div class="main__menu__name">스터디룸 등록</div>
+        </a>
+        <a href="{% url 'studyroomMy' %}" class="main__menu__box">
+            <img src="{% static 'main_menu_myStudyRoom.png' %}" class="main__menu__image">
+            <div class="main__menu__name">나의 스터디룸</div>
+        </a>
+        <a href="{% url 'mypage' %}" class="main__menu__box">
+            <img src="{% static 'main_menu_mypage.png' %}" class="main__menu__image">
+            <div class="main__menu__name">마이페이지</div>
+        </a>
     </div>
 
 </body>

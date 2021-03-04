@@ -3,13 +3,34 @@ from .models import *
 from django.contrib import auth
 
 
-def studyroomMake(request):
-    return render(request, 'make.html')
-
-
-def join(request):
+def studyroomJoin(request):
     return render(request, 'join.html')
 
 
-def myRoom(request):
-    return render(request, 'studyroom.html')
+def studyroomMake(request):
+    if request.method == "POST":
+        post = Studyroom()
+        post.studyroom_name = request.POST["studyroom_name"]
+        post.studyroom_classification = request.POST["studyroom_classification"]
+        post.leader_Id = request.user
+        post.save()
+    if request.user.is_authenticated:
+        context = {
+            'tags': [
+                {'name': 'A'},
+                {'name': 'B'},
+                {'name': 'C'},
+            ]
+        }
+        return render(request, 'make.html', context)
+    else:
+        return redirect('login')
+
+
+def studyroomMy(request):
+    if request.user.is_authenticated:
+
+        studyrooms = request.user.study_rooms.all()
+        return render(request, 'my.html', {'studyrooms': studyrooms})
+    else:
+        return redirect('login')

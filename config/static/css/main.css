@@ -1,0 +1,43 @@
+body{
+    font-family: "Noto Sans KR", sans-serif, 나눔고딕, 돋움, Dotum, 굴림, Gulim, "Apple SD Gothic Neo" !important;
+}
+
+
+.main{
+    display: flex;
+    /* text-align: center; */
+    justify-content: center;
+    /* flex-direction: column; */
+    margin-top: 3rem;
+}
+
+
+.main__menu__box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 550px;
+    margin: 0 2rem;
+    border-radius: 1rem;
+    transition: 0.5s;
+    background: #efefef;
+}
+.main__menu__box:hover {
+    width: 250px;
+    height: 570px;
+    background: lightgray;
+    transition: 0.5s;
+}
+.main__menu__image{
+    
+}
+.main__menu__name{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top:300px;
+}

@@ -10,7 +10,7 @@ def signUp(request):
         if form.is_valid():
             user = User.objects.create_user(**form.cleaned_data)
             auth.login(request, user)
-            return render(request, "login.html")
+            return redirect('/')
         else:
             return render(request, "signUp.html")
     else:
@@ -64,5 +64,12 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
-        
-    
+
+def found(request):
+    return render(request, "found.html")
+
+def idfound(request):
+    return render(request, "idFound.html")
+
+def pwfound(request):
+    return render(request, "pwFound.html")

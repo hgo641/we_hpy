@@ -33,10 +33,7 @@ urlpatterns = [
 
     # path('login/', views.login, name='login'),
     # path('register/', views.register, name='register'),
-    path('found/', views.found, name='found'),
 
-    path('idfound/', views.idfound, name='idfound'),
-    path('pwfound/', views.pwfound, name='pwfound'),
 
     path('mypage/', views.mypage, name='mypage'),
 
