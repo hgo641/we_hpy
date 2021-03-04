@@ -1,6 +1,5 @@
 
 
-
 from django.urls import path, include
 from . import views
 from django.contrib import admin
@@ -17,7 +16,7 @@ urlpatterns = [
     # path('/studyroom/room/<roomNum>', views.login, name='studyroom'),
     # path('/studyroom/room/<roomNum>/private', views.login, name= 'studyroom'),
     # path('/studyroom/room/<roomNum>/public', views.login, name='studyroom'),
+    path('join/', views.studyroomJoin, name='studyroomJoin'),
+
 
 ]
-
-    

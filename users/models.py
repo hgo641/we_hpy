@@ -5,8 +5,6 @@ from django.conf import settings
 
 
 class User(AbstractUser):
-    # username email birth_date gender
-    #username = models.CharField(max_length=50)
     class GenderChoices(models.TextChoices):
         MALE = ("m", "Male")
         FEMALE = ("f", "Female")
@@ -14,7 +12,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=254)
     gender = models.CharField(
         max_length=1, choices=GenderChoices.choices)
-    birth_date = models.DateField(verbose_name=('birth_date'),null = True)
+    birth_date = models.DateField(verbose_name=('birth_date'), null=True)
 
 
 class MyPage(models.Model):
