@@ -8,21 +8,23 @@ def studyroomJoin(request):
 
 
 def studyroomMake(request):
-    if request.method == "POST":
-        post = Studyroom()
-        post.studyroom_name = request.POST["studyroom_name"]
-        post.studyroom_classification = request.POST["studyroom_classification"]
-        post.leader_Id = request.user
-        post.save()
     if request.user.is_authenticated:
-        context = {
-            'tags': [
-                {'name': 'A'},
-                {'name': 'B'},
-                {'name': 'C'},
-            ]
-        }
-        return render(request, 'make.html', context)
+        if request.method == "POST":
+            post = Studyroom()
+            post.studyroom_name = request.POST["studyroom_name"]
+            post.studyroom_classification = request.POST["studyroom_classification"]
+            post.leader_Id = request.user
+            post.save()
+            return redirect('studyroomMy')
+        else:
+            context = {
+                'tags': [
+                    {'name': 'A'},
+                    {'name': 'B'},
+                    {'name': 'C'},
+                ]
+            }
+            return render(request, 'make.html', context)
     else:
         return redirect('login')
 
@@ -32,5 +34,12 @@ def studyroomMy(request):
 
         studyrooms = request.user.study_rooms.all()
         return render(request, 'my.html', {'studyrooms': studyrooms})
+    else:
+        return redirect('login')
+
+def studyroomJoin(request):
+    if request.user.is_authenticated:
+        studyrooms = {'test' : 'testa'}
+        return render(request, 'join.html', {'studyrooms': studyrooms})
     else:
         return redirect('login')

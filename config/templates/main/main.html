@@ -12,7 +12,7 @@
 <body>
     {% include "base/navbar.html" %}
     <div class="main">
-        <a href="#" class="main__menu__box">
+        <a href="{% url 'studyroomJoin' %}" class="main__menu__box">
             <img src="{% static 'main_menu_join.png' %}" class="main__menu__image">
             <div class="main__menu__name">스터디룸 참여</div>
         </a>
