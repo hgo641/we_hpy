@@ -39,7 +39,22 @@ def studyroomMy(request):
 
 def studyroomJoin(request):
     if request.user.is_authenticated:
-        studyrooms = {'test' : 'testa'}
-        return render(request, 'join.html', {'studyrooms': studyrooms})
+        context = {
+            'studyrooms' : [
+                {
+                    'number' : '1',
+                    'name' : 'name1',
+                    'field' : 'field1',
+                    'abc' : 'abcd'
+                },
+                {
+                    'number' : '2',
+                    'name' : 'name2',
+                    'field' : 'field2',
+                    'abc' : 'abcd'
+                }
+            ]
+        }
+        return render(request, 'join.html', context)
     else:
         return redirect('login')
