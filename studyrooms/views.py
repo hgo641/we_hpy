@@ -2,9 +2,22 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.contrib import auth
 
-
-def studyroomJoin(request):
-    return render(request, 'join.html')
+def studyroom(request, room_id):
+    if request.user.is_authenticated:
+        # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
+        if False:
+            # 버튼2개, 각각 public, private 페이지로 연결
+            return render(request, 'studyroom.html')
+        else:
+            context = {
+                'studyName' : 'test',
+                'studyCaptain' : '땡컨',
+                'studyField' : 'idk',
+                'studyOpen' : 'notreallynicenamingsence'
+            }
+            return render(request, 'request.html', context)
+    else:
+        return redirect('login')
 
 
 def studyroomMake(request):
@@ -42,16 +55,16 @@ def studyroomJoin(request):
         context = {
             'studyrooms' : [
                 {
-                    'number' : '1',
+                    'number' : 1,
                     'name' : 'name1',
                     'field' : 'field1',
-                    'abc' : 'abcd'
+                    'id' : 1
                 },
                 {
-                    'number' : '2',
+                    'number' : 2,
                     'name' : 'name2',
                     'field' : 'field2',
-                    'abc' : 'abcd'
+                    'id' : 2
                 }
             ]
         }

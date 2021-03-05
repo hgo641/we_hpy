@@ -31,7 +31,9 @@
                         <td>{{ studyroom.field }}</td>
                         <td>{{ studyroom.name }}</td>
                         <td>
-                            <input type="submit" class="container__button" value="신청">
+                            <a href="{% url 'studyroom' studyroom.id %}">
+                                <input type="submit" class="container__button" value="신청">
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
