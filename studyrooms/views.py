@@ -6,7 +6,41 @@ from django.core.paginator import Paginator
 def studyroom(request, room_id):
     if request.user.is_authenticated:
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
-        if False:
+        if 1:
+            # 버튼2개, 각각 public, private 페이지로 연결
+            return render(request, 'studyroom.html')
+        else:
+            context = {
+                'studyName' : 'test',
+                'studyCaptain' : '땡컨',
+                'studyField' : 'idk',
+                'studyOpen' : 'notreallynicenamingsence'
+            }
+            return render(request, 'request.html', context)
+    else:
+        return redirect('login')
+
+def studyroomPublic(request, room_id):
+    if request.user.is_authenticated:
+        # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
+        if 1:
+            # 버튼2개, 각각 public, private 페이지로 연결
+            return render(request, 'studyroom.html')
+        else:
+            context = {
+                'studyName' : 'test',
+                'studyCaptain' : '땡컨',
+                'studyField' : 'idk',
+                'studyOpen' : 'notreallynicenamingsence'
+            }
+            return render(request, 'request.html', context)
+    else:
+        return redirect('login')
+
+def studyroomPrivate(request, room_id):
+    if request.user.is_authenticated:
+        # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
+        if 1:
             # 버튼2개, 각각 public, private 페이지로 연결
             return render(request, 'studyroom.html')
         else:
