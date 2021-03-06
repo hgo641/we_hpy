@@ -24,7 +24,6 @@ def studyroom(request, room_id):
 
 def studyroomPublic(request, room_id):
     if request.user.is_authenticated:
-        # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
         if True:
             return render(request, 'public.html')
         else:
@@ -34,7 +33,6 @@ def studyroomPublic(request, room_id):
 
 def studyroomPrivate(request, room_id):
     if request.user.is_authenticated:
-        # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
         if True:
             return render(request, 'private.html')
         else:

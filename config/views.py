@@ -19,8 +19,15 @@ def main(request):
 
 
 def mypage(request):
+    
     template = loader.get_template('mypage/mypage.html')
     context = {
         'testData' : "testData is testData"
     }
     return HttpResponse(template.render(context, request))
+
+def mypage(request):
+    if request.user.is_authenticated:
+        return render(request, 'mypage.html')
+    else:
+        return redirect('login')
