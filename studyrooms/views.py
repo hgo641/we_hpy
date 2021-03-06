@@ -8,7 +8,7 @@ def studyroom(request, room_id):
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
         if 1:
             context = {
-                'room_id' : 1
+                'room_id' : room_id
             }
             return render(request, 'studyroom.html', context)
         else:
