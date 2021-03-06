@@ -15,9 +15,7 @@ urlpatterns = [
     # path('/studyroom/found', views.login, name='studyroom'),
     
     path('room/<int:room_id>', views.studyroom, name='studyroom'),
-    path('/studyroom/room/<int:room_id>/private', views.studyroomPrivate, name= 'studyroomPrivate'),
-    path('/studyroom/room/<int:room_id>/public', views.studyroomPublic, name='studyroomPublic'),
+    path('room/<int:room_id>/private', views.studyroomPrivate, name= 'studyroomPrivate'),
+    path('room/<int:room_id>/public', views.studyroomPublic, name='studyroomPublic'),
     
-
-
 ]
