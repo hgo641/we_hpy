@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.contrib import auth
+from django.core.paginator import Paginator
 
 def studyroom(request, room_id):
     if request.user.is_authenticated:
@@ -44,9 +45,18 @@ def studyroomMake(request):
 
 def studyroomMy(request):
     if request.user.is_authenticated:
-
+        STUDYROOMSPERPAGE = 5 # 페이지당 들어갈 스터디룸 숫자
         studyrooms = request.user.study_rooms.all()
-        return render(request, 'my.html', {'studyrooms': studyrooms})
+        paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
+        page = request.GET.get('page')
+        modifiedStudyrooms = paginator.get_page(page)
+        pages = range(1, paginator.num_pages + 1)
+
+        context = {
+            'studyrooms': modifiedStudyrooms,
+            'pages': pages
+        }
+        return render(request, 'my.html', context)
     else:
         return redirect('login')
 
