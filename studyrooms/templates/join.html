@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
     <!-- <title>Document</title> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </head>
 <body>
     {% include "base/navbar.html" %}
-    
-    <div id="main">
-        
-
+    <div class="main">
+        <div class="container--studyroomjoin">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">분야</th>
+                    <th scope="col">스터디 이름</th>
+                    <th scope="col">신청</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for studyroom in studyrooms %}
+                    <tr>
+                        <th scope="row">{{ studyroom.number }}</th>
+                        <td>{{ studyroom.field }}</td>
+                        <td>{{ studyroom.name }}</td>
+                        <td>
+                            <a href="{% url 'studyroom' studyroom.id %}">
+                                <input type="submit" class="container__button" value="신청">
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </body>

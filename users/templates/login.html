@@ -12,7 +12,7 @@
     <div class="main">
         <div class="box box-column">
             <div class="box__subject">로그인</div>
-            <form clas="form" action="{% url 'login' %}" method="POST">
+            <form class="form" action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
                 <!-- 오류 출력 -->
                 <div class="form__element">{{ error }}</div>

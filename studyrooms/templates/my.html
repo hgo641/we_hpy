@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <title>Document</title> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div class="main">
+        {% for studyroom in studyrooms %}
+            <div class="container--studyroomlist">
+                <div class="container__subject">{{ studyroom.studyroom_name }}</div>
+                <div class="container__content">{{ studyroom.studyroom_classification }}</div>
+                <div class="container__footer">
+                    <a href="{% url 'studyroom' studyroom.studyroom_number %}">
+                        <input type="submit" class="container__button" value="공부하기">
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+            <div class="">
+                {% for page in pages %}
+                    <a href="{% url 'studyroomMy' %}?page={{ page }}">{{ page }}</a>
+                {% endfor %}
+                
+            </div>
+        
+    </div>
+</body>
+</html>

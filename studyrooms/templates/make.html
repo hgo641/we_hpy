@@ -12,31 +12,20 @@
     {% include "base/navbar.html" %}
     <div class="main">
         <div class="container">
-            <!-- 스터디 이름 input
-            공개 범위 - 스터디의 속성들을 선택할 수 있게
-            분야 - 여러 분야중 하나 선택? or 직접 적는걸로
-            스터디 소개 - textarea -->
             <form class="form" action="{% url 'studyroomMake' %}" method="POST">
                 {% csrf_token %}
                 <div class="form__element">
                     <label for="">스터디 이름</label>
-                    <input name="몬가몬가잇슴.." class="form__input--inline" type="text">
+                    <input name="studyroom_name" class="form__input--inline" type="text">
                 </div>
                 <div class="form__element">
                     <label for="">공개범위</label>
-                    <span>
-                        <input type="checkbox">
-                        <label for="">A</label>
-                    </span>
-                    <span>
-                        <input type="checkbox">
-                        <label for="">B</label>
-                    </span>
-                    <span>
-                        <input type="checkbox">
-                        <label for="">C</label>
-                    </span>
-
+                    {% for tag in tags %}
+                        <span>
+                            <input type="checkbox">
+                            <label for="">{{ tag.name }}</label>
+                        </span>
+                    {% endfor %}
                 </div>
                 <div class="form__element">
                     <label for="">분야</label>
@@ -44,9 +33,9 @@
                 </div>
                 <div class="form__element">
                     <label for="">스터디 소개</label>
-                    <textarea class="form__textarea" name="" id="" cols="10" rows="5"></textarea>
+                    <textarea class="form__textarea" name="studyroom_classification" id="" cols="10" rows="5"></textarea>
                 </div>
-                <div class="form__element form__element--zero form__flex">
+                <div class="form__element form__element--zero form__right">
                     <label for=""></label>
                     <input type="submit" class="form__button--right" value="등록">
                 </div>
