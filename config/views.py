@@ -17,17 +17,13 @@ from django.template import loader
 def main(request):
     return render(request, 'main/main.html')
 
-
-def mypage(request):
-    
-    template = loader.get_template('mypage/mypage.html')
-    context = {
-        'testData' : "testData is testData"
-    }
-    return HttpResponse(template.render(context, request))
-
 def mypage(request):
     if request.user.is_authenticated:
-        return render(request, 'mypage.html')
+        context = {
+            'name' : "떙컨",
+            'email' : "hahaha@huhuhu.com",
+            "studyroom_number" : "42개"
+        }
+        return render(request, 'mypage/mypage.html', context)
     else:
         return redirect('login')

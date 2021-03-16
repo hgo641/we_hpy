@@ -16,6 +16,74 @@ a {
     flex-direction: column;
 }
 
+.main--row{
+    display: flex;
+    /* text-align: center; */
+    justify-content: center;
+    flex-direction: row;
+}
+
+.page{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.page__content{
+    margin-left: 130px;
+}
+
+.profile{
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    border: 2px solid black;
+}
+
+.profile__header{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(238, 238, 238);
+}
+
+.profile__header__main{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.profile__header__sub{
+    font-size: 0.8rem;
+    margin-top: 3px;
+}
+
+.profile__box{
+    padding: 70px 0 70px 0;
+    text-align: center;
+    border-right: 1px solid rgb(238, 238, 238);
+    width: 200px;
+}
+
+.profile__box--solo{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.profile__box--multi{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__box__main{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.profile__box__sub{
+    margin-top: 10px;
+}
+
 .box{
     margin-top: 8rem;
     padding: 2rem;
@@ -223,3 +291,12 @@ a {
     font-weight: bold;
     margin-top:300px;
 }
+
+.left-menu{
+    
+}
+
+.page{
+
+}
+
