@@ -17,7 +17,7 @@ from django.template import loader
 def main(request):
     return render(request, 'main/main.html')
 
-def mypage(request):
+def myPage(request):
     if request.user.is_authenticated:
         context = {
             'name' : request.user.username,
@@ -25,5 +25,23 @@ def mypage(request):
             "studyroom_number" : str(len(request.user.study_rooms.all())) + '개',
         }
         return render(request, 'mypage/mypage.html', context)
+    else:
+        return redirect('login')
+
+def myInfo(request):
+    if request.user.is_authenticated:
+        context = {
+            'test' : 'test'
+        }
+        return render(request, 'mypage/myinfo.html', context)
+    else:
+        return redirect('login')
+
+def myCalender(request):
+    if request.user.is_authenticated:
+        context = {
+            'test' : 'test'
+        }
+        return render(request, 'mypage/mycalender.html', context)
     else:
         return redirect('login')

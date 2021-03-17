@@ -32,12 +32,12 @@ a {
 
 .page__content{
     margin-left: 130px;
+    width: 800px;
 }
 
 .profile{
     display: flex;
     flex-direction: row;
-    max-width: 800px;
     border: 2px solid black;
 }
 
@@ -63,7 +63,7 @@ a {
     padding: 70px 0 70px 0;
     text-align: center;
     border-right: 1px solid rgb(238, 238, 238);
-    width: 200px;
+    flex-basis: 30%;
 }
 
 .profile__box--solo{
