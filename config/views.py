@@ -20,9 +20,9 @@ def main(request):
 def mypage(request):
     if request.user.is_authenticated:
         context = {
-            'name' : "떙컨",
-            'email' : "hahaha@huhuhu.com",
-            "studyroom_number" : "42개"
+            'name' : request.user.username,
+            'email' : request.user.email,
+            "studyroom_number" : str(len(request.user.study_rooms.all())) + '개',
         }
         return render(request, 'mypage/mypage.html', context)
     else:

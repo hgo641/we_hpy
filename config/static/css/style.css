@@ -46,6 +46,7 @@ a {
     display: flex;
     flex-direction: column;
     background-color: rgb(238, 238, 238);
+    width: 120px;
 }
 
 .profile__header__main{
@@ -82,6 +83,7 @@ a {
 
 .profile__box__sub{
     margin-top: 10px;
+    font-size: 1.2rem;
 }
 
 .box{
@@ -293,10 +295,24 @@ a {
 }
 
 .left-menu{
-    
+    display: flex;
+    flex-direction: column;
 }
 
-.page{
-
+.left-menu__h1{
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
+.left-menu__h2{
+    display: block;
+    margin-bottom: 8px;
+}
+
+.left-menu__line{
+    border-top: 2px solid rgb(200, 200, 200);
+    width: 160px;
+    margin-bottom: 8px;
+}
