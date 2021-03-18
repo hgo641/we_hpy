@@ -90,3 +90,21 @@ def studyroomJoin(request):
         return render(request, 'join.html', context)
     else:
         return redirect('login')
+
+def studyroomPublic(request, room_id):
+    if request.user.is_authenticated:
+        if True:
+            return render(request, 'public.html')
+        else:
+            redirect('studyroom')
+    else:
+        return redirect('login')
+
+def studyroomPrivate(request, room_id):
+    if request.user.is_authenticated:
+        if True:
+            return render(request, 'private.html')
+        else:
+            redirect('studyroom')
+    else:
+        return redirect('login')
