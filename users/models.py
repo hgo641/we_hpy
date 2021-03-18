@@ -24,3 +24,12 @@ class MyPage(models.Model):
         "studyrooms.Studyroom", related_name="leaderpages")
     study_room = models.ManyToManyField(
         "studyrooms.Studyroom", related_name="mypages")
+
+# @receiver(post_save, sender=User)
+# def create_user_mypage(sender, instance, created, **kwargs):
+#     if created:
+#         MyPage.objects.create(user=instance)
+
+# @receiver(post_save, sender=User)
+# def save_user_mypage(sender, instance, **kwargs):
+#     instance.mypage.save()
