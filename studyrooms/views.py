@@ -6,22 +6,26 @@ from django.core.paginator import Paginator
 
 def studyroom(request, room_id):
     if request.user.is_authenticated:
-        # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
+        
         studyroom = Studyroom.objects.get(studyroom_number = room_id)
-        print(studyroom,type(studyroom))
+        # print(studyroom,type(studyroom))
         # print(request.user.mypage.study_room.all())
         # print(request.user.mypage.make_study.all())
         # print(request.user.study_rooms.all(),type(request.user.study_rooms.all()))
-        print(request.user.study_rooms.all()[0],type(request.user.study_rooms.all()[0]))
+        # print(request.user.study_rooms.all()[0],type(request.user.study_rooms.all()[0]))
         
         # mypage = MyPage.objects.create(userId = request.user)
         # mypage.save()
-        if studyroom in request.user.study_rooms.all():
+
+        # if studyroom in request.user.study_rooms.all():
+        if True:
+            # 스터디룸에 등록되있을시에
             context = {
                 'room_id' : room_id
             }
             return render(request, 'studyroom.html', context)
         else:
+            # 스터디룸 가입 안되있을떄, 등록 request보내는 화면
             context = {
                 'studyName' : 'test',
                 'studyCaptain' : '땡컨',
