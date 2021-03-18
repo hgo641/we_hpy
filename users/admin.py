@@ -3,12 +3,14 @@ from .models import *
 
 # Register your models here.
 admin.site.register(User)
+admin.site.register(MyPage)
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = [
-        #"username",
-        "email",
-        "gender",
-        "birth_date",
+# class UserAdmin(admin.ModelAdmin):
+#     list_display = [
+#         #"username",
+#         "email",
+#         "gender",
+#         "birth_date",
+#         "MyPage",
 
-    ]
+#     ]
