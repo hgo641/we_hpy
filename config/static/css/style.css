@@ -316,3 +316,19 @@ a {
     width: 160px;
     margin-bottom: 8px;
 }
+
+.pagination{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pagination__block{
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(224, 224, 224);
+    margin: 0 0.3rem 0 0.3rem;
+    font-weight: 600;
+}
