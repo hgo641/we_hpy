@@ -17,31 +17,17 @@ from django.template import loader
 def main(request):
     return render(request, 'main/main.html')
 
-def myPage(request):
-    if request.user.is_authenticated:
-        context = {
-            'name' : request.user.username,
-            'email' : request.user.email,
-            "studyroom_number" : str(len(request.user.study_rooms.all())) + '개',
-        }
-        return render(request, 'mypage/mypage.html', context)
-    else:
-        return redirect('login')
 
-def myInfo(request):
-    if request.user.is_authenticated:
-        context = {
-            'test' : 'test'
-        }
-        return render(request, 'mypage/myinfo.html', context)
-    else:
-        return redirect('login')
+def mypage(request):
+    
+    template = loader.get_template('mypage/mypage.html')
+    context = {
+        'testData' : "testData is testData"
+    }
+    return HttpResponse(template.render(context, request))
 
-def myCalender(request):
+def mypage(request):
     if request.user.is_authenticated:
-        context = {
-            'test' : 'test'
-        }
-        return render(request, 'mypage/mycalender.html', context)
+        return render(request, 'mypage.html')
     else:
         return redirect('login')
