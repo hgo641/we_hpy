@@ -64,6 +64,7 @@ a {
     text-align: center;
     border-right: 1px solid rgb(238, 238, 238);
     flex-basis: 30%;
+    background-color: white;
 }
 
 .profile__box--solo{
