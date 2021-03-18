@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% include "base/title.html" %}
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div class="main">
+        <div class="page">
+            {% include "mypage/menu.html" %}
+            <div class="page__content">
+                <div class="profile">
+                    <div class="profile__header">
+                        <span class="profile__header__main">{{ name }}</span>
+                        <span class="profile__header__sub">{{ email }}</span>
+                    </div>
+                    <div class="profile__box profile__box--solo">
+                        <a href="{% url 'myInfo' %}">내 정보</a>
+                    </div>
+                    <div class="profile__box profile__box--multi">
+                        <span class="profile__box__main">
+                            <a href="{% url 'studyroomMy' %}">스터디룸</a>
+                        </span>
+                        <span class="profile__box__sub">{{ studyroom_number }}</span>
+                    </div>
+                    <div class="profile__box profile__box--multi">
+                        <span class="profile__box__main">
+                            <a href="">학습 시간</a>
+                        </span>
+                        <span class="profile__box__sub">42시간</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

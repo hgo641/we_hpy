@@ -29,7 +29,6 @@ def studyroom(request, room_id):
     else:
         return redirect('login')
 
-
 def studyroomMake(request):
     if request.user.is_authenticated:
         if request.method == "POST":
