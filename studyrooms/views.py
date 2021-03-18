@@ -7,21 +7,25 @@ from django.core.paginator import Paginator
 def studyroom(request, room_id):
     if request.user.is_authenticated:
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
+        check = 0
         studyrooms = list(request.user.study_rooms.all())
         for studyroom in studyrooms:
             if(studyroom.studyroom_number == room_id):
-                context = {
-                    'room_id' : room_id
-                }
-                return render(request, 'studyroom.html', context)
-            else:
-                context = {
-                    'studyName' : 'test',
-                    'studyCaptain' : '땡컨',
-                    'studyField' : 'idk',
-                    'studyOpen' : 'notreallynicenamingsence'
-                }
-                return render(request, 'request.html', context)
+               check = 1 
+                
+        if(check==1):
+            context = {
+                'room_id' : room_id
+            }
+            return render(request, 'studyroom.html', context)
+        else:
+            context = {
+                'studyName' : 'test',
+                'studyCaptain' : '땡컨',
+                'studyField' : 'idk',
+                'studyOpen' : 'notreallynicenamingsence'
+            }
+            return render(request, 'request.html', context)
     else:
         return redirect('login')
 
@@ -83,5 +87,23 @@ def studyroomJoin(request):
             ]
         }
         return render(request, 'join.html', context)
+    else:
+        return redirect('login')
+
+def studyroomPublic(request, room_id):
+    if request.user.is_authenticated:
+        if True:
+            return render(request, 'public.html')
+        else:
+            redirect('studyroom')
+    else:
+        return redirect('login')
+
+def studyroomPrivate(request, room_id):
+    if request.user.is_authenticated:
+        if True:
+            return render(request, 'private.html')
+        else:
+            redirect('studyroom')
     else:
         return redirect('login')
