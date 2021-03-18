@@ -8,7 +8,6 @@ def studyroom(request, room_id):
     if request.user.is_authenticated:
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
         check = 0
-        print(reqeust.user.study_room.all())
         studyrooms = list(request.user.study_rooms.all())
         for studyroom in studyrooms:
             if(studyroom.studyroom_number == room_id):
