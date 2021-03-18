@@ -4,7 +4,7 @@ class Studyroom_status(models.Model):
     studyroom_number = models.AutoField(primary_key = True)
     studyroom_classification = models.CharField(max_length = 64)
     studyroom_name = models.CharField(max_length = 64)
-    studyroom_date = modles.DateTimeField(auto_now_add = True)
+    studyroom_date = models.DateTimeField(auto_now_add = True)
     def __str__(self):
         return self.studyroom_name
     class Meta:
@@ -12,14 +12,14 @@ class Studyroom_status(models.Model):
 
 class Study_book(models.Model):
     studybook_number = models.AutoField(primary_key = True)
-    writter = models.ForeignKey("users.User")
+    writter = models.ForeignKey("users.User", on_delete=models.CASCADE)
     contents = models.CharField(max_length = 300)
     class Meta:
         verbose_name_plural = "Study_book"
 
 class Notice_board(models.Model):
     board_number = models.AutoField(primary_key = True)
-    writter = models.ForeignKey("users.User")
+    writter = models.ForeignKey("users.User", on_delete=models.CASCADE)
     contents = models.CharField(max_length = 300)
     type = models.CharField(max_length = 10) 
     date = models.DateTimeField(auto_now = True)
@@ -28,14 +28,14 @@ class Notice_board(models.Model):
 
 class Progress_rate(models.Model):
     rate_number = models.AutoField(primary_key = True)
-    User = models.ForeignKey("users.User")
+    User = models.ForeignKey("users.User", on_delete=models.CASCADE)
     progress_rate = models.FloatField()
     class Meta:
         verbose_name_plural = "progress_rate"
 
 class Study_time(models.Model):
     studytime_number = models.AutoField(primary_key = True)
-    User = models.ForeignKey("users.User")
+    User = models.ForeignKey("users.User", on_delete=models.CASCADE)
     study_time = models.DateTimeField(auto_now = True)
     class Meta:
         verbose_name_plural = "study_time"

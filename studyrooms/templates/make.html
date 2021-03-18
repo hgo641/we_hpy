@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <title>Document</title> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div class="main">
+        <div class="container">
+            <form class="form" action="{% url 'studyroomMake' %}" method="POST">
+                {% csrf_token %}
+                <div class="form__element">
+                    <label for="">스터디 이름</label>
+                    <input name="studyroom_name" class="form__input--inline" type="text">
+                </div>
+                <div class="form__element">
+                    <label for="">공개범위</label>
+                    {% for tag in tags %}
+                        <span>
+                            <input type="checkbox">
+                            <label for="">{{ tag.name }}</label>
+                        </span>
+                    {% endfor %}
+                </div>
+                <div class="form__element">
+                    <label for="">분야</label>
+                    <input name="몬가몬가잇슴.." class="form__input--inline" type="text">
+                </div>
+                <div class="form__element">
+                    <label for="">스터디 소개</label>
+                    <textarea class="form__textarea" name="studyroom_classification" id="" cols="10" rows="5"></textarea>
+                </div>
+                <div class="form__element form__element--zero form__right">
+                    <label for=""></label>
+                    <input type="submit" class="form__button--right" value="등록">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

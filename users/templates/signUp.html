@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    <div class="main">
+        <div class="box box-column">
+            <div class="box__subject">회원가입</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form__element">
+                    <label for="l-id">아이디</label>
+                    <input class="form__input" id="l-id" type="text" name="username" autocomplete="off">
+                </div>
+                <div class="form__element">
+                    <label for="l-email">이메일</label>
+                    <input class="form__input" id="l-email" type="email" name="email" placeholder="example@example.com">
+                </div>
+                <div class="form__element">
+                    <label for="l-password">비밀번호</label>
+                    <input class="form__input" id="l-password" type="password" name="password">
+                </div>
+                <div class="form__element">
+                    <label for="l-password-confirm">비밀번호 확인</label>
+                    <input class="form__input" id="l-password-confirm" type="password" name="confirm">
+                </div>
+                <div class="form__element">
+                    <label for="l-birth">생년월일</label>
+                    <input class="form__input" id="l-birth" type="date" name="birth_date">
+                </div>
+                <div class="form__element">
+                    <label for="l-sex">성별</label>
+                    <select class="form__input" id="l-sex" name="gender">
+                        <option value = "m">male</option>
+                        <option value = "f">female</option>
+                        <option value = "o">other</option>
+                    </select>
+                </div>
+                <div class="form__element form__element--zero">
+                    <label for=""></label>
+                    <input type="submit" class="form__button" value="회원가입">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>

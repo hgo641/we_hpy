@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <!-- <title>Document</title> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div class="lobby">
+        <a href="{% url 'studyroomPublic' room_id %}" class="lobby__box">
+            <img src="{% static 'main_menu_join.png' %}">
+            <div class="lobby__name">공유 스터디룸</div>
+        </a>
+        <a href="{% url 'studyroomPrivate' room_id %}" class="lobby__box">
+            <img src="{% static 'main_menu_register.png' %}">
+            <div class="lobby__name">개인 스터디룸</div>
+        </a>
+        </a>
+    </div>
+
+</body>
+</html>
