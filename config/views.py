@@ -30,8 +30,16 @@ def myPage(request):
 
 def myInfo(request):
     if request.user.is_authenticated:
+        gender = "other"
+        if request.user.gender == 'f':
+            gender = "female"
+        elif request.user.gender == 'm':
+            gender = "male"
         context = {
-            'test' : 'test'
+            'name' :request.user.username,
+            'email' : request.user.email,
+            'gender' : gender,
+            'birthDate' : request.user.birth_date,
         }
         return render(request, 'mypage/myinfo.html', context)
     else:
