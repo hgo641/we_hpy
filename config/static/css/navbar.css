@@ -3,9 +3,7 @@
         font-family: "Noto Sans KR", sans-serif, 나눔고딕, 돋움, Dotum, 굴림, Gulim, "Apple SD Gothic Neo" !important;
     }
     a {
-        /* 링크 밑줄 제거 */
-        color: black;
-        text-decoration:none;
+        text-decoration: none;
     }
 
     .nav{
@@ -34,5 +32,10 @@
         margin-right: 1rem;
         white-space:nowrap;
         font-weight: 600;
+        color: rgb(60, 60, 60);
+    }
+    .nav__link:hover{
+        text-decoration: none;
+        color: rgb(60, 60, 60);
     }
 }
