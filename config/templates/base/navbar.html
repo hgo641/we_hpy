@@ -3,17 +3,17 @@
 
 <nav class="nav">
     <div class="nav__logo">
-        <span><a href="{% url 'main' %}">Logo</a></span>
+        <a class="nav__link" href="{% url 'main' %}">We Study</a>
     </div>
     <div class="nav__menu">
-        <span class="nav__link"><a href="{% url 'studyroomJoin' %}">스터디룸 참여</a></span>
-        <span class="nav__link"><a href="{% url 'studyroomMake' %}">스터디룸 등록</a></span>
-        <span class="nav__link"><a href="{% url 'studyroomMy' %}">나의 스터디룸</a></span>
-        <span class="nav__link"><a href="{% url 'myPage' %}">마이페이지</a></span>
+        <a class="nav__link" href="{% url 'studyroomJoin' %}">스터디룸 참여</a>
+        <a class="nav__link" href="{% url 'studyroomMy' %}">나의 스터디룸</a>
+        <a class="nav__link" href="{% url 'studyroomMake' %}">스터디룸 등록</a>
+        <a class="nav__link" href="{% url 'myPage' %}">마이페이지</a>
         {% if user.is_authenticated != True %}
-        <span class="nav__link"><a href="{% url 'login' %}">로그인</a></span>
+        <a class="nav__link" href="{% url 'login' %}">로그인</a>
         {% else %}
-        <span class="nav__link"><a href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a></span>
+        <a class="nav__link" href="{% url 'logout' %}">{{ user.username }} (로그아웃)</a>
         <!-- <details class="nav__link"><a class="nav-link" onclick="">{{ user.username }} (로그아웃)</a></span> -->
         
         {% endif %}

@@ -55,6 +55,7 @@ def studyroomMy(request):
     if request.user.is_authenticated:
         STUDYROOMSPERPAGE = 5 # 페이지당 들어갈 스터디룸 숫자
         studyrooms = request.user.study_rooms.all()
+        
         paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
         page = request.GET.get('page')
         modifiedStudyrooms = paginator.get_page(page)
@@ -70,22 +71,19 @@ def studyroomMy(request):
 
 def studyroomJoin(request):
     if request.user.is_authenticated:
+        STUDYROOMSPERPAGE = 20 # 페이지당 숫자
+        studyrooms = Studyroom.objects.all()
+
+        paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
+        page = request.GET.get('page')
+        modifiedStudyrooms = paginator.get_page(page)
+        pages = range(1, paginator.num_pages + 1)
+
         context = {
-            'studyrooms' : [
-                {
-                    'number' : 1,
-                    'name' : 'name1',
-                    'field' : 'field1',
-                    'id' : 1
-                },
-                {
-                    'number' : 2,
-                    'name' : 'name2',
-                    'field' : 'field2',
-                    'id' : 2
-                }
-            ]
+            'studyrooms' : modifiedStudyrooms,
+            'pages' : pages
         }
+        
         return render(request, 'join.html', context)
     else:
         return redirect('login')

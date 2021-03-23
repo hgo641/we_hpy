@@ -22,11 +22,11 @@
             </div>
         </div>
         {% endfor %}
-            <div class="pagination">
-                {% for page in pages %}
-                <a class="pagination__block" href="{% url 'studyroomMy' %}?page={{ page }}">{{ page }}</a>
-                {% endfor %}
-            </div>
+        <div class="pagination">
+            {% for page in pages %}
+            <a class="pagination__block" href="{% url 'studyroomMy' %}?page={{ page }}">{{ page }}</a>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
