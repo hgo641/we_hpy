@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from web_project.studyrooms.models import *
+
 # Create your models here.
 
 
@@ -24,6 +28,22 @@ class MyPage(models.Model):
         "studyrooms.Studyroom", related_name="leaderpages")
     study_room = models.ManyToManyField(
         "studyrooms.Studyroom", related_name="mypages")
+
+    @receiver(post_save, sender=User)
+    def create_mypage(sender, instance, created, **kwargs):
+        if created:
+            MyPage.objects.create(userId=instance)
+
+    # @receiver(post_save, sender = Studyroom)
+    # def create_make_study(sender, instance, created, **kwargs):
+    #    if created:
+    #        MyPage.make_study.
+    # 이것도 되려나
+
+    # @receiver(post_save, sender=User)
+    # def save_mypage(sender, instance, **kwargs):
+    #    instance.mypage.save()
+
 
 # @receiver(post_save, sender=User)
 # def create_user_mypage(sender, instance, created, **kwargs):
