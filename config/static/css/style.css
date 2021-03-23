@@ -36,7 +36,7 @@ a {
 }
 
 .page__content__subject{
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 600;
 }
 
@@ -55,10 +55,11 @@ a {
 
 .info td{
     height: 50px;
+    font-size: 18px;
 }
 
 .info td:nth-child(1){
-    font-size: 1.05rem;
+    font-size: 20px;
     width: 250px;
     font-weight: 600;
     border-right: solid 1px rgb(200, 200, 200);
@@ -69,7 +70,6 @@ a {
 }
 
 .info td:nth-child(2){
-    font-size: 1rem;
     width: 550px;
     padding-left: 15px;
 }
@@ -89,12 +89,12 @@ a {
 }
 
 .profile__header__main{
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 600;
 }
 
 .profile__header__sub{
-    font-size: 0.8rem;
+    font-size: 14px;
     margin-top: 3px;
 }
 
@@ -107,7 +107,7 @@ a {
 }
 
 .profile__box--solo{
-    font-size: 1.3rem;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -117,85 +117,91 @@ a {
 }
 
 .profile__box__main{
-    font-size: 1.3rem;
+    font-size: 22px;
     font-weight: 600;
 }
 
 .profile__box__sub{
     margin-top: 10px;
-    font-size: 1.2rem;
+    font-size: 19px;
 }
 
 .box{
-    margin-top: 8rem;
-    padding: 2rem;
+    margin-top: 108px;
+    padding: 32px;
     border: 1px solid rgb(224, 224, 224);
     background-color: white;
 }
 
 .box-column{
-    width: 20rem;
+    width: 320px;
 }
 
 .box__subject{
-    font-size: 1.3rem;
+    font-size: 22px;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
+
 .form__element{
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
+
 .form__element--zero{
     margin-bottom: 0;
 }
 
+.form__element label{
+    font-size: 16px;
+}
+
 .form__input{
     width: 100%;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
     line-height: 1.5;
     border-style: none none solid none;
     border-color: currentcolor currentcolor rgb(238, 238, 238);
-    font-size: 1rem;
+    font-size: 16px;
     outline: currentcolor none medium;
 }
 
 .form__input--inline{
-    width: 10rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    width: 160px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     line-height: 1.5;
     border-style: none none solid none;
     border-color: currentcolor currentcolor rgb(238, 238, 238);
-    font-size: 1rem;
+    font-size: 16px;
     outline: currentcolor none medium;
-    margin-left: 0.5rem;
+    margin-left: 8px;
 }
 
 .form__button{
     background-color: rgb(225, 225, 225);
     width: 100%;
-    height: 2.5rem;
+    height: 40px;
     border-radius: 4px;
     border: none;
     /* font-weight: 500; */
-    font-size: 1rem;
+    font-size: 16px;
 }
 .form__button--right{
     background-color: rgb(225, 225, 225);
-    width: 6rem;
-    height: 2.5rem;
+    width: 96px;
+    height: 40px;
     border-radius: 4px;
     border: none;
     /* font-weight: 500; */
-    font-size: 1rem;
-    margin-right: 0.5rem;
+    font-size: 16px;
+    margin-right: 8px;
 }
 
 .form__text{
     display: flex;
     justify-content: space-between;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 .form__right{
@@ -205,12 +211,12 @@ a {
 
 .form__textarea{
     width: 100%;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
     line-height: 1.5;
     border-style: solid;
     border-color: rgb(228, 228, 228);
-    font-size: 1rem;
+    font-size: 16px;
     outline: currentcolor none medium;
     resize: none;
 }
@@ -222,27 +228,24 @@ a {
 
 .content__button{
     display: block;
-    margin: 0.5rem;
-    padding: 3rem;
+    margin: 8px;
+    padding: 48px;
     background-color: rgb(225, 225, 225);
-    /* width: 100%; */
-    height: 2.5rem;
+    height: 40px;
     border-radius: 4px;
     border: none;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 19px;
     text-align: center;
     white-space: nowrap;
     flex-grow: 1;
-    font-size: 1.2rem;
-    width: 7rem;
-    /* height: 0; */
+    width: 112px;
 }
 
 .container{
     width: 768px;
-    margin: 2rem auto 0 auto;
-    padding: 1rem;
+    margin: 32px auto 0 auto;
+    padding: 16px;
     background: white;
     border-radius: 1px;
     border-style: solid;
@@ -252,24 +255,24 @@ a {
 
 .container--studyroomlist{
     width: 1000px;
-    margin: 2rem auto 0 auto;
-    padding: 1rem;
+    margin: 32px auto 0 auto;
+    padding: 16px;
     background: white;
     border-radius: 1px;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(224, 224, 224);
-    height: 10rem;
+    height: 160px;
 }
 .container--studyroomjoin{
     width: 1100px;
-    margin: 2rem auto 0 auto;
-    padding: 1rem;
+    margin: 32px auto 0 auto;
+    padding: 16px;
     background: white;
     border-radius: 1px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(224, 224, 224);
+    border-color: rgb(24, 16, 16);
 
     display: flex;
     /* text-align: center; */
@@ -279,29 +282,28 @@ a {
 }
 
 .container__subject{
-    font-size: 1.3rem;
+    font-size: 22px;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
 
 .container__content{
-    height: 5rem;
+    height: 80px;
 }
 
 .container__footer{
     display: flex;
-    justify-content: right;
+    float: right;
 }
 
 .container__button{
     background-color: rgb(225, 225, 225);
-    width: 6rem;
-    height: 2.5rem;
+    width: 96px;
+    height: 40px;
     border-radius: 4px;
     border: none;
-    /* font-weight: 500; */
-    font-size: 1rem;
-    margin-right: 0.5rem;
+    font-size: 16px;
+    margin-right: 8px;
 }
 
 .lobby{
@@ -319,8 +321,8 @@ a {
     align-items: center;
     width: 200px;
     height: 550px;
-    margin: 0 2rem;
-    border-radius: 1rem;
+    margin: 0 32px;
+    border-radius: 16px;
     transition: 0.5s;
     background: #efefef;
 }
@@ -335,9 +337,9 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: bold;
-    margin-top:300px;
+    margin-top: 300px;
 }
 
 .left-menu{
@@ -347,7 +349,7 @@ a {
 
 .left-menu__h1{
     display: block;
-    font-size: 1.3rem;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
 }
@@ -355,6 +357,7 @@ a {
 .left-menu__h2{
     display: block;
     margin-bottom: 8px;
+    font-size: 16px;
 }
 
 .left-menu__line{
@@ -364,18 +367,18 @@ a {
 }
 
 .pagination{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .pagination__block{
-    padding: 1rem;
+    padding: 16px;
     background: white;
-    border-radius: 1rem;
+    border-radius: 16px;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(224, 224, 224);
-    margin: 0 0.3rem 0 0.3rem;
+    margin: 0 6px 0 6px;
     font-weight: 600;
 }
 
