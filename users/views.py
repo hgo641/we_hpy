@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
 
+
 def signUp(request):
     if request.method == "POST":
         form = UserForm(request.POST)
@@ -28,12 +29,13 @@ def signUp(request):
     #         birth_date = request.POST["birth_date"]
 
     #         user = User.objects.create_user(username, email, gender, birth_date, password)
- 
+
     #         user.save()
     #         auth.login(request,user)
 
     #     return render(request, "login.html")
     # return render(request, "sign_up.html")
+
 
 def login(request):
     if request.method == 'POST':
@@ -41,17 +43,18 @@ def login(request):
         #email = request.POST["email"]
         username = request.POST["username"]
         password = request.POST["password"]
-        user = auth.authenticate(username=username, password=password)#이메일 왜 안되지 ? 왜 안되지? 왜안되지 ??? 일단 유저네임으로
+        # 이메일 왜 안되지 ? 왜 안되지? 왜안되지 ??? 일단 유저네임으로
+        user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            #print(email)
+            # print(email)
             print('loginsuccess')
             return redirect('/')
         else:
-            #print(email)
+            # print(email)
             print(password)
             print('nooooo')
-            return render(request, 'login.html',{'error':'username or password is incorrect'})
+            return render(request, 'login.html', {'error': 'username or password is incorrect'})
     else:
         # 로그인 상태면 main으로 리다이렉트 합니다
         if request.user.is_authenticated:
@@ -61,15 +64,19 @@ def login(request):
 
 # 로그아웃 뷰
 
+
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
+
 def found(request):
     return render(request, "found.html")
 
+
 def idfound(request):
     return render(request, "idFound.html")
+
 
 def pwfound(request):
     return render(request, "pwFound.html")
