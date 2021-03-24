@@ -187,6 +187,7 @@ a {
     /* font-weight: 500; */
     font-size: 16px;
 }
+
 .form__button--right{
     background-color: rgb(225, 225, 225);
     width: 96px;
@@ -197,6 +198,15 @@ a {
     font-size: 16px;
     margin-right: 8px;
 }
+
+.form__button:hover{
+    background-color: rgb(200, 200, 200);
+}
+
+.form__button--right:hover{
+    background-color: rgb(200, 200, 200);
+}
+
 
 .form__text{
     display: flex;
@@ -322,6 +332,10 @@ a {
     border: none;
     font-size: 16px;
     margin-right: 8px;
+}
+
+.container__button:hover{
+    background-color: rgb(200, 200, 200);
 }
 
 .lobby{
