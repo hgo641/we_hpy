@@ -286,6 +286,25 @@ a {
     margin-bottom: 16px;
 }
 
+.container__h1{
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.container__dict{
+    margin-bottom: 16px;
+}
+
+.container__key{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.container__value{
+    font-size: 20px;
+}
+
 .container__content{
     height: 80px;
 }
