@@ -7,7 +7,12 @@ from django.core.paginator import Paginator
 def studyroom(request, room_id):
     if request.user.is_authenticated:
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
-        check = 0
+
+        # 모델 수정한 후에 조건변경
+        # currentStudyroom = get_object_or_404(Studyroom, pk = room_id)
+        # currentStudyroom in request.user.mypage.study_room.all()
+
+        check = 0   
         studyrooms = list(request.user.study_rooms.all())
         for studyroom in studyrooms:
             if(studyroom.studyroom_number == room_id):
@@ -30,6 +35,9 @@ def studyroom(request, room_id):
         return redirect('login')
 
 def studyroomMake(request):
+    # value들중 blank가 있으면 안되게 수정,
+    # model form으로 하는게 좋을듯..?
+    # 이것도 모델 수정후에 다시 수젇하기
     if request.user.is_authenticated:
         if request.method == "POST":
             post = Studyroom()
@@ -37,6 +45,7 @@ def studyroomMake(request):
             post.studyroom_classification = request.POST["studyroom_classification"]
             post.leader_Id = request.user
             post.save()
+            # roomPage = "/studyroom/room/" + str(post.studyroom_number)
             return redirect('studyroomMy')
         else:
             context = {

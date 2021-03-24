@@ -8,12 +8,29 @@
 <body>
     {% include "base/navbar.html" %}
     <div class="main">
-        <div>스터디 이름 {{ studyName }}</div>
-        <div>스터디장 {{ studyCaptain }}</div>
-        <div>분야 {{ studyField }}</div>
-        <div>공개 범위 {{ studyOpen }}</div>
-        <div>신청서 form</div>
-        <div>신청 버튼</div>
+        <div class="container">
+            <div class="container__h1">{{ studyName }}</div>
+            <div class="container__dict">
+                <span class="container__key">스터디장: </span><span class="container__value">{{ studyCaptain }}</span>
+            </div>
+            <div class="container__dict">
+                <span class="container__key">분야: </span><span class="container__value">{{ studyField }}</span>
+            </div>
+            <div class="container__dict">
+                <span class="container__key">공개 범위: </span><span class="container__value">{{ studyOpen }}</span>
+            </div>
+            <form class="form" action="" method="POST">
+                {% csrf_token %}
+                <div class="form__element">
+                    <label class="container__key" for="">신청서 작성</label>
+                    <textarea class="form__textarea" name="studyroom_classification" id="" cols="10" rows="5"></textarea>
+                </div>
+                <div class="form__element form__element--zero form__right">
+                    <label for=""></label>
+                    <input type="submit" class="form__button--right" value="신청하기">
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

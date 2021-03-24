@@ -187,6 +187,7 @@ a {
     /* font-weight: 500; */
     font-size: 16px;
 }
+
 .form__button--right{
     background-color: rgb(225, 225, 225);
     width: 96px;
@@ -197,6 +198,15 @@ a {
     font-size: 16px;
     margin-right: 8px;
 }
+
+.form__button:hover{
+    background-color: rgb(200, 200, 200);
+}
+
+.form__button--right:hover{
+    background-color: rgb(200, 200, 200);
+}
+
 
 .form__text{
     display: flex;
@@ -286,6 +296,25 @@ a {
     margin-bottom: 16px;
 }
 
+.container__h1{
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.container__dict{
+    margin-bottom: 16px;
+}
+
+.container__key{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.container__value{
+    font-size: 20px;
+}
+
 .container__content{
     height: 80px;
 }
@@ -303,6 +332,10 @@ a {
     border: none;
     font-size: 16px;
     margin-right: 8px;
+}
+
+.container__button:hover{
+    background-color: rgb(200, 200, 200);
 }
 
 .lobby{
