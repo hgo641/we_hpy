@@ -3,6 +3,7 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import *
+from django.conf import settings
 
 
 def signUp(request):
@@ -11,10 +12,8 @@ def signUp(request):
         if form.is_valid():
             user = User.objects.create_user(**form.cleaned_data)
             auth.login(request, user)
-            remember_session = self.request.POST.get('remember_session', False)
-            if remember_session:
-                settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
             return redirect('/')
+
         else:
             return render(request, "signUp.html")
     else:
@@ -52,6 +51,9 @@ def login(request):
             auth.login(request, user)
             # print(email)
             print('loginsuccess')
+            remember_session = request.POST.get('remember_session', False)
+            if remember_session:
+                settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
             return redirect('/')
         else:
             # print(email)
