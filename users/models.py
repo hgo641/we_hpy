@@ -34,22 +34,12 @@ class MyPage(models.Model):
         if created:
             MyPage.objects.create(userId=instance)
 
-    # @receiver(post_save, sender = Studyroom)
-    # def create_make_study(sender, instance, created, **kwargs):
-    #    if created:
-    #        MyPage.make_study.
-    # 이것도 되려나
+    @receiver(post_save, sender=Studyroom)
+    def create_make_study(sender, instance, created, **kwargs):
+        if created:
+            user = instance.leader_Id
+            user.mypage.make_study.add(instance)
 
-    # @receiver(post_save, sender=User)
-    # def save_mypage(sender, instance, **kwargs):
-    #    instance.mypage.save()
-
-
-# @receiver(post_save, sender=User)
-# def create_user_mypage(sender, instance, created, **kwargs):
-#     if created:
-#         MyPage.objects.create(user=instance)
-
-# @receiver(post_save, sender=User)
-# def save_user_mypage(sender, instance, **kwargs):
-#     instance.mypage.save()
+    @receiver(post_save, sender=User)
+    def save_mypage(sender, instance, **kwargs):
+        instance.mypage.save()
