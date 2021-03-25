@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.main, name='main'),
-    path('users/',include("users.urls")),
+    path('users/', include("users.urls")),
     path('studyrooms/', include('studyrooms.urls')),
 
     path('mypage/', views.myPage, name='myPage'),

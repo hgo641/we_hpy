@@ -1,5 +1,3 @@
-
-
 from django.urls import path, include
 from . import views
 from django.contrib import admin
@@ -11,5 +9,9 @@ urlpatterns = [
     path('my/', views.studyroomMy, name='studyroomMy'),
     path('join/', views.studyroomJoin, name='studyroomJoin'),    
     path('room/<int:room_id>', views.studyroom, name='studyroom'),
+    path('room/<int:room_id>/board', views.studyroomBoard, name='studyroomBoard'),
+    path('room/<int:room_id>/calendar', views.studyroomCalendar, name='studyroomCalendar'),
+    path('room/<int:room_id>/time', views.studyroomTime, name='studyroomTime'),
+    path('room/<int:room_id>/progress', views.studyroomProgress, name='studyroomProgress'),
     
 ]

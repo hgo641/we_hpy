@@ -1,0 +1,10 @@
+<div class="left-menu">
+    <span class="left-menu__h1">스터디룸</span>
+    <a href="{% url 'studyroom' room_id %}" class="left-menu__h2">스터디룸 홈</a>
+    <div class="left-menu__line"></div>
+    <a href="{% url 'studyroomCalendar' room_id %}" class="left-menu__h2">스터디룸 달력</a>
+    <a href="{% url 'studyroomBoard' room_id  %}" class="left-menu__h2">게시판</a>
+    <div class="left-menu__line"></div>
+    <a href="{% url 'studyroomTime' room_id %}" class="left-menu__h2">공부 시간</a>
+    <a href="{% url 'studyroomProgress' room_id %}" class="left-menu__h2">진도율</a>
+</div>

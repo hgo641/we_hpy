@@ -34,6 +34,30 @@ def studyroom(request, room_id):
     else:
         return redirect('login')
 
+def studyroomCalendar(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomCalendar.html', context)
+
+def studyroomBoard(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomBoard.html', context)
+
+def studyroomTime(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomTime.html', context)
+
+def studyroomProgress(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomProgress.html', context)
+
 def studyroomMake(request):
     # value들중 blank가 있으면 안되게 수정,
     # model form으로 하는게 좋을듯..?
