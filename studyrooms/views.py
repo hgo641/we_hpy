@@ -22,7 +22,7 @@ def studyroom(request, room_id):
             context = {
                 'room_id' : room_id
             }
-            return render(request, 'studyroom.html', context)
+            return render(request, 'studyrooms/studyroom.html', context)
         else:
             context = {
                 'studyName' : 'test',
@@ -30,9 +30,33 @@ def studyroom(request, room_id):
                 'studyField' : 'idk',
                 'studyOpen' : 'notreallynicenamingsence'
             }
-            return render(request, 'request.html', context)
+            return render(request, 'studyrooms/request.html', context)
     else:
         return redirect('login')
+
+def studyroomCalendar(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomCalendar.html', context)
+
+def studyroomBoard(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomBoard.html', context)
+
+def studyroomTime(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomTime.html', context)
+
+def studyroomProgress(request, room_id):
+    context = {
+        'room_id' : room_id
+    }
+    return render(request, 'studyrooms/studyroomProgress.html', context)
 
 def studyroomMake(request):
     # value들중 blank가 있으면 안되게 수정,
@@ -55,7 +79,7 @@ def studyroomMake(request):
                     {'name': 'C'},
                 ]
             }
-            return render(request, 'make.html', context)
+            return render(request, 'studyrooms/make.html', context)
     else:
         return redirect('login')
 
@@ -74,7 +98,7 @@ def studyroomMy(request):
             'studyrooms': modifiedStudyrooms,
             'pages': pages
         }
-        return render(request, 'my.html', context)
+        return render(request, 'studyrooms/my.html', context)
     else:
         return redirect('login')
 
@@ -93,7 +117,7 @@ def studyroomJoin(request):
             'pages' : pages
         }
         
-        return render(request, 'join.html', context)
+        return render(request, 'studyrooms/join.html', context)
     else:
         return redirect('login')
 

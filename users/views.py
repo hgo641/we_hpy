@@ -15,14 +15,14 @@ def signUp(request):
             return redirect('/')
 
         else:
-            return render(request, "signUp.html")
+            return render(request, "users/signUp.html")
     else:
         # 로그인 상태면 main으로 리다이렉트 합니다
         if request.user.is_authenticated:
             return redirect('main')
         else:
             form = UserForm()
-            return render(request, "signUp.html")
+            return render(request, "users/signUp.html")
     #     if request.POST['password'] == request.POST['confirm']:
     #         username = request.POST["username"]
     #         email = request.POST["email"]
@@ -59,13 +59,13 @@ def login(request):
             # print(email)
             print(password)
             print('nooooo')
-            return render(request, 'login.html', {'error': 'username or password is incorrect'})
+            return render(request, 'users/login.html', {'error': 'username or password is incorrect'})
     else:
         # 로그인 상태면 main으로 리다이렉트 합니다
         if request.user.is_authenticated:
             return redirect('main')
         else:
-            return render(request, 'login.html')
+            return render(request, 'users/login.html')
 
 # 로그아웃 뷰
 
@@ -76,12 +76,12 @@ def logout(request):
 
 
 def found(request):
-    return render(request, "found.html")
+    return render(request, "users/found.html")
 
 
 def idfound(request):
-    return render(request, "idFound.html")
+    return render(request, "users/idFound.html")
 
 
 def pwfound(request):
-    return render(request, "pwFound.html")
+    return render(request, "users/pwFound.html")

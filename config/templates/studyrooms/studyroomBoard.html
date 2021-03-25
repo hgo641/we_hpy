@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {% include "base/title.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div class="main">
+        <div class="page">
+            {% include "studyrooms/studyroomMenu.html" %}
+            <div class="page__content">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

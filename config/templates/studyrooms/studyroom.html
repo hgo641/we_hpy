@@ -1,6 +1,7 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     {% include "base/title.html" %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -8,8 +9,12 @@
 <body>
     {% include "base/navbar.html" %}
     <div class="main">
-        aa
+        <div class="page">
+            {% include "studyrooms/studyroomMenu.html" %}
+            <div class="page__content">
+                
+            </div>
+        </div>
     </div>
-
 </body>
 </html>
