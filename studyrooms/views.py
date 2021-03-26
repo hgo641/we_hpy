@@ -4,6 +4,7 @@ from users.models import *
 from django.contrib import auth
 from django.core.paginator import Paginator
 from .forms import StudyroomForm
+from applications.models import *
 
 
 def studyroom(request, room_id):
@@ -24,6 +25,14 @@ def studyroom(request, room_id):
                 'studyParticipants': len(studyroom.mypages.all()),
                 'studyOpen': '공개범위가 이곳에 들어갑니다'
             }
+            if(request.method == "POST"):
+                studyroom = get_object_or_404(Studyroom, pk = room_id)
+                application = Application()
+                application.userId = request.user 
+                application.studyroomId = studyroom
+                application.text = request.POST["studyroom_classification"]
+                application.save()
+            
             return render(request, 'studyrooms/request.html', context)
     else:
         return redirect('login')
@@ -142,3 +151,16 @@ def studyroomPrivate(request, room_id):
             redirect('studyroom')
     else:
         return redirect('login')
+
+
+#def studyroomApply(request, room_id):
+#    if (request.user.is_authenticated):
+#        if (request.method == "POST"):
+#            studyroom = get_object_or_404(Studyroom, pk = room_id)
+#            application = Application()
+#            application.userId = request.user 
+#            application.studyroomId = studyroom
+
+
+#    else:
+#        return redirect('login')
