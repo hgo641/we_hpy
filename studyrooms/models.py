@@ -55,9 +55,6 @@ class Studyroom(Studyroom_status):#상속 받아서 사용
     progress_rate = models.ManyToManyField("Progress_rate",blank = True, related_name = "study_rooms")
     study_time = models.ManyToManyField("Study_time",blank = True, related_name = "study_rooms") 
 
-
-
-
     def __str__(self):
         return self.studyroom_name
         

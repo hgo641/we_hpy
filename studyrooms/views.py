@@ -18,6 +18,9 @@ def studyroom(request, room_id):
         for studyroom in studyrooms:
             if(studyroom.studyroom_number == room_id):
                 check = 1
+                break
+
+        studyroom = Studyroom.objects.get(studyroom_number = room_id)
 
         if(check == 1):
             context = {
@@ -26,10 +29,11 @@ def studyroom(request, room_id):
             return render(request, 'studyrooms/studyroom.html', context)
         else:
             context = {
-                'studyName': 'test',
-                'studyCaptain': '땡컨',
-                'studyField': 'idk',
-                'studyOpen': 'notreallynicenamingsence'
+                'studyName': studyroom.studyroom_name,
+                'studyCaptain': studyroom.leader_Id.username,
+                'studyField': studyroom.studyroom_classification,
+                'studyParticipants': len(studyroom.mypages.all()),
+                'studyOpen': '공개범위가 이곳에 들어갑니다'
             }
             return render(request, 'studyrooms/request.html', context)
     else:
