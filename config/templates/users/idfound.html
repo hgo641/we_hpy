@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     {% include "base/title.html" %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -10,10 +10,6 @@
         <div class="box box-column">
             <div class="box__subject">아이디 찾기</div>
             <form class="form" action="" method="POST">
-                <div class="form__element">
-                    <label for="">이름</label>
-                    <input class="form__input" type="text" >
-                </div>
                 <div class="form__element">
                     <label for="">이메일</label>
                     <input class="form__input" type="text" placeholder="example@example.com">

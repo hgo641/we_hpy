@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     {% include "base/title.html" %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -10,11 +10,15 @@
     <div class="main">
         <div class="container">
             <div class="container__h1">{{ studyName }}</div>
+            <div class="container__line"></div>
+            <div class="container__dict">
+                <span class="container__key">분야: </span><span class="container__value">{{ studyField }}</span>
+            </div>
             <div class="container__dict">
                 <span class="container__key">스터디장: </span><span class="container__value">{{ studyCaptain }}</span>
             </div>
             <div class="container__dict">
-                <span class="container__key">분야: </span><span class="container__value">{{ studyField }}</span>
+                <span class="container__key">참여 인원: </span><span class="container__value">{{ studyParticipants }}</span>
             </div>
             <div class="container__dict">
                 <span class="container__key">공개 범위: </span><span class="container__value">{{ studyOpen }}</span>

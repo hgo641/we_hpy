@@ -3,33 +3,26 @@ from .models import *
 from users.models import *
 from django.contrib import auth
 from django.core.paginator import Paginator
+from .forms import StudyroomForm
 
 
 def studyroom(request, room_id):
     if request.user.is_authenticated:
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
+        studyroom = get_object_or_404(Studyroom, pk = room_id)
 
-        # 모델 수정한 후에 조건변경
-        # currentStudyroom = get_object_or_404(Studyroom, pk = room_id)
-        # currentStudyroom in request.user.mypage.study_room.all()
-
-        check = 0
-        studyrooms = list(request.user.study_rooms.all())
-        for studyroom in studyrooms:
-            if(studyroom.studyroom_number == room_id):
-                check = 1
-
-        if(check == 1):
+        if(studyroom in request.user.mypage.study_room.all()):
             context = {
                 'room_id': room_id
             }
             return render(request, 'studyrooms/studyroom.html', context)
         else:
             context = {
-                'studyName': 'test',
-                'studyCaptain': '땡컨',
-                'studyField': 'idk',
-                'studyOpen': 'notreallynicenamingsence'
+                'studyName': studyroom.studyroom_name,
+                'studyCaptain': studyroom.leader_Id.username,
+                'studyField': studyroom.studyroom_classification,
+                'studyParticipants': len(studyroom.mypages.all()),
+                'studyOpen': '공개범위가 이곳에 들어갑니다'
             }
             return render(request, 'studyrooms/request.html', context)
     else:
@@ -65,16 +58,18 @@ def studyroomProgress(request, room_id):
 
 
 def studyroomMake(request):
-    # value들중 blank가 있으면 안되게 수정,
-    # model form으로 하는게 좋을듯..?
-    # 이것도 모델 수정후에 다시 수젇하기
+    # value들중 blank가 있으면 안되게 수정
     if request.user.is_authenticated:
         if request.method == "POST":
-            post = Studyroom()
-            post.studyroom_name = request.POST["studyroom_name"]
-            post.studyroom_classification = request.POST["studyroom_classification"]
-            post.leader_Id = request.user
-            post.save()
+            form = StudyroomForm(request.POST)
+            if form.is_valid():
+                studyroom = Studyroom()
+                studyroom.studyroom_name = form.cleaned_data["studyroom_name"]
+                studyroom.studyroom_classification = form.cleaned_data["studyroom_classification"]
+                studyroom.leader_Id = request.user
+                studyroom.save()
+                studyroom.mypages.set([request.user.id])
+
             # roomPage = "/studyroom/room/" + str(post.studyroom_number)
             return redirect('studyroomMy')
         else:
