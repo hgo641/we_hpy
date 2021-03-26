@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'invitations',
     'messages2',
     # Django는 INSTALLED_APPS에 있는 앱에서 temlplates을 자동으로 검색합니다. 템플릿을 위해 config를 INSTALLED_APPS 에추가함. 문제가 있으면 알려주세요.
-    'config'
+    'config',
     # 'foo',
     # 'foo.apps.FooConfig',
+    'applications',
 ]
 
 MIDDLEWARE = [
