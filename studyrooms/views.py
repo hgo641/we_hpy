@@ -27,13 +27,19 @@ def studyroom(request, room_id):
             }
             if(request.method == "POST"):
                 studyroom = get_object_or_404(Studyroom, pk = room_id)
-                application = Application()
-                application.userId = request.user 
-                application.studyroomId = studyroom
-                application.text = request.POST["studyroom_classification"]
-                application.save()
-            
-            return render(request, 'studyrooms/request.html', context)
+                if not studyroom in request.user.mypage.study_room.all():
+                    if len(studyroom.application.filter(userId = request.user)) == 0:
+                        application = Application()
+                        application.userId = request.user 
+                        application.studyroomId = studyroom
+                        application.text = request.POST["studyroom_classification"]
+                        application.save()
+                    else:
+                        context['error'] = '이미 스터디룸 참여 요청을 보냈습니다'
+                        return render(request, 'studyrooms/request.html', context)
+                return redirect('main')
+            else:
+                return render(request, 'studyrooms/request.html', context)
     else:
         return redirect('login')
 
@@ -64,6 +70,20 @@ def studyroomProgress(request, room_id):
         'room_id': room_id
     }
     return render(request, 'studyrooms/studyroomProgress.html', context)
+
+#def studyroomApply(request, room_id):
+#    if (request.user.is_authenticated):
+#        if (request.method == "POST"):
+#            studyroom = get_object_or_404(Studyroom, pk = room_id)
+#            application = Application()
+#            application.userId = request.user 
+#            application.studyroomId = studyroom
+
+
+#    else:
+#        return redirect('login')
+
+# def studyroomManagement(request, room_id):
 
 
 def studyroomMake(request):
@@ -153,14 +173,3 @@ def studyroomPrivate(request, room_id):
         return redirect('login')
 
 
-#def studyroomApply(request, room_id):
-#    if (request.user.is_authenticated):
-#        if (request.method == "POST"):
-#            studyroom = get_object_or_404(Studyroom, pk = room_id)
-#            application = Application()
-#            application.userId = request.user 
-#            application.studyroomId = studyroom
-
-
-#    else:
-#        return redirect('login')
