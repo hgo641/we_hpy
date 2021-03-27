@@ -21,7 +21,7 @@
                 {% for studyroom in studyrooms %}
                     <tr>
                         <td>{{ studyroom.studyroom_number }}</th>
-                        <td>필드</td>
+                        <td>{{ studyroom.studyroom_classification }}</td>
                         <td>
                             <a href="{% url 'studyroom' studyroom.studyroom_number %}">
                                 {{ studyroom.studyroom_name }}

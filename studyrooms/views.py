@@ -27,16 +27,15 @@ def studyroom(request, room_id):
             }
             if(request.method == "POST"):
                 studyroom = get_object_or_404(Studyroom, pk = room_id)
-                if not studyroom in request.user.mypage.study_room.all():
-                    if len(studyroom.application.filter(userId = request.user)) == 0:
-                        application = Application()
-                        application.userId = request.user 
-                        application.studyroomId = studyroom
-                        application.text = request.POST["studyroom_classification"]
-                        application.save()
-                    else:
-                        context['error'] = '이미 스터디룸 참여 요청을 보냈습니다'
-                        return render(request, 'studyrooms/request.html', context)
+                if len(studyroom.application.filter(userId = request.user)) == 0:
+                    application = Application()
+                    application.userId = request.user 
+                    application.studyroomId = studyroom
+                    application.text = request.POST["studyroom_classification"]
+                    application.save()
+                else:
+                    context['error'] = '이미 스터디룸 참여 요청을 보냈습니다'
+                    return render(request, 'studyrooms/request.html', context)
                 return redirect('main')
             else:
                 return render(request, 'studyrooms/request.html', context)
@@ -70,6 +69,22 @@ def studyroomProgress(request, room_id):
         'room_id': room_id
     }
     return render(request, 'studyrooms/studyroomProgress.html', context)
+
+def studyroomConfirm(request, room_id):
+    context = {
+        'room_id': room_id,
+        'isCaptain' : True if Studyroom.objects.get(pk = room_id).leader_Id == request.user else False,
+        
+    }
+    return render(request, 'studyrooms/studyroomConfirm.html', context)
+
+def studyroomManage(request, room_id):
+    context = {
+        'room_id': room_id,
+        'isCaptain' : True if Studyroom.objects.get(pk = room_id).leader_Id == request.user else False,
+        
+    }
+    return render(request, 'studyrooms/studyroomManage.html', context)
 
 #def studyroomApply(request, room_id):
 #    if (request.user.is_authenticated):
@@ -117,7 +132,7 @@ def studyroomMake(request):
 def studyroomMy(request):
     if request.user.is_authenticated:
         STUDYROOMSPERPAGE = 5  # 페이지당 들어갈 스터디룸 숫자
-        studyrooms = request.user.study_rooms.all()
+        studyrooms = request.user.mypage.study_room.all()
 
         paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
         page = request.GET.get('page')

@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {% include "base/title.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include "base/navbar.html" %}
+    <div class="main">
+        <div class="page">
+            {% include "studyrooms/studyroomMenu.html" %}
+            {% if isCaptain == False %}
+            <div class="page__content">
+                <div class="page__alert">
+                    접근 권한이 없습니다
+                </div>
+            </div>
+            {% else %}
+            <div class="page__content">
+                ㅇㅇ
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
