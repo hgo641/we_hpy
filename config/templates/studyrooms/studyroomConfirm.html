@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -19,7 +20,22 @@
             </div>
             {% else %}
             <div class="page__content">
-                ㅇㅇ
+                <table class="table--join">
+                    <thead>
+                        <tr>
+                            <th scope="col">아이디</th>
+                            <th scope="col">신청 내용</th>
+                            <th scope="col">수락 / 거절</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>아이디값</td>
+                            <td>신청내용값</td>
+                            <td>수학/거절</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             {% endif %}
         </div>
