@@ -3,19 +3,22 @@ from django.http import HttpResponse
 
 from django.template import loader
 
+
 def main(request):
     return render(request, 'main/main.html')
+
 
 def myPage(request):
     if request.user.is_authenticated:
         context = {
-            'name' : request.user.username,
-            'email' : request.user.email,
-            "studyroom_number" : str(len(request.user.study_rooms.all())) + '개',
+            'name': request.user.username,
+            'email': request.user.email,
+            "studyroom_number": str(request.user.mypage.study_room.count()) + '개',
         }
         return render(request, 'mypage/mypage.html', context)
     else:
         return redirect('login')
+
 
 def myInfo(request):
     if request.user.is_authenticated:
@@ -25,19 +28,20 @@ def myInfo(request):
         elif request.user.gender == 'm':
             gender = "male"
         context = {
-            'name' :request.user.username,
-            'email' : request.user.email,
-            'gender' : gender,
-            'birthDate' : request.user.birth_date,
+            'name': request.user.username,
+            'email': request.user.email,
+            'gender': gender,
+            'birthDate': request.user.birth_date,
         }
         return render(request, 'mypage/myinfo.html', context)
     else:
         return redirect('login')
 
+
 def myCalender(request):
     if request.user.is_authenticated:
         context = {
-            'test' : 'test'
+            'test': 'test'
         }
         return render(request, 'mypage/mycalender.html', context)
     else:
