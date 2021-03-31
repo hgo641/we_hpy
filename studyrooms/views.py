@@ -5,31 +5,39 @@ from django.contrib import auth
 from django.core.paginator import Paginator
 from .forms import StudyroomForm
 from applications.models import *
+from django.contrib.auth.decorators import login_required
 
 
 def studyroom(request, room_id):
     if request.user.is_authenticated:
         # 스터디룸에 소속되어 있는지 확인하고 안되어 있으면 request페이지로 연결
-        studyroom = get_object_or_404(Studyroom, pk = room_id)
+        studyroom = get_object_or_404(Studyroom, pk=room_id)
 
+        # 스터디룸 페이지
         if(studyroom in request.user.mypage.study_room.all()):
             context = {
-                'room_id': room_id
+                'room_id': room_id,
+                'memberCount': 1018,
+                'studyroomName': studyroom.studyroom_name,
+                'totalStudyTime' : 12345,
+                'averageProgressRate': 104,
+
             }
             return render(request, 'studyrooms/studyroom.html', context)
+        # 신청서 페이지
         else:
             context = {
                 'studyName': studyroom.studyroom_name,
                 'studyCaptain': studyroom.leader_Id.username,
                 'studyField': studyroom.studyroom_classification,
-                'studyParticipants': len(studyroom.mypages.all()),
+                'studyParticipants': studyroom.mypages.count(),
                 'studyOpen': '공개범위가 이곳에 들어갑니다'
             }
             if(request.method == "POST"):
-                studyroom = get_object_or_404(Studyroom, pk = room_id)
-                if len(studyroom.application.filter(userId = request.user)) == 0:
+                studyroom = get_object_or_404(Studyroom, pk=room_id)
+                if studyroom.application.filter(userId=request.user).count() == 0:
                     application = Application()
-                    application.userId = request.user 
+                    application.userId = request.user
                     application.studyroomId = studyroom
                     application.text = request.POST["studyroom_classification"]
                     application.save()
@@ -70,28 +78,36 @@ def studyroomProgress(request, room_id):
     }
     return render(request, 'studyrooms/studyroomProgress.html', context)
 
+
 def studyroomConfirm(request, room_id):
-    context = {
-        'room_id': room_id,
-        'isCaptain' : True if Studyroom.objects.get(pk = room_id).leader_Id == request.user else False,
-        
-    }
-    return render(request, 'studyrooms/studyroomConfirm.html', context)
+    if request.user.is_authenticated:
+        studyroom = Studyroom.objects.get(pk=room_id)
+        applications = studyroom.application.all()
+
+        context = {
+            'room_id': room_id,
+            'isCaptain': True if Studyroom.objects.get(pk=room_id).leader_Id == request.user else False,
+            'applications': applications,
+        }
+        return render(request, 'studyrooms/studyroomConfirm.html', context)
+    else:
+        return redirect('login')
+
 
 def studyroomManage(request, room_id):
     context = {
         'room_id': room_id,
-        'isCaptain' : True if Studyroom.objects.get(pk = room_id).leader_Id == request.user else False,
-        
+        'isCaptain': True if Studyroom.objects.get(pk=room_id).leader_Id == request.user else False,
+
     }
     return render(request, 'studyrooms/studyroomManage.html', context)
 
-#def studyroomApply(request, room_id):
+# def studyroomApply(request, room_id):
 #    if (request.user.is_authenticated):
 #        if (request.method == "POST"):
 #            studyroom = get_object_or_404(Studyroom, pk = room_id)
 #            application = Application()
-#            application.userId = request.user 
+#            application.userId = request.user
 #            application.studyroomId = studyroom
 
 
@@ -186,5 +202,3 @@ def studyroomPrivate(request, room_id):
             redirect('studyroom')
     else:
         return redirect('login')
-
-

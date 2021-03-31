@@ -2,19 +2,45 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     {% include "base/title.html" %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     {% include "base/navbar.html" %}
     <div class="main">
         <div class="page">
             {% include "studyrooms/studyroomMenu.html" %}
             <div class="page__content">
-                
+                <div class="profile">
+                    <div class="profile__header">
+                        <span class="profile__header__main">{{ studyroomName }}</span>
+                        <span class="profile__header__sub"></span>
+                    </div>
+                    <div class="profile__box profile__box--multi">
+                        <span class="profile__box__main">
+                            <a href="{% url 'studyroomMy' %}">멤버</a>
+                        </span>
+                        <a href="{% url 'studyroomMy' %}" class="profile__box__sub">{{ memberCount }}명</a>
+                    </div>
+                    <div class="profile__box profile__box--multi">
+                        <span class="profile__box__main">
+                            <a href="{% url 'studyroomMy' %}">평균 진도율</a>
+                        </span>
+                        <a href="{% url 'studyroomMy' %}" class="profile__box__sub">{{ averageProgressRate }}%</a>
+                    </div>
+                    <div class="profile__box profile__box--multi">
+                        <span class="profile__box__main">
+                            <a href="">총학습 시간</a>
+                        </span>
+                        <span class="profile__box__sub">{{ totalStudyTime }}시간</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
