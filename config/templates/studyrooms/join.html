@@ -1,43 +1,35 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    {% include "base/title.html" %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    {% include "base/navbar.html" %}
-    <div class="main">
-        <div class="container--studyroomjoin">
-            <table class="table--join">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">분야</th>
-                        <th scope="col">스터디 이름</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for studyroom in studyrooms %}
-                    <tr>
-                        <td>{{ studyroom.studyroom_number }}</th>
-                        <td>{{ studyroom.studyroom_classification }}</td>
-                        <td>
-                            <a href="{% url 'studyroom' studyroom.studyroom_number %}">
-                                {{ studyroom.studyroom_name }}
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <div class="pagination">
-                {% for page in pages %}
-                <a class="pagination__block" href="{% url 'studyroomJoin' %}?page={{ page }}">{{ page }}</a>
-                {% endfor %}
-            </div>
+{% extends 'base/base.html' %}
+{% block content %}
+{% include "base/navbar.html" %}
+<div class="main">
+    <div class="container--studyroomjoin">
+        <table class="table--join">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">분야</th>
+                    <th scope="col">스터디 이름</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for studyroom in studyrooms %}
+                <tr>
+                    <td>{{ studyroom.studyroom_number }}</th>
+                    <td>{{ studyroom.studyroom_classification }}</td>
+                    <td>
+                        <a href="{% url 'studyroom' studyroom.studyroom_number %}">
+                            {{ studyroom.studyroom_name }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            {% for page in pages %}
+            <a class="pagination__block" href="{% url 'studyroomJoin' %}?page={{ page }}">{{ page }}</a>
+            {% endfor %}
         </div>
     </div>
-
-</body>
-</html>
+</div>
+{% endblock %}

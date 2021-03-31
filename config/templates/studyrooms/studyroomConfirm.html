@@ -1,50 +1,41 @@
-
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    {% include "base/title.html" %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    {% include "base/navbar.html" %}
-    <div class="main">
-        <div class="page">
-            {% include "studyrooms/studyroomMenu.html" %}
-            {% if isCaptain == False %}
-            <div class="page__content">
-                <div class="page__alert">
-                    접근 권한이 없습니다
-                </div>
+{% extends 'base/base.html' %}
+{% block content %}
+{% include "base/navbar.html" %}
+<div class="main">
+    <div class="page">
+        {% include "studyrooms/studyroomMenu.html" %}
+        {% if isCaptain == False %}
+        <div class="page__content">
+            <div class="page__alert">
+                접근 권한이 없습니다
             </div>
-            {% else %}
-            <div class="page__content">
-                <table class="table--confirm">
-                    <thead>
-                        <tr>
-                            <th scope="col">아이디</th>
-                            <th scope="col">신청 내용</th>
-                            <th scope="col">수락 / 거절</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for application in applications %}
-                        <tr>
-                            <td>{{ application.userId }}</td>
-                            <td>{{ application.text }}</td>
-                            <td>
-                                <a href="">수락</a>
-                                <span> / </span>
-                                <a href="">거절</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% endif %}
         </div>
+        {% else %}
+        <div class="page__content">
+            <table class="table--confirm">
+                <thead>
+                    <tr>
+                        <th scope="col">아이디</th>
+                        <th scope="col">신청 내용</th>
+                        <th scope="col">수락 / 거절</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for application in applications %}
+                    <tr>
+                        <td>{{ application.userId }}</td>
+                        <td>{{ application.text }}</td>
+                        <td>
+                            <a href="">수락</a>
+                            <span> / </span>
+                            <a href="">거절</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

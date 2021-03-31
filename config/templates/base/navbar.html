@@ -1,10 +1,8 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+
 
 <nav class="nav">
-    <div class="nav__logo">
-        <a class="nav__link" href="{% url 'main' %}">We Study</a>
-    </div>
+    <a class="nav__logo" href="{% url 'main' %}">We Study</a>
     <div class="nav__menu">
         <a class="nav__link" href="{% url 'studyroomJoin' %}">스터디룸 참여</a>
         <a class="nav__link" href="{% url 'studyroomMy' %}">나의 스터디룸</a>
