@@ -46,7 +46,7 @@ class Progress_rate(models.Model):
 class Study_time(models.Model):
     studytime_number = models.AutoField(primary_key=True)
     User = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    study_time = models.DateTimeField(auto_now=True)
+    study_time = models.IntegerField()
 
     class Meta:
         verbose_name_plural = "study_time"
