@@ -93,10 +93,10 @@ def studyroomConfirm(request, room_id):
         studyroom = Studyroom.objects.get(pk=room_id)
         applications = studyroom.application.all()
         if(request.method == "POST"):
-            print(request.body, type(request.body))
             data = json.loads(request.body.decode())
             print(data, type(data))
-            return HttpResponse("aa")
+
+            return HttpResponse("anything")
 
         else:
             context = {
