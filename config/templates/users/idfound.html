@@ -1,29 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    {% include "base/title.html" %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <div class="main">
-        <div class="box box-column">
-            <div class="box__subject">아이디 찾기</div>
-            <form class="form" action="" method="POST">
-                <div class="form__element">
-                    <label for="">이메일</label>
-                    <input class="form__input" type="text" placeholder="example@example.com">
-                </div>
-                <div class="form__element">
-                    <label for="">인증번호</label>
-                    <input class="form__input" type="text" placeholder="인증번호 입력">
-                </div>
-                <div class="form__element form__element--zero">
-                    <label for=""></label>
-                    <input type="submit" class="form__button" value="다음">
-                </div>
-            </form>
-        </div>
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="main">
+    <div class="box box-column">
+        <div class="box__subject">아이디 찾기</div>
+        <form class="form" action="" method="POST">
+            <div class="form__element">
+                <label for="">이메일</label>
+                <input class="form__input" type="text" placeholder="example@example.com">
+            </div>
+            <div class="form__element">
+                <label for="">인증번호</label>
+                <input class="form__input" type="text" placeholder="인증번호 입력">
+            </div>
+            <div class="form__element form__element--zero">
+                <label for=""></label>
+                <input type="submit" class="form__button" value="다음">
+            </div>
+        </form>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

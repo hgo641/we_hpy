@@ -1,43 +1,35 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    {% include "base/title.html" %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    {% include "base/navbar.html" %}
-    <div class="main">
-        <div class="page">
-            {% include "mypage/menu.html" %}
-            <div class="page__content">
-                <div class="page__content__subject">내 정보</div>
-                <div>
-                    <table class="info">
-                        <tbody>
-                            <tr>
-                                <td>아이디</td>
-                                <td>{{ name }}</td>
-                            </tr>
-                            <tr>
-                                <td>이메일</td>
-                                <td>{{ email }}</td>
-                            </tr>
-                            <tr>
-                                <td>성별</td>
-                                <td>{{ gender }}</td>
-                            </tr>
-                            <tr>
-                                <td>출생일</td>
-                                <td>{{ birthDate }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
+{% extends 'base/base.html' %}
+{% block content %}
+{% include "base/navbar.html" %}
+<div class="main">
+    <div class="page">
+        {% include "mypage/menu.html" %}
+        <div class="page__content">
+            <div class="page__content__subject">내 정보</div>
+            <div>
+                <table class="info">
+                    <tbody>
+                        <tr>
+                            <td>아이디</td>
+                            <td>{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <td>이메일</td>
+                            <td>{{ email }}</td>
+                        </tr>
+                        <tr>
+                            <td>성별</td>
+                            <td>{{ gender }}</td>
+                        </tr>
+                        <tr>
+                            <td>출생일</td>
+                            <td>{{ birthDate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
