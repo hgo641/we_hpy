@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from users.models import *
+from applications.models import *
 from django.contrib import auth
 from django.core.paginator import Paginator
 from .forms import StudyroomForm
@@ -95,8 +96,17 @@ def studyroomConfirm(request, room_id):
         if(request.method == "POST"):
             data = json.loads(request.body.decode())
             print(data, type(data))
+            data['appId']
+            application = Application.objects.get(pk=int(data['appId']))
+            if data['choice'] == 'accept':
+                application.userId.mypage.study_room.add(studyroom)
+                application.delete()
 
-            return HttpResponse("anything")
+            elif data['choice'] == 'decline':
+                # 추후에 신청 거절/수락 여부를 알림등으로 알리는 기능 추가
+                application.delete()
+
+            return HttpResponse("잘못된 접근")
 
         else:
             context = {
@@ -143,7 +153,7 @@ def studyroomMake(request):
                 studyroom.studyroom_classification = form.cleaned_data["studyroom_classification"]
                 studyroom.leader_Id = request.user
                 studyroom.save()
-                studyroom.mypages.set([request.user.id])
+                studyroom.mypages.add(request.user.mypage)
 
             # roomPage = "/studyroom/room/" + str(post.studyroom_number)
             return redirect('studyroomMy')
