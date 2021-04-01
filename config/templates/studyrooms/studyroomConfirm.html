@@ -26,9 +26,8 @@
                         <td>{{ application.userId }}</td>
                         <td>{{ application.text }}</td>
                         <td>
-                            <a href="">수락</a>
-                            <span> / </span>
-                            <a href="">거절</a>
+                            <button class="confirm-button" data-id="{{ application.pk }}" data-choice="accept">수락</button>
+                            <button class="confirm-button" data-id="{{ application.pk }}" data-choice="decline">거절</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -38,4 +37,32 @@
         {% endif %}
     </div>
 </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const congirmButtons = document.querySelectorAll('.confirm-button')
+    congirmButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            const appId = event.target.dataset.id
+            const choice = event.target.dataset.choice
+            const data = {
+                appId: appId,
+                choice: choice
+            }
+            axios.defaults.xsrfCookieName = 'csrftoken'
+            axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+            axios.post(`{% url 'studyroomConfirm' room_id  %}`,
+                JSON.stringify(data),
+                {
+                    headers: {
+                        "Content-Type": 'application/json'
+                    }
+                }
+            )
+
+                .then(request => {
+                    window.location.reload()
+                })
+        })
+    })
+</script>
 {% endblock %}

@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 from .forms import StudyroomForm
 from applications.models import *
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, HttpResponse
+import json
 
 
 def studyroom(request, room_id):
@@ -17,9 +19,9 @@ def studyroom(request, room_id):
         if(studyroom in request.user.mypage.study_room.all()):
             context = {
                 'room_id': room_id,
-                'memberCount': 1018,
+                'memberCount': studyroom.mypages.count(),
                 'studyroomName': studyroom.studyroom_name,
-                'totalStudyTime' : 12345,
+                'totalStudyTime': 12345,
                 'averageProgressRate': 104,
 
             }
@@ -65,6 +67,13 @@ def studyroomBoard(request, room_id):
     return render(request, 'studyrooms/studyroomBoard.html', context)
 
 
+def studyroomMember(request, room_id):
+    context = {
+        'room_id': room_id
+    }
+    return render(request, 'studyrooms/studyroomTime.html', context)
+
+
 def studyroomTime(request, room_id):
     context = {
         'room_id': room_id
@@ -83,13 +92,19 @@ def studyroomConfirm(request, room_id):
     if request.user.is_authenticated:
         studyroom = Studyroom.objects.get(pk=room_id)
         applications = studyroom.application.all()
+        if(request.method == "POST"):
+            print(request.body, type(request.body))
+            data = json.loads(request.body.decode())
+            print(data, type(data))
+            return HttpResponse("aa")
 
-        context = {
-            'room_id': room_id,
-            'isCaptain': True if Studyroom.objects.get(pk=room_id).leader_Id == request.user else False,
-            'applications': applications,
-        }
-        return render(request, 'studyrooms/studyroomConfirm.html', context)
+        else:
+            context = {
+                'room_id': room_id,
+                'isCaptain': True if Studyroom.objects.get(pk=room_id).leader_Id == request.user else False,
+                'applications': applications,
+            }
+            return render(request, 'studyrooms/studyroomConfirm.html', context)
     else:
         return redirect('login')
 
