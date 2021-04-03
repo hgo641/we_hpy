@@ -220,7 +220,7 @@ def studyroomMake(request):
 
 def studyroomMy(request):
     if request.user.is_authenticated:
-        STUDYROOMSPERPAGE = 5  # 페이지당 들어갈 스터디룸 숫자
+        STUDYROOMSPERPAGE = 24  # 페이지당 들어갈 스터디룸 숫자
         studyrooms = request.user.study_room.all()
 
         paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
