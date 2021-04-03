@@ -19,12 +19,12 @@
         </div>
         <form class="form" action="" method="POST">
             {% csrf_token %}
-            <div class="form__element">
+            <div class="mb-4">
                 <label class="container__key" for="">신청서 작성</label>
                 <textarea class="form__textarea" name="studyroom_classification" id="" cols="10" rows="5"></textarea>
             </div>
             <div class="">{{ error }}</div>
-            <div class="form__element form__element--zero form__right">
+            <div class="form__right">
                 <label for=""></label>
                 <input type="submit" class="form__button--right" value="신청하기">
             </div>

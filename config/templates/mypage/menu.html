@@ -1,7 +1,7 @@
-<div class="left-menu">
-    <span class="left-menu__h1">마이페이지</span>
-    <a href="{% url 'myPage' %}" class="left-menu__h2">마이페이지 홈</a>
-    <div class="left-menu__line"></div>
-    <a href="{% url 'myInfo' %}" class="left-menu__h2">내 정보</a>
-    <a href="{% url 'myCalender' %}" class="left-menu__h2">나의 캘린더</a>
+<div class="flex flex-col w-44">
+    <span class="text-2xl font-semibold mb-4">마이페이지</span>
+    <a href="{% url 'myPage' %}" class="mb-2">마이페이지 홈</a>
+    <div class="border-t border-gray-500 mb-2"></div>
+    <a href="{% url 'myInfo' %}" class="mb-2">내 정보</a>
+    <a href="{% url 'myCalender' %}" class="mb-2">나의 캘린더</a>
 </div>

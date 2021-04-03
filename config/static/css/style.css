@@ -131,35 +131,6 @@ a {
     font-size: 19px;
 }
 
-.box{
-    margin-top: 108px;
-    padding: 32px;
-    border: 1px solid rgb(224, 224, 224);
-    background-color: white;
-}
-
-.box-column{
-    width: 320px;
-}
-
-.box__subject{
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 16px;
-}
-
-.form__element{
-    margin-bottom: 16px;
-}
-
-.form__element--zero{
-    margin-bottom: 0;
-}
-
-.form__element label{
-    font-size: 16px;
-}
-
 .form__input{
     width: 100%;
     padding-top: 8px;
@@ -387,30 +358,6 @@ a {
     font-size: 24px;
     font-weight: bold;
     margin-top: 300px;
-}
-
-.left-menu{
-    display: flex;
-    flex-direction: column;
-}
-
-.left-menu__h1{
-    display: block;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.left-menu__h2{
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.left-menu__line{
-    border-top: 2px solid rgb(200, 200, 200);
-    width: 160px;
-    margin-bottom: 8px;
 }
 
 .pagination{
