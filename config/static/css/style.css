@@ -452,33 +452,3 @@ a {
 .table--join th:nth-child(3){
     width: 700px;
 }
-
-.table--confirm{
-    border-collapse: collapse;
-}
-
-.table--confirm tr{
-    height: 50px;
-    border-bottom: solid 1px rgb(224, 224, 224);
-}
-
-.table--confirm thead>tr{
-    height: 50px;
-    border-bottom: solid 1px rgb(150, 150, 150);
-}
-
-.table--confirm th:nth-child(1){
-    width: 100px;
-}
-
-.table--confirm th:nth-child(2){
-    width: 600px;
-}
-
-.table--confirm th:nth-child(3){
-    width: 100px;
-}
-
-.table--confirm th{
-    text-align: left;
-}

@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% include "base/navbar.html" %}
+<div class="main">
+    <div class="page">
+        {% include "studyrooms/studyroomMenu.html" %}
+        {% if isCaptain == False %}
+        <div class="page__content">
+            <div class="page__alert">
+                접근 권한이 없습니다
+            </div>
+        </div>
+        {% else %}
+        <div class="page__content">
+            <table class="border-collapse w-full">
+                <thead>
+                    <tr class="h-12 border-b border-gray-500">
+                        <th class="w-1/12 text-left" scope="col">#</th>
+                        <th class="w-11/12 text-left" scope="col">과제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr class="h-12 border-bottom border-gray-200">
+                        <td>{{ task.pk }}</td>
+                        <td>{{ task.task }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="border-b border-gray-500 my-4"></div>
+            <button class="p-3 w-28 rounded bg-gray-200" id="add-goal-button" onClick="addGoalBtnClick()">추가</button>
+            <div id="add-goal" class="hidden">
+                <form action="{% url 'studyroomGoal' room_id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ error_message }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-2xl" for="l-textarea">내용</label>
+                        <textarea class="border rounded border-gray-400 w-full h-40" name="textarea-goal" id="l-textarea" cols="50" rows="10"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input class="p-3 w-28 rounded bg-gray-200" type="submit" value="추가" id="">
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<script>
+    function addGoalBtnClick() {
+        var addGoal = document.getElementById("add-goal");
+        var addGoalButton = document.getElementById("add-goal-button");
+        addGoal.style.display = 'block';
+        addGoalButton.style.display = 'none';
+    }
+</script>
+{% endblock %}

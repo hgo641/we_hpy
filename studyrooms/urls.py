@@ -16,5 +16,6 @@ urlpatterns = [
     path('room/<int:room_id>/progress', views.studyroomProgress, name='studyroomProgress'),
     path('room/<int:room_id>/manage', views.studyroomManage, name='studyroomManage'),
     path('room/<int:room_id>/confirm', views.studyroomConfirm, name='studyroomConfirm'),
+    path('room/<int:room_id>/goal', views.studyroomGoal, name='studyroomGoal'),
     
 ]
