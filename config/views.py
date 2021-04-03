@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
 from django.template import loader
-
+from django.contrib.auth.hashers import check_password
+from django.contrib import auth
 
 def main(request):
     return render(request, 'main/main.html')
@@ -49,10 +49,30 @@ def myCalender(request):
 
 
 def myPassword(request):
+    context = {}
     if request.user.is_authenticated:
-        context = {
-            'test': 'test'
-        }
-        return render(request, 'mypage/mypassword.html', context)
+        if request.method == 'POST':
+            current_password = request.POST.get("current_password")
+            user = request.user
+            if check_password(current_password, user.password):
+                new_password = request.POST.get("new_password")
+                new_password2 = request.POST.get("new_password2")
+                if new_password == new_password2:
+                    if len(new_password) > 0:
+                        user.set_password(new_password)
+                        user.save()
+                        auth.login(request, user)
+                        return redirect("main")
+                    else:
+                        context.update({'error_message': '비밀번호는 공백으로 설정할 수 없습니다'})
+                        return render(request, 'mypage/mypassword.html', context)
+                else:
+                    context.update({'error_message': '새 비밀번호가 일치하지 않습니다'})
+                    return render(request, 'mypage/mypassword.html', context)
+            else:
+                context.update({'error_message': '현재 비밀번호가 정확하지 않습니다'})
+                return render(request, 'mypage/mypassword.html', context)
+        else:
+            return render(request, 'mypage/mypassword.html', context)
     else:
         return redirect('login')
