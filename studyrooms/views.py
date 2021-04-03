@@ -127,6 +127,12 @@ def studyroomManage(request, room_id):
     }
     return render(request, 'studyrooms/studyroomManage.html', context)
 
+def studyroomGoal(request, room_id):
+    context = {
+        'room_id': room_id,
+    }
+    return render(request, 'studyrooms/studyroomGoal.html', context)
+
 
 def studyroomMake(request):
     # value들중 blank가 있으면 안되게 수정
@@ -194,25 +200,6 @@ def studyroomJoin(request):
     else:
         return redirect('login')
 
-
-def studyroomPublic(request, room_id):
-    if request.user.is_authenticated:
-        if True:
-            return render(request, 'public.html')
-        else:
-            redirect('studyroom')
-    else:
-        return redirect('login')
-
-
-def studyroomPrivate(request, room_id):
-    if request.user.is_authenticated:
-        if True:
-            return render(request, 'private.html')
-        else:
-            redirect('studyroom')
-    else:
-        return redirect('login')
 
 
 
