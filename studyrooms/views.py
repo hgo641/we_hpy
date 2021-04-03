@@ -95,8 +95,6 @@ def studyroomConfirm(request, room_id):
         if studyroom.leader == request.user:
             if(request.method == "POST"):
                 data = json.loads(request.body.decode())
-                print(data, type(data))
-                data['appId']
                 application = Application.objects.get(pk=int(data['appId']))
                 if data['choice'] == 'accept':
                     application.userId.study_room.add(studyroom)
@@ -107,7 +105,6 @@ def studyroomConfirm(request, room_id):
                     application.delete()
 
                 return HttpResponse("잘못된 접근")
-
             else:
                 applications = studyroom.application.all()
                 context = {
@@ -127,14 +124,23 @@ def studyroomConfirm(request, room_id):
 
 
 def studyroomManage(request, room_id):
-    studyroom = Studyroom.objects.get(pk=room_id)
     if request.user.is_authenticated:
+        studyroom = Studyroom.objects.get(pk=room_id)
         if studyroom.leader == request.user:
-            context = {
-                'room_id': room_id,
-                'isCaptain': True,
-            }
-            return render(request, 'studyrooms/studyroomManage.html', context)
+            if(request.method == "POST"):
+                data = json.loads(request.body.decode())
+                user = User.objects.get(pk=int(data['userId']))
+                if data['choice'] == 'ban':
+                    user.study_room.remove(studyroom)
+
+                return HttpResponse("잘못된 접근")
+            else:
+                context = {
+                    'room_id': room_id,
+                    'isCaptain': True,
+                    'users': studyroom.users.all(),
+                }
+                return render(request, 'studyrooms/studyroomManage.html', context)
         else:
             context = {
                 'room_id': room_id,
