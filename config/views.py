@@ -13,7 +13,7 @@ def myPage(request):
         context = {
             'name': request.user.username,
             'email': request.user.email,
-            "studyroom_number": str(request.user.mypage.study_room.count()) + '개',
+            "studyroom_number": str(request.user.study_room.count()) + '개',
         }
         return render(request, 'mypage/mypage.html', context)
     else:
@@ -44,5 +44,15 @@ def myCalender(request):
             'test': 'test'
         }
         return render(request, 'mypage/mycalender.html', context)
+    else:
+        return redirect('login')
+
+
+def myPassword(request):
+    if request.user.is_authenticated:
+        context = {
+            'test': 'test'
+        }
+        return render(request, 'mypage/mypassword.html', context)
     else:
         return redirect('login')

@@ -17,10 +17,10 @@ def studyroom(request, room_id):
         studyroom = get_object_or_404(Studyroom, pk=room_id)
 
         # 스터디룸 페이지
-        if(studyroom in request.user.mypage.study_room.all()):
+        if(studyroom in request.user.study_room.all()):
             context = {
                 'room_id': room_id,
-                'memberCount': studyroom.mypages.count(),
+                'memberCount': studyroom.users.count(),
                 'studyroomName': studyroom.studyroom_name,
                 'totalStudyTime': 12345,
                 'averageProgressRate': 104,
@@ -31,9 +31,9 @@ def studyroom(request, room_id):
         else:
             context = {
                 'studyName': studyroom.studyroom_name,
-                'studyCaptain': studyroom.leader_Id.username,
+                'studyCaptain': studyroom.leader.username,
                 'studyField': studyroom.studyroom_classification,
-                'studyParticipants': studyroom.mypages.count(),
+                'studyParticipants': studyroom.users.count(),
                 'studyOpen': '공개범위가 이곳에 들어갑니다'
             }
             if(request.method == "POST"):
@@ -99,7 +99,7 @@ def studyroomConfirm(request, room_id):
             data['appId']
             application = Application.objects.get(pk=int(data['appId']))
             if data['choice'] == 'accept':
-                application.userId.mypage.study_room.add(studyroom)
+                application.userId.study_room.add(studyroom)
                 application.delete()
 
             elif data['choice'] == 'decline':
@@ -111,7 +111,7 @@ def studyroomConfirm(request, room_id):
         else:
             context = {
                 'room_id': room_id,
-                'isCaptain': True if Studyroom.objects.get(pk=room_id).leader_Id == request.user else False,
+                'isCaptain': True if Studyroom.objects.get(pk=room_id).leader == request.user else False,
                 'applications': applications,
             }
             return render(request, 'studyrooms/studyroomConfirm.html', context)
@@ -122,24 +122,10 @@ def studyroomConfirm(request, room_id):
 def studyroomManage(request, room_id):
     context = {
         'room_id': room_id,
-        'isCaptain': True if Studyroom.objects.get(pk=room_id).leader_Id == request.user else False,
+        'isCaptain': True if Studyroom.objects.get(pk=room_id).leader == request.user else False,
 
     }
     return render(request, 'studyrooms/studyroomManage.html', context)
-
-# def studyroomApply(request, room_id):
-#    if (request.user.is_authenticated):
-#        if (request.method == "POST"):
-#            studyroom = get_object_or_404(Studyroom, pk = room_id)
-#            application = Application()
-#            application.userId = request.user
-#            application.studyroomId = studyroom
-
-
-#    else:
-#        return redirect('login')
-
-# def studyroomManagement(request, room_id):
 
 
 def studyroomMake(request):
@@ -151,9 +137,9 @@ def studyroomMake(request):
                 studyroom = Studyroom()
                 studyroom.studyroom_name = form.cleaned_data["studyroom_name"]
                 studyroom.studyroom_classification = form.cleaned_data["studyroom_classification"]
-                studyroom.leader_Id = request.user
+                studyroom.leader = request.user
                 studyroom.save()
-                studyroom.mypages.add(request.user.mypage)
+                studyroom.users.add(request.user)
 
             # roomPage = "/studyroom/room/" + str(post.studyroom_number)
             return redirect('studyroomMy')
@@ -173,7 +159,7 @@ def studyroomMake(request):
 def studyroomMy(request):
     if request.user.is_authenticated:
         STUDYROOMSPERPAGE = 5  # 페이지당 들어갈 스터디룸 숫자
-        studyrooms = request.user.mypage.study_room.all()
+        studyrooms = request.user.study_room.all()
 
         paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
         page = request.GET.get('page')
@@ -227,3 +213,14 @@ def studyroomPrivate(request, room_id):
             redirect('studyroom')
     else:
         return redirect('login')
+
+
+
+
+
+
+
+
+
+
+

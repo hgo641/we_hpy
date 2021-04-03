@@ -30,4 +30,5 @@ urlpatterns = [
     path('mypage/', views.myPage, name='myPage'),
     path('mypage/myinfo/', views.myInfo, name='myInfo'),
     path('mypage/mycalender/', views.myCalender, name='myCalender'),
+    path('mypage/mypassword/', views.myPassword, name='myPassword'),
 ]

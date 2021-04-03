@@ -1,8 +1,9 @@
 from django.db import models
 
 
-class Studyroom_status(models.Model):
-    studyroom_number = models.AutoField(primary_key=True)
+class Studyroom(models.Model):  # 상속 받아서 사용
+    leader = models.ForeignKey("users.user",  on_delete=models.CASCADE)
+
     studyroom_classification = models.CharField(max_length=64)
     studyroom_name = models.CharField(max_length=64)
     studyroom_date = models.DateTimeField(auto_now_add=True)
@@ -11,68 +12,38 @@ class Studyroom_status(models.Model):
         return self.studyroom_name
 
     class Meta:
-        abstract = True
-
-
-class Study_book(models.Model):
-    studybook_number = models.AutoField(primary_key=True)
-    writter = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    contents = models.CharField(max_length=300)
-
-    class Meta:
-        verbose_name_plural = "Study_book"
-
-
-class Notice_board(models.Model):
-    board_number = models.AutoField(primary_key=True)
-    writter = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    contents = models.CharField(max_length=300)
-    type = models.CharField(max_length=10)
-    date = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name_plural = "notice_board"
-
-
-class Progress_rate(models.Model):
-    rate_number = models.AutoField(primary_key=True)
-    User = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    progress_rate = models.FloatField()
-
-    class Meta:
-        verbose_name_plural = "progress_rate"
-
-
-class Study_time(models.Model):
-    studytime_number = models.AutoField(primary_key=True)
-    User = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    study_time = models.IntegerField()
-
-    class Meta:
-        verbose_name_plural = "study_time"
-
-
-# Create your models here.
-class Studyroom(Studyroom_status):  # 상속 받아서 사용
-    leader_Id = models.ForeignKey(
-        "users.user",
-        on_delete=models.CASCADE,
-        related_name="study_rooms",  # 이부분 질문
-    )
-
-    study_book = models.ManyToManyField(
-        "Study_book", blank=True, related_name="study_rooms")
-    notice_board = models.ManyToManyField(
-        "Notice_board", blank=True, related_name="study_rooms")
-    progress_rate = models.ManyToManyField(
-        "Progress_rate", blank=True, related_name="study_rooms")
-    study_time = models.ManyToManyField(
-        "Study_time", blank=True, related_name="study_rooms")
-
-    def __str__(self):
-        return self.studyroom_name
-
-    class Meta:
         db_table = 'Studyroom'
         verbose_name = 'Studyroom'
         verbose_name_plural = 'Studyroom'
+
+
+class Calendar(models.Model):
+    studyroom = models.ForeignKey('Studyroom', on_delete=models.CASCADE)
+    date = models.DateField()
+
+# 스터디룸마다 공통적으로 task가 있습니다. task 수행에 따라서 진도율이 증가합니다
+# studyroom생성시 지정해야하며 추가는 가능하지만, 수정 삭제는 불가능
+
+
+class Progress_task(models.Model):
+    studyroom = models.ForeignKey('Studyroom', on_delete=models.CASCADE)
+    task = models.TextField()
+
+# 각 날짜에 들어갈 Todo입니다. 작성자, 내용, 학습시간, 수행한 task를 지정합니다
+
+
+class Todo(models.Model):
+    calendar = models.ForeignKey('Calendar', on_delete=models.CASCADE)
+    writer = models.ForeignKey('users.user', on_delete=models.SET_NULL, null=True)
+    content = models.TextField(null=True)
+    learning_time = models.IntegerField()
+    progress = models.IntegerField()
+
+
+# 각 유저별 진도율과 학습시간을 기록합니다
+# todo에 있는걸 모두 더할지, 업데이트 시에 +만 할지 고민해야합니다
+class Progress_rate(models.Model):
+    studyroom = models.ForeignKey('Studyroom', on_delete=models.CASCADE)
+    user = models.ForeignKey('users.user', on_delete=models.CASCADE)
+    totalHour = models.IntegerField()
+    totalProgress = models.IntegerField()
