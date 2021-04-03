@@ -92,27 +92,34 @@ def studyroomProgress(request, room_id):
 def studyroomConfirm(request, room_id):
     if request.user.is_authenticated:
         studyroom = Studyroom.objects.get(pk=room_id)
-        applications = studyroom.application.all()
-        if(request.method == "POST"):
-            data = json.loads(request.body.decode())
-            print(data, type(data))
-            data['appId']
-            application = Application.objects.get(pk=int(data['appId']))
-            if data['choice'] == 'accept':
-                application.userId.study_room.add(studyroom)
-                application.delete()
+        if studyroom.leader == request.user:
+            if(request.method == "POST"):
+                data = json.loads(request.body.decode())
+                print(data, type(data))
+                data['appId']
+                application = Application.objects.get(pk=int(data['appId']))
+                if data['choice'] == 'accept':
+                    application.userId.study_room.add(studyroom)
+                    application.delete()
 
-            elif data['choice'] == 'decline':
-                # 추후에 신청 거절/수락 여부를 알림등으로 알리는 기능 추가
-                application.delete()
+                elif data['choice'] == 'decline':
+                    # 추후에 신청 거절/수락 여부를 알림등으로 알리는 기능 추가
+                    application.delete()
 
-            return HttpResponse("잘못된 접근")
+                return HttpResponse("잘못된 접근")
 
+            else:
+                applications = studyroom.application.all()
+                context = {
+                    'room_id': room_id,
+                    'isCaptain': True,
+                    'applications': applications,
+                }
+                return render(request, 'studyrooms/studyroomConfirm.html', context)
         else:
             context = {
                 'room_id': room_id,
-                'isCaptain': True if Studyroom.objects.get(pk=room_id).leader == request.user else False,
-                'applications': applications,
+                'isCaptain': False,
             }
             return render(request, 'studyrooms/studyroomConfirm.html', context)
     else:
@@ -120,19 +127,41 @@ def studyroomConfirm(request, room_id):
 
 
 def studyroomManage(request, room_id):
-    context = {
-        'room_id': room_id,
-        'isCaptain': True if Studyroom.objects.get(pk=room_id).leader == request.user else False,
-
-    }
-    return render(request, 'studyrooms/studyroomManage.html', context)
+    studyroom = Studyroom.objects.get(pk=room_id)
+    if request.user.is_authenticated:
+        if studyroom.leader == request.user:
+            context = {
+                'room_id': room_id,
+                'isCaptain': True,
+            }
+            return render(request, 'studyrooms/studyroomManage.html', context)
+        else:
+            context = {
+                'room_id': room_id,
+                'isCaptain': False,
+            }
+            return render(request, 'studyrooms/studyroomManage.html', context)
+    else:
+        return redirect('login')
 
 def studyroomGoal(request, room_id):
-    context = {
-        'room_id': room_id,
-    }
-    return render(request, 'studyrooms/studyroomGoal.html', context)
-
+    studyroom = Studyroom.objects.get(pk=room_id)
+    if request.user.is_authenticated:
+        if studyroom.leader == request.user:
+            context = {
+                'room_id': room_id,
+                'isCaptain': True,
+                'tasks': studyroom.progress_task_set.all()
+            }
+            return render(request, 'studyrooms/studyroomGoal.html', context)
+        else:
+            context = {
+                'room_id': room_id,
+                'isCaptain': False
+            }
+            return render(request, 'studyrooms/studyroomGoal.html', context)
+    else:
+        return redirect('login')
 
 def studyroomMake(request):
     # value들중 blank가 있으면 안되게 수정

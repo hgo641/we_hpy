@@ -12,17 +12,17 @@
         </div>
         {% else %}
         <div class="page__content">
-            <table class="table--confirm">
+            <table class="border-collapse w-full">
                 <thead>
-                    <tr>
-                        <th scope="col">아이디</th>
-                        <th scope="col">신청 내용</th>
-                        <th scope="col">수락 / 거절</th>
+                    <tr class="h-12 border-b border-gray-500">
+                        <th class="w-1/6 text-left" scope="col">아이디</th>
+                        <th class="w-4/6 text-left" scope="col">신청 내용</th>
+                        <th class="w-1/6 text-left" scope="col">수락 / 거절</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for application in applications %}
-                    <tr>
+                    <tr class="h-12 border-bottom border-gray-200">
                         <td>{{ application.userId }}</td>
                         <td>{{ application.text }}</td>
                         <td>
