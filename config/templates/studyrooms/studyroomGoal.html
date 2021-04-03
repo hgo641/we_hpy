@@ -29,8 +29,8 @@
                 </tbody>
             </table>
             <div class="border-b border-gray-500 my-4"></div>
-            <button class="p-3 w-28 rounded bg-gray-200" onClick="">추가</button>
-            <div id="add-goal" class="">
+            <button class="p-3 w-28 rounded bg-gray-200" id="add-goal-button" onClick="addGoalBtnClick()">추가</button>
+            <div id="add-goal" class="hidden">
                 <form action="{% url 'studyroomGoal' room_id %}" method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-2xl" for="l-textarea">내용</label>
-                        <textarea class="border rounded border-gray-400 w-full h-40" name="text-goal" id="l-textarea" cols="50" rows="10"></textarea>
+                        <textarea class="border rounded border-gray-400 w-full h-40" name="textarea-goal" id="l-textarea" cols="50" rows="10"></textarea>
                     </div>
                     <div class="mb-3">
                         <input class="p-3 w-28 rounded bg-gray-200" type="submit" value="추가" id="">
@@ -49,4 +49,12 @@
         {% endif %}
     </div>
 </div>
+<script>
+    function addGoalBtnClick() {
+        var addGoal = document.getElementById("add-goal");
+        var addGoalButton = document.getElementById("add-goal-button");
+        addGoal.style.display = 'block';
+        addGoalButton.style.display = 'none';
+    }
+</script>
 {% endblock %}

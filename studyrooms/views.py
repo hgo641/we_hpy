@@ -153,7 +153,16 @@ def studyroomGoal(request, room_id):
                 'isCaptain': True,
                 'tasks': studyroom.progress_task_set.all()
             }
-            return render(request, 'studyrooms/studyroomGoal.html', context)
+            if request.method == 'POST':
+                goalContent = request.POST.get('textarea-goal')
+                if len(goalContent) == 0:
+                    context.update({'error_message': '내용은 공백일 수 없습니다'})
+                    return render(request, 'studyrooms/studyroomGoal.html', context)
+
+                studyroom.progress_task_set.create(task=goalContent)
+                return render(request, 'studyrooms/studyroomGoal.html', context)
+            else:
+                return render(request, 'studyrooms/studyroomGoal.html', context)
         else:
             context = {
                 'room_id': room_id,
