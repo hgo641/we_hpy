@@ -6,7 +6,7 @@
         {% include "studyrooms/studyroomMenu.html" %}
         {% if isCaptain == False %}
         <div class="page__content">
-            <div class="page__alert">
+            <div class="text-4xl font-semibold">
                 접근 권한이 없습니다
             </div>
         </div>
@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             <div class="border-b border-gray-500 my-4"></div>
-            <button class="p-3 w-28 rounded bg-gray-200" id="add-goal-button" onClick="addGoalBtnClick()">추가</button>
+            <button class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300" id="add-goal-button" onClick="addGoalBtnClick()">추가</button>
             <div id="add-goal" class="hidden">
                 <form action="{% url 'studyroomGoal' room_id %}" method="POST">
                     {% csrf_token %}
@@ -41,7 +41,7 @@
                         <textarea class="border rounded border-gray-400 w-full h-40" name="textarea-goal" id="l-textarea" cols="50" rows="10"></textarea>
                     </div>
                     <div class="mb-3">
-                        <input class="p-3 w-28 rounded bg-gray-200" type="submit" value="추가" id="">
+                        <input class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300" type="submit" value="추가" id="">
                     </div>
                 </form>
             </div>
