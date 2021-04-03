@@ -123,6 +123,8 @@ def studyroomConfirm(request, room_id):
         return redirect('login')
 
 # 이후에 스터디장 이전 기능 추가
+
+
 def studyroomManage(request, room_id):
     if request.user.is_authenticated:
         studyroom = Studyroom.objects.get(pk=room_id)
@@ -160,6 +162,7 @@ def studyroomManage(request, room_id):
     else:
         return redirect('login')
 
+
 def studyroomGoal(request, room_id):
     studyroom = Studyroom.objects.get(pk=room_id)
     if request.user.is_authenticated:
@@ -188,6 +191,7 @@ def studyroomGoal(request, room_id):
     else:
         return redirect('login')
 
+
 def studyroomMake(request):
     # value들중 blank가 있으면 안되게 수정
     if request.user.is_authenticated:
@@ -200,18 +204,16 @@ def studyroomMake(request):
                 studyroom.leader = request.user
                 studyroom.save()
                 studyroom.users.add(request.user)
+            else:
+                error = form.errors
+                context = ({'error_message': error})
+                return render(request, 'studyrooms/make.html', context)
 
             # roomPage = "/studyroom/room/" + str(post.studyroom_number)
             return redirect('studyroomMy')
         else:
-            context = {
-                'tags': [
-                    {'name': 'A'},
-                    {'name': 'B'},
-                    {'name': 'C'},
-                ]
-            }
-            return render(request, 'studyrooms/make.html', context)
+
+            return render(request, 'studyrooms/make.html')
     else:
         return redirect('login')
 
@@ -253,15 +255,3 @@ def studyroomJoin(request):
         return render(request, 'studyrooms/join.html', context)
     else:
         return redirect('login')
-
-
-
-
-
-
-
-
-
-
-
-

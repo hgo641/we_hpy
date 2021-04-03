@@ -14,7 +14,7 @@
             <tbody>
             {% for studyroom in studyrooms %}
                 <tr>
-                    <td>{{ studyroom.studyroom_number }}</th>
+                    <td>{{ studyroom.pk }}</th>
                     <td>{{ studyroom.studyroom_classification }}</td>
                     <td>
                         <a href="{% url 'studyroom' studyroom.pk %}">
