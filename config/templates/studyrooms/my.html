@@ -7,7 +7,7 @@
         <div class="container__subject">{{ studyroom.studyroom_name }}</div>
         <div class="container__content">{{ studyroom.studyroom_classification }}</div>
         <div class="container__footer">
-            <a href="{% url 'studyroom' studyroom.studyroom_number %}">
+            <a href="{% url 'studyroom' studyroom.pk %}">
                 <input type="submit" class="container__button" value="공부하기">
             </a>
         </div>

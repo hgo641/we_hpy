@@ -1,25 +1,12 @@
 from django.db import models
 
 
-class Studyroom_status(models.Model):
-    studyroom_number = models.AutoField(primary_key=True)
+class Studyroom(models.Model):  # 상속 받아서 사용
+    leader = models.ForeignKey("users.user",  on_delete=models.CASCADE)
+
     studyroom_classification = models.CharField(max_length=64)
     studyroom_name = models.CharField(max_length=64)
     studyroom_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.studyroom_name
-
-    class Meta:
-        abstract = True
-
-
-class Studyroom(Studyroom_status):  # 상속 받아서 사용
-    leader_Id = models.ForeignKey(
-        "users.user",
-        on_delete=models.CASCADE,
-        related_name="study_rooms",  # 이부분 질문
-    )
 
     def __str__(self):
         return self.studyroom_name

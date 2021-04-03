@@ -13,7 +13,7 @@ def myPage(request):
         context = {
             'name': request.user.username,
             'email': request.user.email,
-            "studyroom_number": str(request.user.mypage.study_room.count()) + '개',
+            "studyroom_number": str(request.user.study_room.count()) + '개',
         }
         return render(request, 'mypage/mypage.html', context)
     else:
