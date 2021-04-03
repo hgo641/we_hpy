@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.hashers import check_password
 from django.contrib import auth
+from studyrooms.models import *
 
 def main(request):
     return render(request, 'main/main.html')
@@ -10,10 +11,17 @@ def main(request):
 
 def myPage(request):
     if request.user.is_authenticated:
+        studyrooms = request.user.study_room.all()
+        studyTime = 0
+        for studyroom in studyrooms:
+            progressRate, progressRateCreated = Progress_rate.objects.get_or_create(
+                user=request.user, studyroom=studyroom)
+            studyTime += progressRate.totalHour
         context = {
             'name': request.user.username,
             'email': request.user.email,
-            "studyroom_number": str(request.user.study_room.count()) + '개',
+            "studyroom_number": str(request.user.study_room.count()),
+            'study_time': studyTime,
         }
         return render(request, 'mypage/mypage.html', context)
     else:
