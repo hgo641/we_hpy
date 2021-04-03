@@ -46,3 +46,13 @@ def myCalender(request):
         return render(request, 'mypage/mycalender.html', context)
     else:
         return redirect('login')
+
+
+def myPassword(request):
+    if request.user.is_authenticated:
+        context = {
+            'test': 'test'
+        }
+        return render(request, 'mypage/mypassword.html', context)
+    else:
+        return redirect('login')
