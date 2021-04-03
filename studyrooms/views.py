@@ -122,7 +122,7 @@ def studyroomConfirm(request, room_id):
     else:
         return redirect('login')
 
-
+# 이후에 스터디장 이전 기능 추가
 def studyroomManage(request, room_id):
     if request.user.is_authenticated:
         studyroom = Studyroom.objects.get(pk=room_id)
@@ -131,9 +131,19 @@ def studyroomManage(request, room_id):
                 data = json.loads(request.body.decode())
                 user = User.objects.get(pk=int(data['userId']))
                 if data['choice'] == 'ban':
-                    user.study_room.remove(studyroom)
+                    if user == studyroom.leader:
+                        # js로 처리해서 작동안함. 이후에 ajax로 경고할 수 있는지 확인
+                        context = {
+                            'room_id': room_id,
+                            'isCaptain': True,
+                            'users': studyroom.users.all(),
+                            'error_message': '스터디장은 추방할 수 없습니다',
+                        }
+                        return render(request, 'studyrooms/studyroomManage.html', context)
+                    else:
+                        user.study_room.remove(studyroom)
 
-                return HttpResponse("잘못된 접근")
+                        return HttpResponse("잘못된 접근")
             else:
                 context = {
                     'room_id': room_id,

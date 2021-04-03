@@ -12,11 +12,14 @@
         </div>
         {% else %}
         <div class="page__content">
+            <div class="mb-3">
+                {{ error_message }}
+            </div>
             <table class="border-collapse w-full">
                 <thead>
                     <tr class="h-12 border-b border-gray-500">
-                        <th class="w-1/6 text-left" scope="col">아이디</th>
-                        <th class="w-1/6 text-left" scope="col">작업</th>
+                        <th class="w-1/2 text-left" scope="col">아이디</th>
+                        <th class="w-1/2 text-left" scope="col">작업</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +42,7 @@
     const congirmButtons = document.querySelectorAll('.confirm-button')
     congirmButtons.forEach(function (button) {
         button.addEventListener('click', function (event) {
-            const appId = event.target.dataset.id
+            const userId = event.target.dataset.id
             const choice = event.target.dataset.choice
             const data = {
                 userId: userId,
