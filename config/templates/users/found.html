@@ -1,8 +1,8 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <div class="main">
-    <div class="box">
-        <div class="box__subject">아이디/비밀번호 찾기</div>
+    <div class="mt-32 p-8 w-96 border">
+        <div class="text-xl font-semibold mb-4">아이디/비밀번호 찾기</div>
         <div class="content">
             <a class="content__button" href="{% url 'idfound' %}">아이디 찾기</a>
             <a class="content__button" href="{% url 'pwfound' %}">비밀번호 찾기</a>
