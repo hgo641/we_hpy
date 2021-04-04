@@ -7,9 +7,14 @@
 </head>
 <body>
     <h2>게시판 글 리스트</h2>
+    {{board_thema}}
+    <a href="{% url 'postnew' room_id board_thema %}">
+        <input type="submit" class="container__button" value="글쓰기">
+    </a>
     {% for post in posts.all %}
     <div>
-        {{post.title}}
+        <h3>{{post.title}}</h3>
+        <p>{{post.create_date}}</p>
     </div>
     {%endfor%}
 </body>
