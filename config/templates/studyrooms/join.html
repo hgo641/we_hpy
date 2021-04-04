@@ -1,35 +1,39 @@
 {% extends 'base/base.html' %}
 {% block content %}
 {% include "base/navbar.html" %}
-<div class="main">
-    <div class="container--studyroomjoin">
-        <table class="table--join">
+<div class="flex flex-col items-center">
+    <div class="mt-12 w-2/3">
+        <table class="border-collapse w-full">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">분야</th>
-                    <th scope="col">스터디 이름</th>
+                <tr class="h-12 border-b border-gray-500">
+                    <th class="text-left" scope="col">#</th>
+                    <th class="text-left" scope="col">스터디 이름</th>
+                    <th class="text-left" scope="col">설명</th>
                 </tr>
             </thead>
             <tbody>
             {% for studyroom in studyrooms %}
-                <tr>
-                    <td>{{ studyroom.pk }}</th>
-                    <td>{{ studyroom.studyroom_classification }}</td>
-                    <td>
+                <tr class="h-12 border-b">
+                    <td class="w-1/12">{{ studyroom.pk }}</th>
+                    <td class="w-4/12">
                         <a href="{% url 'studyroom' studyroom.pk %}">
                             {{ studyroom.studyroom_name }}
+                        </a>
+                    </td>
+                    <td class="w-7/12">
+                        <a href="{% url 'studyroom' studyroom.pk %}">
+                            {{ studyroom.studyroom_classification }}
                         </a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-        <div class="pagination">
-            {% for page in pages %}
-            <a class="pagination__block" href="{% url 'studyroomJoin' %}?page={{ page }}">{{ page }}</a>
-            {% endfor %}
-        </div>
+    </div>
+    <div class="pagination">
+        {% for page in pages %}
+        <a class="pagination__block" href="{% url 'studyroomJoin' %}?page={{ page }}">{{ page }}</a>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
