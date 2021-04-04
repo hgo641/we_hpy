@@ -5,7 +5,19 @@
     <div class="page">
         {% include "studyrooms/studyroomMenu.html" %}
         <div class="page__content">
-            
+            <a href="{% url 'board' 'n' room_id %}">
+                <input type="submit" class="container__button" value="공지게시판">
+            </a>
+            <a href="{% url 'board' 'f' room_id %}">
+                <input type="submit" class="container__button" value="자유게시판">
+            </a>
+            <a href="{% url 'board' 'q' room_id %}">
+                <input type="submit" class="container__button" value="질문게시판">
+            </a>
+            <a href="{% url 'board' 'i' room_id %}">
+                <input type="submit" class="container__button" value="정보게시판">
+            </a>
+          
         </div>
     </div>
 </div>
