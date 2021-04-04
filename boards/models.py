@@ -15,8 +15,7 @@ class Post(models.Model):
         ('i','정보게시판'),
     )
     thema = models.CharField(max_length=1,choices = THEMA_CHOICES) #자유게시판/ 질문게시판/ 정보게시판 이런거...
-    author = models.OneToOneField(
-        "users.User", on_delete=models.CASCADE)
+    author = models.ForeignKey('users.user', on_delete=models.CASCADE)
     studyroom = models.ForeignKey('studyrooms.Studyroom', on_delete=models.CASCADE)
     def __str__(self):
         return self.title
