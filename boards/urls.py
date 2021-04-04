@@ -6,5 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('board/<str:board_id>/<int:studyroom_id>', views.board, name='board'),
+    path('new/<int:room_id>/<str:board_thema>', views.postnew, name='postnew'),
+    path('study/<str:board_thema>/<int:room_id>', views.postcreate, name='postcreate'),
     
 ]
