@@ -92,40 +92,104 @@ def studyroomProgress(request, room_id):
 def studyroomConfirm(request, room_id):
     if request.user.is_authenticated:
         studyroom = Studyroom.objects.get(pk=room_id)
-        applications = studyroom.application.all()
-        if(request.method == "POST"):
-            data = json.loads(request.body.decode())
-            print(data, type(data))
-            data['appId']
-            application = Application.objects.get(pk=int(data['appId']))
-            if data['choice'] == 'accept':
-                application.userId.study_room.add(studyroom)
-                application.delete()
+        if studyroom.leader == request.user:
+            if(request.method == "POST"):
+                data = json.loads(request.body.decode())
+                application = Application.objects.get(pk=int(data['appId']))
+                if data['choice'] == 'accept':
+                    application.userId.study_room.add(studyroom)
+                    application.delete()
 
-            elif data['choice'] == 'decline':
-                # 추후에 신청 거절/수락 여부를 알림등으로 알리는 기능 추가
-                application.delete()
+                elif data['choice'] == 'decline':
+                    # 추후에 신청 거절/수락 여부를 알림등으로 알리는 기능 추가
+                    application.delete()
 
-            return HttpResponse("잘못된 접근")
-
+                return HttpResponse("잘못된 접근")
+            else:
+                applications = studyroom.application.all()
+                context = {
+                    'room_id': room_id,
+                    'isCaptain': True,
+                    'applications': applications,
+                }
+                return render(request, 'studyrooms/studyroomConfirm.html', context)
         else:
             context = {
                 'room_id': room_id,
-                'isCaptain': True if Studyroom.objects.get(pk=room_id).leader == request.user else False,
-                'applications': applications,
+                'isCaptain': False,
             }
             return render(request, 'studyrooms/studyroomConfirm.html', context)
     else:
         return redirect('login')
 
+# 이후에 스터디장 이전 기능 추가
+
 
 def studyroomManage(request, room_id):
-    context = {
-        'room_id': room_id,
-        'isCaptain': True if Studyroom.objects.get(pk=room_id).leader == request.user else False,
+    if request.user.is_authenticated:
+        studyroom = Studyroom.objects.get(pk=room_id)
+        if studyroom.leader == request.user:
+            if(request.method == "POST"):
+                data = json.loads(request.body.decode())
+                user = User.objects.get(pk=int(data['userId']))
+                if data['choice'] == 'ban':
+                    if user == studyroom.leader:
+                        # js로 처리해서 작동안함. 이후에 ajax로 경고할 수 있는지 확인
+                        context = {
+                            'room_id': room_id,
+                            'isCaptain': True,
+                            'users': studyroom.users.all(),
+                            'error_message': '스터디장은 추방할 수 없습니다',
+                        }
+                        return render(request, 'studyrooms/studyroomManage.html', context)
+                    else:
+                        user.study_room.remove(studyroom)
 
-    }
-    return render(request, 'studyrooms/studyroomManage.html', context)
+                        return HttpResponse("잘못된 접근")
+            else:
+                context = {
+                    'room_id': room_id,
+                    'isCaptain': True,
+                    'users': studyroom.users.all(),
+                }
+                return render(request, 'studyrooms/studyroomManage.html', context)
+        else:
+            context = {
+                'room_id': room_id,
+                'isCaptain': False,
+            }
+            return render(request, 'studyrooms/studyroomManage.html', context)
+    else:
+        return redirect('login')
+
+
+def studyroomGoal(request, room_id):
+    studyroom = Studyroom.objects.get(pk=room_id)
+    if request.user.is_authenticated:
+        if studyroom.leader == request.user:
+            context = {
+                'room_id': room_id,
+                'isCaptain': True,
+                'tasks': studyroom.progress_task_set.all()
+            }
+            if request.method == 'POST':
+                goalContent = request.POST.get('textarea-goal')
+                if len(goalContent) == 0:
+                    context.update({'error_message': '내용은 공백일 수 없습니다'})
+                    return render(request, 'studyrooms/studyroomGoal.html', context)
+
+                studyroom.progress_task_set.create(task=goalContent)
+                return render(request, 'studyrooms/studyroomGoal.html', context)
+            else:
+                return render(request, 'studyrooms/studyroomGoal.html', context)
+        else:
+            context = {
+                'room_id': room_id,
+                'isCaptain': False
+            }
+            return render(request, 'studyrooms/studyroomGoal.html', context)
+    else:
+        return redirect('login')
 
 
 def studyroomMake(request):
@@ -140,25 +204,23 @@ def studyroomMake(request):
                 studyroom.leader = request.user
                 studyroom.save()
                 studyroom.users.add(request.user)
+            else:
+                error = form.errors
+                context = ({'error_message': error})
+                return render(request, 'studyrooms/make.html', context)
 
             # roomPage = "/studyroom/room/" + str(post.studyroom_number)
             return redirect('studyroomMy')
         else:
-            context = {
-                'tags': [
-                    {'name': 'A'},
-                    {'name': 'B'},
-                    {'name': 'C'},
-                ]
-            }
-            return render(request, 'studyrooms/make.html', context)
+
+            return render(request, 'studyrooms/make.html')
     else:
         return redirect('login')
 
 
 def studyroomMy(request):
     if request.user.is_authenticated:
-        STUDYROOMSPERPAGE = 5  # 페이지당 들어갈 스터디룸 숫자
+        STUDYROOMSPERPAGE = 24  # 페이지당 들어갈 스터디룸 숫자
         studyrooms = request.user.study_room.all()
 
         paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
@@ -193,34 +255,3 @@ def studyroomJoin(request):
         return render(request, 'studyrooms/join.html', context)
     else:
         return redirect('login')
-
-
-def studyroomPublic(request, room_id):
-    if request.user.is_authenticated:
-        if True:
-            return render(request, 'public.html')
-        else:
-            redirect('studyroom')
-    else:
-        return redirect('login')
-
-
-def studyroomPrivate(request, room_id):
-    if request.user.is_authenticated:
-        if True:
-            return render(request, 'private.html')
-        else:
-            redirect('studyroom')
-    else:
-        return redirect('login')
-
-
-
-
-
-
-
-
-
-
-

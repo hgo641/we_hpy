@@ -6,17 +6,11 @@
         <form class="form" action="{% url 'studyroomMake' %}" method="POST" onsubmit="return confirm('정말로 스터디룸을 만드시겠습니까?');">
             {% csrf_token %}
             <div class="mb-4">
-                <label for="">스터디 이름</label>
-                <input name="studyroom_name" class="form__input--inline" type="text">
+            {{ error_message }}
             </div>
             <div class="mb-4">
-                <label for="">공개범위</label>
-                {% for tag in tags %}
-                    <span>
-                        <input type="checkbox">
-                        <label for="">{{ tag.name }}</label>
-                    </span>
-                {% endfor %}
+                <label for="">스터디 이름</label>
+                <input name="studyroom_name" class="form__input--inline" type="text">
             </div>
             <div class="mb-4">
                 <label for="">분야</label>

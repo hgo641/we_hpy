@@ -14,10 +14,10 @@
             <tbody>
             {% for studyroom in studyrooms %}
                 <tr>
-                    <td>{{ studyroom.studyroom_number }}</th>
+                    <td>{{ studyroom.pk }}</th>
                     <td>{{ studyroom.studyroom_classification }}</td>
                     <td>
-                        <a href="{% url 'studyroom' studyroom.studyroom_number %}">
+                        <a href="{% url 'studyroom' studyroom.pk %}">
                             {{ studyroom.studyroom_name }}
                         </a>
                     </td>
