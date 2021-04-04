@@ -275,17 +275,6 @@ a {
     border-color: rgb(224, 224, 224);
 }
 
-.container--studyroomlist{
-    width: 1000px;
-    margin: 32px auto 0 auto;
-    padding: 16px;
-    background: white;
-    border-radius: 1px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(224, 224, 224);
-    height: 160px;
-}
 .container--studyroomjoin{
     width: 1100px;
     margin: 32px auto 0 auto;
@@ -382,35 +371,4 @@ a {
 
 .pagination__block:hover{
     background-color: rgb(240, 240, 240);
-}
-
-.table--join{
-    border-collapse: collapse;
-}
-
-
-.table--join tr{
-    height: 50px;
-    border-bottom: solid 1px rgb(224, 224, 224);
-}
-
-.table--join thead>tr{
-    height: 50px;
-    border-bottom: solid 1px rgb(150, 150, 150);
-}
-
-.table--join th{
-    text-align: left;
-}
-
-.table--join th:nth-child(1){
-    width: 100px;
-}
-
-.table--join th:nth-child(2){
-    width: 300px;
-}
-
-.table--join th:nth-child(3){
-    width: 700px;
 }
