@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+    <script>
+        const message = "{{message}}";
+        if (message){
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+
+<h1>제목 : {{post.title}}</h1>
+<p>작성 시간 : {{post.create_date}}</p>
+<p>작성자 : {{post.author.username}}</p>
+<p>내용 : {{post.content}}</p>
+<a href="{% url 'board' post.thema post.studyroom.id %}">뒤로가기</a>
+<a href="{% url 'postdelete' post.id %}">글삭제</a>
+<br><br>
+
+<h3>댓글</h3>
+<form action="{% url 'detail' post.id %}" method ="POST">
+    {% csrf_token %}
+    <input type = "text" name = "content" />
+    <input type = "submit" />
+</form>
+{% for comment in comments %}
+<p>{{comment.content}}</p>
+<p>{{comment.author}}</p>
+{% endfor %}
+</body>
+</html>
