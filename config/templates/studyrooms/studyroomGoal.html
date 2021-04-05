@@ -22,7 +22,7 @@
                 <tbody>
                     {% for task in tasks %}
                     <tr class="h-12 border-b border-gray-200">
-                        <td>{{ task.pk }}</td>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ task.task }}</td>
                     </tr>
                     {% endfor %}
