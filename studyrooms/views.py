@@ -114,6 +114,7 @@ def studyroomMember(request, room_id):
         user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
         if user in studyroom.users.all():
+            context['users'] = studyroom.users.all()
             return render(request, 'studyrooms/studyroomMember.html', context)
         else:
             return redirect('studyroom', room_id)
