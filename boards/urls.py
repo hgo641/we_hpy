@@ -10,4 +10,5 @@ urlpatterns = [
     path('study/<str:board_thema>/<int:room_id>', views.postcreate, name='postcreate'),
     path('detail/<int:post_id>',views.detail,name="detail"),
     path('postdelete/<int:post_id>',views.postdelete,name="postdelete"),
+    path('commentdelete/<int:post_id>/<int:comment_id>',views.commentdelete,name="commentdelete"),
 ]
