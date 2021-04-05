@@ -111,8 +111,10 @@ def studyroomTime(request, room_id):
 
 
 def studyroomProgress(request, room_id):
+    studyroom = get_object_or_404(Studyroom, pk=room_id)
     context = {
-        'room_id': room_id
+        'room_id': room_id,
+        'tasks': studyroom.progress_task_set.all(),
     }
     return render(request, 'studyrooms/studyroomProgress.html', context)
 
@@ -232,13 +234,14 @@ def studyroomMake(request):
                 studyroom.leader = request.user
                 studyroom.save()
                 studyroom.users.add(request.user)
+                return redirect('studyroom', studyroom.pk)
             else:
                 error = form.errors
                 context = ({'error_message': error})
                 return render(request, 'studyrooms/make.html', context)
 
             # roomPage = "/studyroom/room/" + str(post.studyroom_number)
-            return redirect('studyroomMy')
+
         else:
 
             return render(request, 'studyrooms/make.html')

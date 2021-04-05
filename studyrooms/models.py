@@ -40,6 +40,8 @@ class Todo(models.Model):
     progress = models.IntegerField()
 
 
+
+
 # 이후에 유저 가입시 시그널 처리
 # 각 유저별 진도율과 학습시간을 기록합니다
 # todo에 있는걸 모두 더할지, 업데이트 시에 +만 할지 고민해야합니다

@@ -5,7 +5,20 @@
     <div class="page">
         {% include "studyrooms/studyroomMenu.html" %}
         <div class="page__content">
-            
+            <table class="border-collapse w-full">
+                <thead>
+                    <tr class="h-12 border-b border-gray-500">
+                        <th class="w-full text-left" scope="col">과제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr class="h-12 border-b border-gray-200">
+                        <td>{{ task.task }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
