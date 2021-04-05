@@ -60,45 +60,75 @@ def studyroom(request, room_id):
 
 
 def studyroomCalendar(request, room_id):
-    today = datetime.date.today()
-    month = today.month
-    year = today.year
-    print(today)
-    startWeekday, lastDay = calendar.monthrange(year, month)
+    if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
 
-    weeks = [
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-    ]
+        if user in studyroom.users.all():
+            today = datetime.date.today()
+            todayMonth = today.month
+            todayYear = today.year
 
-    j = startWeekday + 1
-    for i in range(lastDay):
-        weeks[j//7][j % 7]['day'] = i + 1
-        j += 1
-    weeks[0][6]['tasks'] = ['hahaha', 'dodododo']
+            # get PARAM에서 연/월 가져오기
+            try:
+                date = request.GET["date"]
+                year, month = map(int, date.split('-'))
+            except:
+                year, month = todayYear, todayMonth
 
-    # calendar.monthrange(2017, 3) => 2요일, 31 가장높은 일자
+            startWeekday, lastDay = calendar.monthrange(year, month)
 
-    # date.weekday로 요일 얻기 월 0 일 6
-    #
-    context = {
-        'room_id': room_id,
-        'weeks': weeks
-    }
-    return render(request, 'studyrooms/studyroomCalendar.html', context)
+            lastMonth = str(year if month != 1 else year - 1) + \
+                '-' + str(month - 1 if month != 1 else 12)
+            nextMonth = str(year if month != 12 else year + 1) + \
+                '-' + str(month + 1 if month != 12 else 1)
+
+            weeks = [
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+            ]
+
+            j = startWeekday + 1
+            for i in range(lastDay):
+                weeks[j//7][j % 7]['day'] = i + 1
+                j += 1
+            weeks[0][6]['tasks'] = ['hahaha', 'dodododo']
+
+            # calendar.monthrange(2017, 3) => 2요일, 31 가장높은 일자
+
+            # date.weekday로 요일 얻기 월 0 일 6
+            #
+            context = {
+                'room_id': room_id,
+                'weeks': weeks,
+                'year': year,
+                'month': month,
+                'lastMonth': lastMonth,
+                'nextMonth': nextMonth,
+
+            }
+            return render(request, 'studyrooms/studyroomCalendar.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
 
 
 def studyroomBoard(request, room_id):
-    context = {
-        'room_id': room_id,
-    }
     if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
         user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
+
         if user in studyroom.users.all():
             return render(request, 'studyrooms/studyroomBoard.html', context)
         else:
@@ -106,13 +136,15 @@ def studyroomBoard(request, room_id):
     else:
         return redirect('login')
 
+
 def studyroomMember(request, room_id):
-    context = {
-        'room_id': room_id,
-    }
     if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
         user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
+
         if user in studyroom.users.all():
             context['users'] = studyroom.users.all()
             return render(request, 'studyrooms/studyroomMember.html', context)
@@ -121,11 +153,12 @@ def studyroomMember(request, room_id):
     else:
         return redirect('login')
 
+
 def studyroomTime(request, room_id):
-    context = {
-        'room_id': room_id,
-    }
     if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
         user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
 
@@ -139,12 +172,13 @@ def studyroomTime(request, room_id):
 
 
 def studyroomProgress(request, room_id):
-    context = {
-        'room_id': room_id,
-    }
     if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
         user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
+
         if user in studyroom.users.all():
             context['tasks'] = studyroom.progress_task_set.all()
             return render(request, 'studyrooms/studyroomProgress.html', context)
@@ -153,10 +187,17 @@ def studyroomProgress(request, room_id):
     else:
         return redirect('login')
 
+
 def studyroomConfirm(request, room_id):
     if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
+        user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
-        if studyroom.leader == request.user:
+
+        # 스터디장 검증
+        if studyroom.leader == user:
             if(request.method == "POST"):
                 data = json.loads(request.body.decode())
                 application = Application.objects.get(pk=int(data['appId']))
@@ -177,27 +218,33 @@ def studyroomConfirm(request, room_id):
                     'applications': applications,
                 }
                 return render(request, 'studyrooms/studyroomConfirm.html', context)
-        else:
-            context = {
-                'room_id': room_id,
-                'isCaptain': False,
-            }
+        # 스터디원 검증
+        elif user in studyroom.users.all():
+            context['isCaptain'] = False
             return render(request, 'studyrooms/studyroomConfirm.html', context)
+        else:
+            return redirect('studyroom', room_id)
     else:
         return redirect('login')
 
-# 이후에 스터디장 이전 기능 추가
+# 이후에 스터디장 이전 기능 추가하기
 
 
 def studyroomManage(request, room_id):
     if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
+        user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
+
+        # 스터디장 검증
         if studyroom.leader == request.user:
             if(request.method == "POST"):
                 data = json.loads(request.body.decode())
-                user = User.objects.get(pk=int(data['userId']))
+                selectedUser = User.objects.get(pk=int(data['userId']))
                 if data['choice'] == 'ban':
-                    if user == studyroom.leader:
+                    if selectedUser == studyroom.leader:
                         # js로 처리해서 작동안함. 이후에 ajax로 경고할 수 있는지 확인
                         context = {
                             'room_id': room_id,
@@ -207,7 +254,7 @@ def studyroomManage(request, room_id):
                         }
                         return render(request, 'studyrooms/studyroomManage.html', context)
                     else:
-                        user.study_room.remove(studyroom)
+                        selecedUser.study_room.remove(studyroom)
 
                         return HttpResponse("잘못된 접근")
             else:
@@ -217,20 +264,25 @@ def studyroomManage(request, room_id):
                     'users': studyroom.users.all(),
                 }
                 return render(request, 'studyrooms/studyroomManage.html', context)
-        else:
-            context = {
-                'room_id': room_id,
-                'isCaptain': False,
-            }
+        # 스터디원 검증
+        elif user in studyroom.users.all():
+            context['isCaptain'] = False
             return render(request, 'studyrooms/studyroomManage.html', context)
+        else:
+            return redirect('studyroom', room_id)
     else:
         return redirect('login')
 
 
 def studyroomGoal(request, room_id):
-    studyroom = Studyroom.objects.get(pk=room_id)
     if request.user.is_authenticated:
-        if studyroom.leader == request.user:
+        context = {
+            'room_id': room_id,
+        }
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
+        # 스터디장 검증
+        if studyroom.leader == user:
             context = {
                 'room_id': room_id,
                 'isCaptain': True,
@@ -246,18 +298,17 @@ def studyroomGoal(request, room_id):
                 return render(request, 'studyrooms/studyroomGoal.html', context)
             else:
                 return render(request, 'studyrooms/studyroomGoal.html', context)
-        else:
-            context = {
-                'room_id': room_id,
-                'isCaptain': False
-            }
+        # 스터디원 검증
+        elif user in studyroom.users.all():
+            context['isCaptain'] = False
             return render(request, 'studyrooms/studyroomGoal.html', context)
+        else:
+            return redirect('studyroom', room_id)
     else:
         return redirect('login')
 
 
 def studyroomMake(request):
-    # value들중 blank가 있으면 안되게 수정
     if request.user.is_authenticated:
         if request.method == "POST":
             form = StudyroomForm(request.POST)
@@ -273,11 +324,7 @@ def studyroomMake(request):
                 error = form.errors
                 context = ({'error_message': error})
                 return render(request, 'studyrooms/make.html', context)
-
-            # roomPage = "/studyroom/room/" + str(post.studyroom_number)
-
         else:
-
             return render(request, 'studyrooms/make.html')
     else:
         return redirect('login')
@@ -305,7 +352,7 @@ def studyroomMy(request):
 def studyroomJoin(request):
     if request.user.is_authenticated:
         STUDYROOMSPERPAGE = 20  # 페이지당 숫자
-        studyrooms = Studyroom.objects.all()
+        studyrooms = Studyroom.objects.all().order_by('-pk')
 
         paginator = Paginator(studyrooms, STUDYROOMSPERPAGE)
         page = request.GET.get('page')
