@@ -21,15 +21,14 @@
                 </thead>
                 <tbody>
                     {% for task in tasks %}
-                    <tr class="h-12 border-bottom border-gray-200">
+                    <tr class="h-12 border-b border-gray-200">
                         <td>{{ task.pk }}</td>
                         <td>{{ task.task }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="border-b border-gray-500 my-4"></div>
-            <button class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300" id="add-goal-button" onClick="addGoalBtnClick()">추가</button>
+            <button class="p-3 mt-4 w-24 rounded bg-gray-200 hover:bg-gray-300" id="add-goal-button" onClick="addGoalBtnClick()">추가</button>
             <div id="add-goal" class="hidden">
                 <form action="{% url 'studyroomGoal' room_id %}" method="POST">
                     {% csrf_token %}
