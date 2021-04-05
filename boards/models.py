@@ -23,6 +23,5 @@ class Post(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey('users.User', on_delete=models.CASCADE)
     content = models.TextField()
-    create_date = models.DateTimeField()
-    modify_date = models.DateTimeField(null=True, blank=True)
     board = models.ForeignKey('Post', on_delete=models.CASCADE)
+    create_date = models.DateTimeField(auto_now_add=True)

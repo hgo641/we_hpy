@@ -42,9 +42,21 @@ def postcreate(request, room_id,board_thema):
     }
     return redirect('/boards/board/'+board_thema+'/'+str(room_id))
 
-def detail(request,post_id):
+def detail(request,post_id,):
     post=get_object_or_404(Post,pk=post_id)
-    return render(request,'boards/detail.html',{'post':post})
+    if (request.method =="POST"):
+        comment = Comment()
+        comment.author = request.user
+        comment.content = request.POST['content']
+        post = get_object_or_404(Post, pk = post_id)
+        comment.board = post
+        comment.save()
+    comments = Comment.objects.filter(board = post)
+    context = {
+        'post' : post,
+        'comments' : comments
+    }
+    return render(request,'boards/detail.html',context)
 
 def postdelete(request,post_id):
     
@@ -64,4 +76,5 @@ def postdelete(request,post_id):
         }
         #return redirect('/boards/board/'+board_thema+'/'+str(room_id))
         return render(request,'boards/detail.html',context)
+        
     

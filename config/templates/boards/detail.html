@@ -22,10 +22,14 @@
 <br><br>
 
 <h3>댓글</h3>
-<form>
-    <input type = "text" />
+<form action="{% url 'detail' post.id %}" method ="POST">
+    {% csrf_token %}
+    <input type = "text" name = "content" />
     <input type = "submit" />
 </form>
-
+{% for comment in comments %}
+<p>{{comment.content}}</p>
+<p>{{comment.author}}</p>
+{% endfor %}
 </body>
 </html>
