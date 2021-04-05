@@ -12,21 +12,21 @@
                 </div>
                 <div class="profile__box profile__box--multi">
                     <span class="profile__box__main">
-                        <a href="{% url 'studyroomMy' %}">멤버</a>
+                        <a href="{% url 'studyroomMember' room_id %}">멤버</a>
                     </span>
-                    <a href="{% url 'studyroomMy' %}" class="profile__box__sub">{{ memberCount }}명</a>
+                    <a href="{% url 'studyroomMember' room_id %}" class="profile__box__sub">{{ memberCount }}명</a>
                 </div>
                 <div class="profile__box profile__box--multi">
                     <span class="profile__box__main">
-                        <a href="{% url 'studyroomMy' %}">평균 진도율</a>
+                        <a href="{% url 'studyroomProgress' room_id %}">평균 진도율</a>
                     </span>
-                    <a href="{% url 'studyroomMy' %}" class="profile__box__sub">{{ averageProgressRate }}%</a>
+                    <a href="{% url 'studyroomProgress' room_id %}" class="profile__box__sub">{{ averageProgressRate }}%</a>
                 </div>
                 <div class="profile__box profile__box--multi">
                     <span class="profile__box__main">
-                        <a href="">총학습 시간</a>
+                        <a href="{% url 'studyroomTime' room_id %}">총학습 시간</a>
                     </span>
-                    <span class="profile__box__sub">{{ totalStudyTime }}시간</span>
+                    <a href="{% url 'studyroomTime' room_id %}" class="profile__box__sub">{{ totalStudyTime }}시간</a>
                 </div>
             </div>
         </div>
