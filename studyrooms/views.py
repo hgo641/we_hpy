@@ -60,36 +60,66 @@ def studyroom(request, room_id):
 
 
 def studyroomCalendar(request, room_id):
-    today = datetime.date.today()
-    month = today.month
-    year = today.year
-    print(today)
-    startWeekday, lastDay = calendar.monthrange(year, month)
+    if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
 
-    weeks = [
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-        [{}, {}, {}, {}, {}, {}, {}],
-    ]
+        if user in studyroom.users.all():
+            today = datetime.date.today()
+            todayMonth = today.month
+            todayYear = today.year
 
-    j = startWeekday + 1
-    for i in range(lastDay):
-        weeks[j//7][j % 7]['day'] = i + 1
-        j += 1
-    weeks[0][6]['tasks'] = ['hahaha', 'dodododo']
+            # get PARAM에서 연/월 가져오기
+            try:
+                date = request.GET["date"]
+                year, month = map(int, date.split('-'))
+            except:
+                year, month = todayYear, todayMonth
 
-    # calendar.monthrange(2017, 3) => 2요일, 31 가장높은 일자
+            startWeekday, lastDay = calendar.monthrange(year, month)
 
-    # date.weekday로 요일 얻기 월 0 일 6
-    #
-    context = {
-        'room_id': room_id,
-        'weeks': weeks
-    }
-    return render(request, 'studyrooms/studyroomCalendar.html', context)
+            lastMonth = str(year if month != 1 else year - 1) + \
+                '-' + str(month - 1 if month != 1 else 12)
+            nextMonth = str(year if month != 12 else year + 1) + \
+                '-' + str(month + 1 if month != 12 else 1)
+
+            weeks = [
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+                [{}, {}, {}, {}, {}, {}, {}],
+            ]
+
+            j = startWeekday + 1
+            for i in range(lastDay):
+                weeks[j//7][j % 7]['day'] = i + 1
+                j += 1
+            weeks[0][6]['tasks'] = ['hahaha', 'dodododo']
+
+            # calendar.monthrange(2017, 3) => 2요일, 31 가장높은 일자
+
+            # date.weekday로 요일 얻기 월 0 일 6
+            #
+            context = {
+                'room_id': room_id,
+                'weeks': weeks,
+                'year': year,
+                'month': month,
+                'lastMonth': lastMonth,
+                'nextMonth': nextMonth,
+
+            }
+            return render(request, 'studyrooms/studyroomCalendar.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
+
 
 
 def studyroomBoard(request, room_id):
