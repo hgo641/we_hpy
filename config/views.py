@@ -14,7 +14,7 @@ def myPage(request):
         studyrooms = request.user.study_room.all()
         studyTime = 0
         for studyroom in studyrooms:
-            progressRate, isCreated = Progress_rate.objects.get(
+            progressRate = Progress_rate.objects.get(
                 user=request.user, studyroom=studyroom)
             studyTime += progressRate.totalHour
         context = {
