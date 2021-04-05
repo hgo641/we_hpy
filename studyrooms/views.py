@@ -91,33 +91,62 @@ def studyroomCalendar(request, room_id):
 
 def studyroomBoard(request, room_id):
     context = {
-        'room_id': room_id
+        'room_id': room_id,
     }
-    return render(request, 'studyrooms/studyroomBoard.html', context)
-
+    if request.user.is_authenticated:
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
+        if user in studyroom.users.all():
+            return render(request, 'studyrooms/studyroomBoard.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
 
 def studyroomMember(request, room_id):
     context = {
-        'room_id': room_id
+        'room_id': room_id,
     }
-    return render(request, 'studyrooms/studyroomTime.html', context)
-
+    if request.user.is_authenticated:
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
+        if user in studyroom.users.all():
+            return render(request, 'studyrooms/studyroomMember.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
 
 def studyroomTime(request, room_id):
     context = {
-        'room_id': room_id
+        'room_id': room_id,
     }
-    return render(request, 'studyrooms/studyroomTime.html', context)
+    if request.user.is_authenticated:
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
+
+        if user in studyroom.users.all():
+            context['study_time'] = studyroom.progress_rate_set.all().get(user=user).totalHour
+            return render(request, 'studyrooms/studyroomTime.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
 
 
 def studyroomProgress(request, room_id):
-    studyroom = get_object_or_404(Studyroom, pk=room_id)
     context = {
         'room_id': room_id,
-        'tasks': studyroom.progress_task_set.all(),
     }
-    return render(request, 'studyrooms/studyroomProgress.html', context)
-
+    if request.user.is_authenticated:
+        user = request.user
+        studyroom = Studyroom.objects.get(pk=room_id)
+        if user in studyroom.users.all():
+            return render(request, 'studyrooms/studyroomProgress.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
 
 def studyroomConfirm(request, room_id):
     if request.user.is_authenticated:
