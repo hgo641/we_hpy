@@ -20,12 +20,15 @@ def studyroom(request, room_id):
 
         # 스터디룸 페이지
         if(studyroom in request.user.study_room.all()):
+            taskCount = studyroom.progress_task_set.count()
+            averageProgressRate = 0 if taskCount == 0 else sum(
+                [progressRate.totalProgress for progressRate in studyroom.progress_rate_set.all()]) / taskCount
             context = {
                 'room_id': room_id,
                 'memberCount': studyroom.users.count(),
                 'studyroomName': studyroom.studyroom_name,
                 'totalStudyTime': sum([progressRate.totalHour for progressRate in studyroom.progress_rate_set.all()]),
-                'averageProgressRate': 123,
+                'averageProgressRate': averageProgressRate,
 
             }
             return render(request, 'studyrooms/studyroom.html', context)
@@ -142,6 +145,7 @@ def studyroomProgress(request, room_id):
         user = request.user
         studyroom = Studyroom.objects.get(pk=room_id)
         if user in studyroom.users.all():
+            context['tasks'] = studyroom.progress_task_set.all()
             return render(request, 'studyrooms/studyroomProgress.html', context)
         else:
             return redirect('studyroom', room_id)
