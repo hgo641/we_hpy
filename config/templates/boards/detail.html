@@ -28,8 +28,13 @@
     <input type = "submit" />
 </form>
 {% for comment in comments %}
-<p>{{comment.content}}</p>
-<p>{{comment.author}}</p>
+    <div>
+    <p>{{comment.content}}</p>
+    <p>{{comment.author}}</p>
+    {% if comment.author == request.user %}
+        <a href="{% url 'commentdelete' post.id comment.id %}">댓글 삭제</a>
+        </div>
+    {% endif %}
 {% endfor %}
 </body>
 </html>

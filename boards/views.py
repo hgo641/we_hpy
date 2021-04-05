@@ -70,11 +70,16 @@ def postdelete(request,post_id):
         #messages.info(request, '삭제 권한이 없습니다')
         #return redirect('/boards/detail/'+str(post_id))
         message = "삭제 권한이 없습니다."
+        comments = Comment.objects.filter(board = deletepost)
         context = {
         'message' : message,
-        'post' : deletepost
+        'post' : deletepost,
+        'comments' : comments
         }
         #return redirect('/boards/board/'+board_thema+'/'+str(room_id))
         return render(request,'boards/detail.html',context)
         
-    
+def commentdelete(request, post_id, comment_id):
+    comment = get_object_or_404(Comment, pk = comment_id)
+    comment.delete()
+    return redirect('/boards/detail/'+str(post_id))
