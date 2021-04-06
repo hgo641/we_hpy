@@ -121,6 +121,29 @@ def studyroomCalendar(request, room_id):
         return redirect('login')
 
 
+def studyroomTask(request, room_id, year, month, day):
+    if request.user.is_authenticated:
+        context = {
+            'room_id': room_id,
+        }
+        user = request.user
+        studyroom = get_object_or_404(Studyroom, pk=room_id)
+
+        if user in studyroom.users.all():
+            try:
+                selectedDate = datetime.date(year, month, day)
+                calendar, isCalendarCreated = Calendar.objects.get_or_create(
+                    studyroom=studyroom, date=selectedDate)
+                context['tasks'] = calendar.todo_set.all()
+            except ValueError:
+                context['error_message'] = '날짜가 잘못되었습니다'
+            return render(request, 'studyrooms/studyroomTask.html', context)
+        else:
+            return redirect('studyroom', room_id)
+    else:
+        return redirect('login')
+
+
 def studyroomBoard(request, room_id):
     if request.user.is_authenticated:
         context = {
