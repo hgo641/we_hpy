@@ -13,5 +13,6 @@ urlpatterns = [
     path('postedit/<int:post_id>',views.postedit,name="postedit"),
     path('postupdate/<int:post_id>',views.postupdate,name="postupdate"),
     path('postsearch/<str:board_thema>/<int:room_id>',views.postsearch,name="postsearch"),
-    path('commentdelete/<int:post_id>/<int:comment_id>',views.commentdelete,name="commentdelete"),
+    path('commentdelete/<int:room_id>/<int:post_id>/<int:comment_id>',
+         views.commentdelete, name="commentdelete"),
 ]

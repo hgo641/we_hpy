@@ -24,7 +24,7 @@
         
          
         {% for post in page_posts %}
-        <h1><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h1> 
+        <h1><a href="{% url 'detail' room_id post.id %}">제목 : {{post.title}}</a></h1> 
         {% endfor %}
         
         

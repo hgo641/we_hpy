@@ -160,7 +160,10 @@ def postsearch(request,room_id, board_thema):
     return render(request, 'boards/boardlist.html', context)
         
 
-def commentdelete(request, post_id, comment_id):
+def commentdelete(request, room_id, post_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
+    context = {
+        'room_id': room_id
+    }
     return redirect('detail', room_id, post_id)
