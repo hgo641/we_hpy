@@ -1,45 +1,47 @@
 {% extends 'base/base.html' %}
 {% block content %}
 {% include "base/navbar.html" %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>detail</title>
-    <script>
-        const message = "{{message}}";
-        if (message){
-            alert(message);
-        }
-    </script>
-</head>
-<body>
+<script>
+    const message = "{{message}}";
+    if (message){
+        alert(message);
+    }
+</script>
+<div class="main">
+    <div class="page">
+        {% include "studyrooms/studyroomMenu.html" %}
+        <div class="page__content">
+            {% include "studyrooms/studyroomBoard.html" %}
+            <h1>제목 : {{post.title}}</h1>
+            <p>작성 시간 : {{post.create_date}}</p>
+            <p>작성자 : {{post.author.username}}</p>
+            <p>내용 : {{post.content}}</p>
+            <a href="{% url 'board' post.thema post.studyroom.id %}">게시판</a>
+            <a href="{% url 'postedit' post.id %}">글수정</a>
+            <a href="{% url 'postdelete' post.id %}">글삭제</a>
 
-<h1>제목 : {{post.title}}</h1>
-<p>작성 시간 : {{post.create_date}}</p>
-<p>작성자 : {{post.author.username}}</p>
-<p>내용 : {{post.content}}</p>
-<a href="{% url 'board' post.thema post.studyroom.id %}">게시판</a>
-<a href="{% url 'postedit' post.id %}">글수정</a>
-<a href="{% url 'postdelete' post.id %}">글삭제</a>
-<br><br>
+            <br><br>
 
-<h3>댓글</h3>
-<form action="{% url 'detail' post.id %}" method ="POST">
-    {% csrf_token %}
-    <input type = "text" name = "content" />
-    <input type = "submit" />
-</form>
-{% for comment in comments %}
-    <div>
-    <p>{{comment.content}}</p>
-    <p>{{comment.author}}</p>
-    {% if comment.author == request.user %}
-        <a href="{% url 'commentdelete' post.id comment.id %}">댓글 삭제</a>
+            <h3>댓글</h3>
+            <form action="{% url 'detail' room_id post.id %}" method ="POST">
+                {% csrf_token %}
+                <input type = "text" name = "content" />
+                <input type = "submit" />
+            </form>
+            {% for comment in comments %}
+                <div>
+                <p>{{comment.content}}</p>
+                <p>{{comment.author}}</p>
+                {% if comment.author == request.user %}
+                    <a href="{% url 'commentdelete' room_id post.id comment.id %}">댓글 삭제</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-    {% endif %}
-{% endfor %}
-</body>
-</html>
+    </div>
+
+
+
+
+</div>
 {% endblock %}

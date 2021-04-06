@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
+<<<<<<< HEAD
 def postedit(request, post_id):
     post = get_object_or_404(Post, pk = post_id)
     if (post.author == request.user):
@@ -22,6 +23,8 @@ def postedit(request, post_id):
         return render(request,'boards/detail.html',context)
 
 
+=======
+>>>>>>> a7d9516d4b33bcf9a1a2b1777d1d164dd1f98350
 
 def board(request, board_id, studyroom_id):
     studyroom = get_object_or_404(Studyroom, pk = studyroom_id)
@@ -50,16 +53,16 @@ def board(request, board_id, studyroom_id):
     }
     return render(request, 'boards/boardlist.html', context)
 
-	
-def postnew(request,room_id, board_thema):
+
+def postnew(request, room_id, board_thema):
     context = {
-        'room_id':room_id,
-        'board_thema' : board_thema,
+        'room_id': room_id,
+        'board_thema': board_thema,
     }
     return render(request, 'boards/postnew.html', context)
 
 
-def postcreate(request, room_id,board_thema):
+def postcreate(request, room_id, board_thema):
     print(request.method)
     if(request.method == 'POST'):
         post = Post()
@@ -67,36 +70,37 @@ def postcreate(request, room_id,board_thema):
         post.content = request.POST['content']
         post.thema = board_thema
         post.author = request.user
-        studyroom = get_object_or_404(Studyroom, pk = room_id)
+        studyroom = get_object_or_404(Studyroom, pk=room_id)
         post.studyroom = studyroom
         post.save()
         context = {
-        'room_id':room_id,
-        'board_thema' : board_thema,
-    }
+            'room_id': room_id,
+            'board_thema': board_thema,
+        }
     return redirect('/boards/board/'+board_thema+'/'+str(room_id))
 
 
-
-def detail(request,post_id,):
-    post=get_object_or_404(Post,pk=post_id)
-    if (request.method =="POST"):
+def detail(request, room_id, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if (request.method == "POST"):
         comment = Comment()
         comment.author = request.user
         comment.content = request.POST['content']
-        post = get_object_or_404(Post, pk = post_id)
+        post = get_object_or_404(Post, pk=post_id)
         comment.board = post
         comment.save()
-    comments = Comment.objects.filter(board = post)
+    comments = Comment.objects.filter(board=post)
     context = {
-        'post' : post,
-        'comments' : comments
+        'post': post,
+        'comments': comments,
+        'room_id': room_id,
     }
-    return render(request,'boards/detail.html',context)
+    return render(request, 'boards/detail.html', context)
 
-def postdelete(request,post_id):
-    
-    deletepost=get_object_or_404(Post,pk=post_id)
+
+def postdelete(request, post_id):
+
+    deletepost = get_object_or_404(Post, pk=post_id)
     if(deletepost.author == request.user):
         board_thema = deletepost.thema
         room_id = deletepost.studyroom.id
@@ -104,13 +108,13 @@ def postdelete(request,post_id):
         return redirect('/boards/board/'+board_thema+'/'+str(room_id))
     else:
         #messages.info(request, '삭제 권한이 없습니다')
-        #return redirect('/boards/detail/'+str(post_id))
+        # return redirect('/boards/detail/'+str(post_id))
         message = "삭제 권한이 없습니다."
-        comments = Comment.objects.filter(board = deletepost)
+        comments = Comment.objects.filter(board=deletepost)
         context = {
-        'message' : message,
-        'post' : deletepost,
-        'comments' : comments
+            'message': message,
+            'post': deletepost,
+            'comments': comments
         }
         #return redirect('/boards/board/'+board_thema+'/'+str(room_id))
         return render(request,'boards/detail.html',context)
@@ -165,7 +169,10 @@ def postsearch(request,room_id, board_thema):
     return render(request, 'boards/boardlist.html', context)
         
 
-def commentdelete(request, post_id, comment_id):
-    comment = get_object_or_404(Comment, pk = comment_id)
+def commentdelete(request, room_id, post_id, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
-    return redirect('/boards/detail/'+str(post_id))
+    context = {
+        'room_id': room_id
+    }
+    return redirect('detail', room_id, post_id)
