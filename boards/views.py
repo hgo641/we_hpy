@@ -3,16 +3,38 @@ from .models import *
 from users.models import *
 from studyrooms.models import *
 from django.contrib import messages
-
+from django.core.paginator import Paginator
+THEMA_CHOICES = (
+        ('n','공지게시판'),
+        ('f','자유게시판'),
+        ('q','질문게시판'),
+        ('i','정보게시판'),
+    )
 # Create your views here.
 def board(request, board_id, studyroom_id):
     studyroom = get_object_or_404(Studyroom, pk = studyroom_id)
     posts = Post.objects.filter(studyroom = studyroom)
     posts =posts.filter(thema=board_id)
+    paginator = Paginator(posts,5)
+    page = request.GET.get('page')
+    page_posts = paginator.get_page(page)
+    
+
+    if(board_id == 'n'):
+        thema = "공지게시판"
+    if(board_id =='f'):
+        thema = "자유게시판"
+    if(board_id == 'q'):
+        thema="질문게시판"
+    if(board_id == 'i'):
+        thema="정보게시판"    
+
     context = {
         'room_id' : studyroom_id,
         'posts' : posts,
-        'board_thema' : board_id
+        'board_thema' : board_id,
+        'page_posts' : page_posts,
+        'thema' : thema
     }
     return render(request, 'boards/boardlist.html', context)
 
@@ -24,7 +46,7 @@ def postnew(request,room_id, board_thema):
     }
     return render(request, 'boards/postnew.html', context)
 
-    	
+
 def postcreate(request, room_id,board_thema):
     print(request.method)
     if(request.method == 'POST'):
@@ -41,6 +63,8 @@ def postcreate(request, room_id,board_thema):
         'board_thema' : board_thema,
     }
     return redirect('/boards/board/'+board_thema+'/'+str(room_id))
+
+
 
 def detail(request,post_id,):
     post=get_object_or_404(Post,pk=post_id)
@@ -77,8 +101,62 @@ def postdelete(request,post_id):
         'comments' : comments
         }
         #return redirect('/boards/board/'+board_thema+'/'+str(room_id))
-        return render(request,'boards/detail.html',context)
+        return render(request,'/boards/detail.html',context)
+
+def postedit(request, post_id):
+    post=get_object_or_404(Post,pk=post_id)
+    return render(request,'/boards/postedit.html',{'post':post})
+
+def postupdate(request,post_id):
+    if (request.method =="POST"):
+        post=get_object_or_404(Post,pk=post_id)
+        post.title=request.POST['title']
+        post.content=request.POST['content']
+        post.save()
+    return redirect('/boards/detail/'+str(post_id))
+
+def postsearch(request,room_id, board_thema):
+    if(request.method =="GET"):
+        searchWord = request.GET.get('searchWord')
+        print(searchWord)
+        if(request.GET['selectTag']=="title"):
+            searchposts = Post.objects.filter(title__icontains = searchWord)
+        elif(request.GET['selectTag']=="content"):
+            searchposts = Post.objects.filter(content__icontains = searchWord)
+        elif(request.GET['selectTag']=="author"):
+            users = User.objects.filter(username__icontains = searchWord)
+            count = 0
+            for user in users:
+                print(user)
+                print("아래주목~")
+                if(count ==0):
+                    searchposts = Post.objects.filter(author = user)
+                    count +=1
+                else:
+                    searchposts = searchposts | Post.objects.filter(author = user)
+            
+        paginator = Paginator(searchposts,5)
+        page = request.GET.get('page')
+        page_posts = paginator.get_page(page)
         
+        if(board_thema == 'n'):
+            thema = "공지게시판"
+        if(board_thema =='f'):
+            thema = "자유게시판"
+        if(board_thema == 'q'):
+            thema="질문게시판"
+        if(board_thema == 'i'):
+            thema="정보게시판" 
+        context = {
+        'room_id' : room_id,
+        'posts' : searchposts,
+        'board_thema' : board_thema,
+        'page_posts' : page_posts,
+        'thema' : thema
+    }
+    return render(request, 'boards/boardlist.html', context)
+        
+
 def commentdelete(request, post_id, comment_id):
     comment = get_object_or_404(Comment, pk = comment_id)
     comment.delete()
