@@ -9,20 +9,53 @@
             <div class="text-center text-9xl font-semibold mt-4">{{ day }}</div>
         </div>
         <div class="page__content">
+            {% if error_message %}
             <div class="text-4xl font-semibold">{{ error_message }}</div>
+            {% else %}
             <div>
-                {% for task in tasks %}
                 <div class="border rounded p-4 text-lg">
-                    <div class="flex justify-between font-semibold">
-                        <div>{{ task.progress }} - {{ task.learning_time }}</div>
-                        <div>{{ task.writer }}</div>
-                    </div>
-                    <div>
-                        {{ task.content }}
-                    </div>
+                    <form action="{% url 'studyroomTask' room_id year month day %}" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ error_message_form }}
+                        </div>
+                        <label for="">달성한 과제</label>
+                        <select name="progress" id="">
+                            {% for task in tasks %}
+                            <option value="{{ task.taskNumber }}">
+                                {{ task.task }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <div class="mb-3">
+                            <label for="">공부 시간</label>
+                            <input type="text" name="learning_time">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">내용 ㅇㅇ</label>
+                            <input type="text" name="content">
+                        </div>
+                        <div class="mb-3">
+                            <label for=""></label>
+                            <input type="submit" name="">
+                        </div>
+                    </form>
                 </div>
-                {% endfor %}
+                <div>
+                    {% for todo in todos %}
+                    <div class="border rounded p-4 text-lg">
+                        <div class="flex justify-between font-semibold">
+                            <div>{{ todo.progress }} - {{ todo.learning_time }}시간</div>
+                            <div>{{ todo.writer }}</div>
+                        </div>
+                        <div>
+                            {{ todo.content }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

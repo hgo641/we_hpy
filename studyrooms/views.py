@@ -4,7 +4,7 @@ from users.models import *
 from applications.models import *
 from django.contrib import auth
 from django.core.paginator import Paginator
-from .forms import StudyroomForm
+from .forms import StudyroomForm, TodoForm
 from applications.models import *
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
@@ -130,24 +130,62 @@ def studyroomTask(request, room_id, year, month, day):
         studyroom = get_object_or_404(Studyroom, pk=room_id)
 
         if user in studyroom.users.all():
-            try:
-                changMonthToEng = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May',
+            if request.method == 'POST':
+                form = TodoForm(request.POST)
+                if form.is_valid():
+                    currentUserTask = studyroom.progress_rate_set.get(user=user).totalProgress
+                    # 정상적이지 않은 접근으로 progress값이 범위 밖일때
+                    if form.cleaned_data['progress'] < currentUserTask or form.cleaned_data['progress'] > studyroom.progress_task_set.count():
+                        context['error_message'] = '진도율이 잘못되었습니다, 새로 고침을 해주세요'
+                        return render(request, 'studyrooms/studyroomTask.html', context)
 
-                                   6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
-                selectedDate = datetime.date(year, month, day)
-                context['year'] = year
-                context['month_eng'] = changMonthToEng[month]
-                context['day'] = day
+                    selectedDate = datetime.date(year, month, day)
+                    calendar, isCalendarCreated = Calendar.objects.get_or_create(
+                        studyroom=studyroom, date=selectedDate)
 
-                calendar, isCalendarCreated = Calendar.objects.get_or_create(
-                    studyroom=studyroom, date=selectedDate)
-                context['tasks'] = calendar.todo_set.all()
-                for task in context['tasks']:
-                    task.progress = studyroom.progress.task_set.get(taskNumber=task.progress).task
+                    todo = Todo()
+                    todo.calendar = calendar
+                    todo.writer = user
+                    todo.content = form.cleaned_data["content"]
+                    todo.learning_time = form.cleaned_data["learning_time"]
+                    todo.progress = form.cleaned_data["progress"]
+                    todo.save()
 
-            except ValueError:
-                context['error_message'] = '날짜가 잘못되었습니다'
-            return render(request, 'studyrooms/studyroomTask.html', context)
+                    progress_rate = studyroom.progress_rate_set.get(user=user)
+                    progress_rate.totalHour = progress_rate.totalHour + todo.learning_time
+                    progress_rate.totalProgress = todo.progress
+                    progress_rate.save()
+                    return redirect('studyroomTask', room_id, year, month, day)
+                else:
+                    error = form.errors
+                    context['error_message'] = error
+                    return render(request, 'studyrooms/studyroomTask.html', context)
+
+            else:
+                try:
+                    changMonthToEng = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May',
+                                    6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
+                    selectedDate = datetime.date(year, month, day)
+                    context['year'] = year
+                    context['month'] = month
+                    context['month_eng'] = changMonthToEng[month]
+                    context['day'] = day
+
+                    # todo 목록
+                    calendar, isCalendarCreated = Calendar.objects.get_or_create(
+                        studyroom=studyroom, date=selectedDate)
+                    context['todos'] = calendar.todo_set.all()
+                    for todo in context['todos']:
+                        todo.progress = studyroom.progress_task_set.get(
+                            taskNumber=todo.progress).task
+
+                    tasks = studyroom.progress_task_set.all()
+                    currentUserTask = studyroom.progress_rate_set.get(user=user).totalProgress
+                    context['tasks'] = tasks[(currentUserTask - 1 if currentUserTask > 0 else 0):]
+
+                except ValueError:
+                    context['error_message'] = '날짜가 잘못되었습니다'
+                return render(request, 'studyrooms/studyroomTask.html', context)
         else:
             return redirect('studyroom', room_id)
     else:
