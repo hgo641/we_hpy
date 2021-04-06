@@ -1,22 +1,24 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board</title>
-</head>
-<body>
-    <h2>게시판 글 리스트</h2>
-    {{board_thema}}
-    <a href="{% url 'postnew' room_id board_thema %}">
-        <input type="submit" class="container__button" value="글쓰기">
-    </a>
-    {% for post in posts.all %}
-    <div>
-        <h3><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h3>
-        <h3>{{post.title}}</h3>
-        <p>{{post.create_date}}</p>
+{% extends 'base/base.html' %}
+{% block content %}
+{% include "base/navbar.html" %}
+<div class="main">
+    <div class="page">
+        {% include "studyrooms/studyroomMenu.html" %}
+        <div class="page__content">
+            {% include "studyrooms/studyroomBoard.html" %}
+            <h2>게시판 글 리스트</h2>
+            {{board_thema}}
+            <a href="{% url 'postnew' room_id board_thema %}">
+                <input type="submit" class="container__button" value="글쓰기">
+            </a>
+            {% for post in posts.all %}
+            <div class="border rounded p-4 text-lg mb-4">
+                <h3><a href="{% url 'detail' room_id post.id %}">제목 : {{post.title}}</a></h3>
+                <h3>{{post.title}}</h3>
+                <p>{{post.create_date}}</p>
+            </div>
+            {%endfor%}
+        </div>
     </div>
-    {%endfor%}
-</body>
-</html>
+</div>
+{% endblock %}

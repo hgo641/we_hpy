@@ -203,7 +203,7 @@ def studyroomBoard(request, room_id):
         studyroom = get_object_or_404(Studyroom, pk=room_id)
 
         if user in studyroom.users.all():
-            return render(request, 'studyrooms/studyroomBoard.html', context)
+            return redirect('board', 'n', room_id)
         else:
             return redirect('studyroom', room_id)
     else:
