@@ -4,19 +4,32 @@ from users.models import *
 from studyrooms.models import *
 from django.contrib import messages
 from django.core.paginator import Paginator
-THEMA_CHOICES = (
-        ('n','공지게시판'),
-        ('f','자유게시판'),
-        ('q','질문게시판'),
-        ('i','정보게시판'),
-    )
+
 # Create your views here.
 
+<<<<<<< HEAD
+def postedit(request, post_id):
+    post = get_object_or_404(Post, pk = post_id)
+    if (post.author == request.user):
+        return render(request,'boards/postedit.html',{'post':post})
+    else:
+        message = "수정 권한이 없습니다."
+        comments = Comment.objects.filter(board = post)
+        context = {
+        'post' : post,
+        'comments' : comments,
+        'message' : message,
+    }
+        return render(request,'boards/detail.html',context)
+
+
+=======
+>>>>>>> a7d9516d4b33bcf9a1a2b1777d1d164dd1f98350
 
 def board(request, board_id, studyroom_id):
     studyroom = get_object_or_404(Studyroom, pk = studyroom_id)
-    posts = Post.objects.filter(studyroom = studyroom)
-    posts =posts.filter(thema=board_id)
+    allposts = Post.objects.filter(studyroom = studyroom)
+    posts =allposts.filter(thema=board_id)
     paginator = Paginator(posts,5)
     page = request.GET.get('page')
     page_posts = paginator.get_page(page)
@@ -104,11 +117,9 @@ def postdelete(request, post_id):
             'comments': comments
         }
         #return redirect('/boards/board/'+board_thema+'/'+str(room_id))
-        return render(request,'/boards/detail.html',context)
+        return render(request,'boards/detail.html',context)
 
-def postedit(request, post_id):
-    post=get_object_or_404(Post,pk=post_id)
-    return render(request,'/boards/postedit.html',{'post':post})
+
 
 def postupdate(request,post_id):
     if (request.method =="POST"):
@@ -130,8 +141,6 @@ def postsearch(request,room_id, board_thema):
             users = User.objects.filter(username__icontains = searchWord)
             count = 0
             for user in users:
-                print(user)
-                print("아래주목~")
                 if(count ==0):
                     searchposts = Post.objects.filter(author = user)
                     count +=1

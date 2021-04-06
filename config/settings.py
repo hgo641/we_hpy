@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # 'foo',
     # 'foo.apps.FooConfig',
     'applications',
-    #
+
     'tailwind',
     'theme',
     'boards',
@@ -66,7 +66,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        
+        "DIRS": [str(BASE_DIR / "config" / "templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,3 +143,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 TAILWIND_APP_NAME = 'theme'
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+

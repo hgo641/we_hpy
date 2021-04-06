@@ -1,6 +1,32 @@
 {% extends 'base/base.html' %}
 {% block content %}
 {% include "base/navbar.html" %}
+<<<<<<< HEAD
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board</title>
+</head>
+<body>
+    <div class="page__content">
+        
+        <a href="{% url 'board' 'n' room_id %}">
+            <input type="submit" class="container__button" value="공지게시판">
+        </a>
+        <a href="{% url 'board' 'f' room_id %}">
+            <input type="submit" class="container__button" value="자유게시판">
+        </a>
+        <a href="{% url 'board' 'q' room_id %}">
+            <input type="submit" class="container__button" value="질문게시판">
+        </a>
+        <a href="{% url 'board' 'i' room_id %}">
+            <input type="submit" class="container__button" value="정보게시판">
+        </a>
+    
+      
+=======
 <div class="main">
     <div class="page">
         {% include "studyrooms/studyroomMenu.html" %}
@@ -41,6 +67,7 @@
         {%endif%} 
         </ul> 
         </div>
+>>>>>>> a7d9516d4b33bcf9a1a2b1777d1d164dd1f98350
     </div>
 </div>
 {% endblock %}
