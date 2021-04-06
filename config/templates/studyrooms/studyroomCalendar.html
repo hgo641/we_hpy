@@ -61,160 +61,173 @@
             
                         {% for week in weeks %}
                         <tr class="text-center h-20">
-                            <!-- ////////////////////// -->
                             {% if week.0.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.0.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.0.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.0.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.0.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.0.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
-                            <!-- ////////////////////// -->
+
                             {% if week.1.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.1.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.1.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.1.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.1.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.1.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
-                            <!-- ////////////////////// -->
+
                             {% if week.2.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.2.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.2.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.2.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.2.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.2.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
-                            <!-- ////////////////////// -->
+
                             {% if week.3.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.3.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.3.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.3.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.3.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.3.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
-                            <!-- ////////////////////// -->
+
                             {% if week.4.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.4.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.4.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.4.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.4.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.4.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
-                            <!-- ////////////////////// -->
+
                             {% if week.5.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.5.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.5.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.5.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.5.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.5.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
-                            <!-- ////////////////////// -->
+
                             {% if week.6.day %}
                             <td class="border p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% else %}
+                                <a href="{% url 'studyroomTask' room_id year month week.6.day %}">
+                            {% else %}
                             <td class="border bg-gray-100 p-1 lg:h-40 w-24 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
-                                {% endif %}
-                                <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
-                                    <div class="top h-5 w-full">
-                                        <span class="text-gray-500">{{ week.6.day }}</span>
-                                    </div>
-                                    <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                                        {% for task in week.6.tasks %}
-                                        <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
-                                            <span class="event-name">
-                                                {{ task }}
-                                            </span>
+                                <a href="">
+                            {% endif %}
+                                    <div class="flex flex-col h-40 mx-lg:auto w-24 mx-auto overflow-hidden">
+                                        <div class="top h-5 w-full">
+                                            <span class="text-gray-500">{{ week.6.day }}</span>
                                         </div>
-                                        {% endfor %}
+                                        <div class="bottom flex-grow h-30 py-1 w-full cursor-pointer">
+                                            {% for task in week.6.tasks %}
+                                            <div class="event bg-purple-400 text-white rounded p-1 text-sm mb-1">
+                                                <span class="event-name">
+                                                    {{ task }}
+                                                </span>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </td>
-                            <!-- //////////////////// -->
                         </tr>
                         {% endfor %}
                         

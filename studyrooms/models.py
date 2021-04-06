@@ -28,6 +28,7 @@ class Calendar(models.Model):
 class Progress_task(models.Model):
     studyroom = models.ForeignKey('Studyroom', on_delete=models.CASCADE)
     task = models.TextField()
+    taskNumber = models.PositiveIntegerField()
 
 # 각 날짜에 들어갈 Todo입니다. 작성자, 내용, 학습시간, 수행한 task를 지정합니다
 
