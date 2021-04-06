@@ -131,10 +131,20 @@ def studyroomTask(request, room_id, year, month, day):
 
         if user in studyroom.users.all():
             try:
+                changMonthToEng = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May',
+
+                                   6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
                 selectedDate = datetime.date(year, month, day)
+                context['year'] = year
+                context['month_eng'] = changMonthToEng[month]
+                context['day'] = day
+
                 calendar, isCalendarCreated = Calendar.objects.get_or_create(
                     studyroom=studyroom, date=selectedDate)
                 context['tasks'] = calendar.todo_set.all()
+                for task in context['tasks']:
+                    task.progress = studyroom.progress.task_set.get(taskNumber=task.progress).task
+
             except ValueError:
                 context['error_message'] = '날짜가 잘못되었습니다'
             return render(request, 'studyrooms/studyroomTask.html', context)
@@ -317,7 +327,8 @@ def studyroomGoal(request, room_id):
                     context.update({'error_message': '내용은 공백일 수 없습니다'})
                     return render(request, 'studyrooms/studyroomGoal.html', context)
 
-                studyroom.progress_task_set.create(task=goalContent)
+                studyroom.progress_task_set.create(
+                    task=goalContent, taskNumber=studyroom.progress_task_set.count() + 1)
                 return render(request, 'studyrooms/studyroomGoal.html', context)
             else:
                 return render(request, 'studyrooms/studyroomGoal.html', context)
