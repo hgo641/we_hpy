@@ -98,13 +98,16 @@ def studyroomCalendar(request, room_id):
             j = startWeekday + 1
             for i in range(lastDay):
                 weeks[j//7][j % 7]['day'] = i + 1
+                selectedDate = datetime.date(year, month, i + 1)
+                dayCalendar, isCalendarCreated = Calendar.objects.get_or_create(
+                        studyroom=studyroom, date=selectedDate)
+
+                todos = dayCalendar.todo_set.all()
+                todoList = [todo.writer for todo in todos]
+                weeks[j//7][j % 7]['tasks'] = todoList
+
                 j += 1
-            weeks[0][6]['tasks'] = ['hahaha', 'dodododo']
 
-            # calendar.monthrange(2017, 3) => 2요일, 31 가장높은 일자
-
-            # date.weekday로 요일 얻기 월 0 일 6
-            #
             context = {
                 'room_id': room_id,
                 'weeks': weeks,
@@ -112,7 +115,6 @@ def studyroomCalendar(request, room_id):
                 'month': month,
                 'lastMonth': lastMonth,
                 'nextMonth': nextMonth,
-
             }
             return render(request, 'studyrooms/studyroomCalendar.html', context)
         else:
@@ -201,7 +203,7 @@ def studyroomBoard(request, room_id):
         studyroom = get_object_or_404(Studyroom, pk=room_id)
 
         if user in studyroom.users.all():
-            return render(request, 'studyrooms/studyroomBoard.html', context)
+            return redirect('board', 'n', room_id)
         else:
             return redirect('studyroom', room_id)
     else:
@@ -234,6 +236,11 @@ def studyroomTime(request, room_id):
         studyroom = get_object_or_404(Studyroom, pk=room_id)
 
         if user in studyroom.users.all():
+            studyCount = 0
+            calendars = studyroom.calendar_set.all()
+            for calendar in calendars:
+                studyCount += calendar.todo_set.filter(writer=user).count()
+            context['study_count'] = studyCount
             context['study_time'] = studyroom.progress_rate_set.all().get(user=user).totalHour
             return render(request, 'studyrooms/studyroomTime.html', context)
         else:

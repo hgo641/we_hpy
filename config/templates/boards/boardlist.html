@@ -1,72 +1,46 @@
 {% extends 'base/base.html' %}
 {% block content %}
 {% include "base/navbar.html" %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board</title>
-</head>
-<body>
-    <div class="page__content">
-        <a href="{% url 'board' 'n' room_id %}">
-            <input type="submit" class="container__button" value="공지게시판">
-        </a>
-        <a href="{% url 'board' 'f' room_id %}">
-            <input type="submit" class="container__button" value="자유게시판">
-        </a>
-        <a href="{% url 'board' 'q' room_id %}">
-            <input type="submit" class="container__button" value="질문게시판">
-        </a>
-        <a href="{% url 'board' 'i' room_id %}">
-            <input type="submit" class="container__button" value="정보게시판">
-        </a>
-      
+<div class="main">
+    <div class="page">
+        {% include "studyrooms/studyroomMenu.html" %}
+        <div class="page__content">
+            {% include "studyrooms/studyroomBoard.html" %}
+            <h1>{{thema}}</h1>
+            <!--일단 타이틀로-->
+            <form action="{% url 'postsearch' board_thema room_id %}" method = "get">
+                {% csrf_token %}
+                <select name="selectTag">
+                    <option value="title" selected>글제목</option>
+                    <option value="content">글내용</option>
+                    <option value="author">작성자</option>
+                  </select>
+                <input type = text name="searchWord">
+                <input type="submit" value="검색">
+            </form>
+            <a href="{% url 'postnew' room_id board_thema %}">
+                <input type="submit" class="container__button" value="글쓰기">
+            </a>
+        
+         
+        {% for post in page_posts %}
+        <h1><a href="{% url 'detail' room_id post.id %}">제목 : {{post.title}}</a></h1> 
+        {% endfor %}
+        
+        
+        <ul>
+        {%if page_posts.has_previous%}
+            <li><a href="?page={{page_posts.previous_page_number}}">이전</a></li>
+        {%endif%}
+        {%for i in page_posts.paginator.page_range%} 
+            <li><a href="?page={{i}}">{{i}}</a></li> 
+        {%endfor%}
+        
+        {%if page_posts.has_next%}
+            <li><a href="?page={{page_posts.next_page_number}}">다음</a></li> 
+        {%endif%} 
+        </ul> 
+        </div>
     </div>
-
-    <h1>{{thema}}</h1>
-    <!--일단 타이틀로-->
-    <form action="{% url 'postsearch' board_thema room_id %}" method = "get">
-        {% csrf_token %}
-        <select name="selectTag">
-            <option value="title" selected>글제목</option>
-            <option value="content">글내용</option>
-            <option value="author">작성자</option>
-          </select>
-        <input type = text name="searchWord">
-        <input type="submit" value="검색">
-    </form>
-    <a href="{% url 'postnew' room_id board_thema %}">
-        <input type="submit" class="container__button" value="글쓰기">
-    </a>
-    <!--
-    {% for post in posts.all %}
-    <div>
-        <h3><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h3>
-        <p>{{post.create_date}}</p>
-    </div>
-    {%endfor%}
-    -->
-    	
- 
-{% for post in page_posts %}
-<h1><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h1> 
-{% endfor %}
-
-
-<ul>
-{%if page_posts.has_previous%}
-    <li><a href="?page={{page_posts.previous_page_number}}">이전</a></li>
-{%endif%}
-{%for i in page_posts.paginator.page_range%} 
-    <li><a href="?page={{i}}">{{i}}</a></li> 
-{%endfor%}
-
-{%if page_posts.has_next%}
-    <li><a href="?page={{page_posts.next_page_number}}">다음</a></li> 
-{%endif%} 
-</ul> 
-</body>
-</html>
+</div>
 {% endblock %}
