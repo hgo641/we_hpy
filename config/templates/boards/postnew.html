@@ -7,7 +7,6 @@
         <div class="page__content">
             {% include "studyrooms/studyroomBoard.html" %}
             <!-- hello/templates/postnew.html -->
-
             <form action="{% url 'postcreate' board_thema room_id %}" method="post">
                 {% csrf_token %}
                 <div>
