@@ -7,7 +7,6 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
-<<<<<<< HEAD
 def postedit(request, post_id):
     post = get_object_or_404(Post, pk = post_id)
     if (post.author == request.user):
@@ -23,8 +22,6 @@ def postedit(request, post_id):
         return render(request,'boards/detail.html',context)
 
 
-=======
->>>>>>> a7d9516d4b33bcf9a1a2b1777d1d164dd1f98350
 
 def board(request, board_id, studyroom_id):
     studyroom = get_object_or_404(Studyroom, pk = studyroom_id)
