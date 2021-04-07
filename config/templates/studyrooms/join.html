@@ -30,7 +30,7 @@
             </tbody>
         </table>
     </div>
-    <div class="pagination">
+    <div class="mt-8">
         {% for page in pages %}
         <a class="pagination__block" href="{% url 'studyroomJoin' %}?page={{ page }}">{{ page }}</a>
         {% endfor %}
