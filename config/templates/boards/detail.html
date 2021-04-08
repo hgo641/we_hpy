@@ -19,8 +19,8 @@
             <div class="border-b border-gray-500 py-2 mb-4 break-words">{{post.content}}</div>
             <div class="mb-4 text-right">
                 <a href="{% url 'board' post.thema post.studyroom.id %}" class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300">게시판</a>
-                <a href="{% url 'postedit' post.id %}" class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300">글수정</a>
-                <a href="{% url 'postdelete' post.id %}" class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300">글삭제</a>
+                <a href="{% url 'postedit' room_id post.id %}" class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300">글수정</a>
+                <a href="{% url 'postdelete' room_id post.id %}" class="p-3 w-24 rounded bg-gray-200 hover:bg-gray-300">글삭제</a>
             </div>
 
 

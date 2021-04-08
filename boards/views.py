@@ -7,10 +7,11 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
-def postedit(request, post_id):
+
+def postedit(request, room_id, post_id):
     post = get_object_or_404(Post, pk = post_id)
     if (post.author == request.user):
-        return render(request,'boards/postedit.html',{'post':post})
+        return render(request, 'boards/postedit.html', {'post': post, 'room_id': room_id})
     else:
         message = "수정 권한이 없습니다."
         comments = Comment.objects.filter(board = post)
@@ -18,8 +19,9 @@ def postedit(request, post_id):
         'post' : post,
         'comments' : comments,
         'message' : message,
-    }
-        return render(request,'boards/detail.html',context)
+            'room_id': room_id,
+        }
+        return redirect('detail', room_id, post_id)
 
 
 
@@ -95,7 +97,7 @@ def detail(request, room_id, post_id):
     return render(request, 'boards/detail.html', context)
 
 
-def postdelete(request, post_id):
+def postdelete(request, room_id, post_id):
 
     deletepost = get_object_or_404(Post, pk=post_id)
     if(deletepost.author == request.user):
@@ -117,16 +119,16 @@ def postdelete(request, post_id):
         return render(request,'boards/detail.html',context)
 
 
-
-def postupdate(request,post_id):
-    if (request.method =="POST"):
-        post=get_object_or_404(Post,pk=post_id)
+def postupdate(request, room_id, post_id):
+    if (request.method == "POST"):
+        post = get_object_or_404(Post, pk=post_id)
         post.title=request.POST['title']
-        post.content=request.POST['content']
+        post.content=request.POST['content']    
         post.save()
-    return redirect('/boards/detail/'+str(post_id))
+    return redirect('detail', room_id, post_id)
 
-def postsearch(request,room_id, board_thema):
+
+def postsearch(request, room_id, board_thema):
     if(request.method =="GET"):
         searchWord = request.GET.get('searchWord')
         print(searchWord)
