@@ -1,9 +1,5 @@
 # web_project
 
-# hong-park.yoon-sang-seok.com
-
-- [Link](https://hong-park.yoon-sang-seok.com/)
-
 > 우리들만의 공부 공간...💻
 
 > 풀스택 : 홍여진 [hgo641](https://github.com/hgo641)
@@ -11,6 +7,11 @@
 > 풀스택 : 박위백 [ChungRan](https://github.com/ChungRan)
 
 > 멘토 및 배포 : 윤상석 [amamov](https://github.com/amamov)
+
+## hong-park.yoon-sang-seok.com
+
+- [Link](https://hong-park.yoon-sang-seok.com/)
+
 
 ## 기술 스택
 
