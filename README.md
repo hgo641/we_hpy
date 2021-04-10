@@ -1,4 +1,4 @@
-# web_project
+# we-hpy
 
 > 우리들만의 공부 공간...💻
 
