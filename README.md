@@ -6,7 +6,7 @@
 
 > 풀스택 : 박위백 [ChungRan](https://github.com/ChungRan)
 
-> 멘토 및 배포 : 윤상석 [amamov](https://github.com/amamov)
+> 멘토 : 윤상석 [amamov](https://github.com/amamov)
 
 ## hong-park.yoon-sang-seok.com
 
