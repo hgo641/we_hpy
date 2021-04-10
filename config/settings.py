@@ -15,7 +15,8 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_DIR = BASE_DIR / 'config' / 'static'
+STATIC_ROOT = BASE_DIR / 'config' / 'static'
+MEDIA_ROOT = BASE_DIR / "config" / "media"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -24,9 +25,9 @@ STATIC_DIR = BASE_DIR / 'config' / 'static'
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG =False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["35.197.107.252", "hong_park.yoon-sang-seok.com"]
 
 
 # Application definition
@@ -137,7 +138,6 @@ STATIC_URL = '/static/'
 
 # LOGIN_REDIRECT_URL = '/'
 # LOGOUT_REDIRECT_URL = '/'
-STATICFILES_DIR = [STATIC_DIR, ]
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

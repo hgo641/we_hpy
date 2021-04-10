@@ -9,4 +9,3 @@ WORKDIR /srv/docker-server
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN pip install gunicorn
