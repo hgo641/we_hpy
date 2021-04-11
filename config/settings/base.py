@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 STATIC_ROOT = BASE_DIR / 'config' / 'static'
 MEDIA_ROOT = BASE_DIR / "config" / "media"
@@ -25,7 +25,7 @@ MEDIA_ROOT = BASE_DIR / "config" / "media"
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =False
+DEBUG = False
 
 ALLOWED_HOSTS = ["35.197.107.252", "hong-park.yoon-sang-seok.com"]
 
@@ -68,8 +68,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        
-        "DIRS": [str(BASE_DIR / "config" / "templates"),],
+
+        "DIRS": [str(BASE_DIR / "config" / "templates"), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -144,4 +144,3 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 TAILWIND_APP_NAME = 'theme'
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-
