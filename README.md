@@ -30,5 +30,5 @@
 * tailwind start - 개발용  
 `python manage.py tailwind start`
 
-* tailwind build 
+* tailwind build  
 `python manage.py tailwind build`
